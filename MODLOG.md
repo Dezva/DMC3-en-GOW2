@@ -166,3 +166,16 @@ anteriores siguen siendo evidencia histórica Linux. No se ejecutaron juegos,
 ni hubo nueva verificación de Windows o memoria real en esta entrega documental.
 Se comprobaron los enlaces relativos de los 12 documentos Markdown y los hashes
 de las 34 entradas del inventario privado; no contienen los recursos binarios.
+
+## 2026-10-16 · persistencia de avances entre nube y local
+
+El usuario pide asegurar que todos los cambios necesarios para progresar queden
+en GitHub y aclara que desconoce si Codex local puede acceder a Codex Cloud.
+Se establece GitHub como continuidad compartida, sin asumir acceso entre
+sesiones. AGENTS.md exige guardar código/tests/documentación/configuración no
+secreta, registrar estado y siguiente paso, hacer commit/push y verificar el SHA
+remoto. La guía local distingue copia ZIP, cambios locales, commits y publicación.
+
+Se mantiene la separación de recursos privados: sus metadatos y reproducción
+están documentados, pero clonar no descarga assets de nube. PINE no depende de
+esos modelos. No hay cambios al cliente o nuevas pruebas de juego en esta entrega.

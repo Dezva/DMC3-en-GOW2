@@ -5,6 +5,48 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## Guardar y sincronizar los avances
+
+**GitHub es el punto compartido de continuidad del proyecto.** Codex local no
+debe asumir acceso al filesystem, los procesos, las sesiones o el historial de
+Codex Cloud. Abrir este repositorio localmente proporciona los archivos que
+estén publicados en GitHub, no el entorno de nube completo. Un ZIP es una copia
+de un momento concreto; no recibe automáticamente cambios posteriores.
+
+El usuario autoriza guardar en Dezva/DMC3-en-GOW2 todos los avances de código,
+tests y documentación necesarios para continuar. El agente debe completar esta
+sincronización sin pedir de nuevo autorización para cada entrega solicitada:
+
+1. **Antes de trabajar:** comprobar estado local, rama y commits remotos. Si el
+   usuario alterna local/nube, incorporar los avances publicados por la otra
+   sesión preservando cambios existentes. No asumir que ambos checkouts están
+   actualizados ni trabajar a la vez sobre la misma fase sin comprobarlo.
+2. **Durante el trabajo:** guardar implementación, tests relevantes, versiones y
+   configuración no secreta. Registrar en MODLOG.md resultados, errores,
+   decisiones y el siguiente paso. Actualizar esta guía y el contrato si cambian
+   arquitectura, requisitos, protocolo o criterios de aceptación.
+3. **Al cerrar un avance:** revisar los archivos que se publicarán, hacer commit
+   y push a la rama acordada (actualmente main) y verificar el SHA remoto.
+   Entregar un enlace GitHub al commit o a los archivos, no rutas exclusivas del
+   workspace local/nube. El usuario no necesita encargarse de esos pasos Git
+   cuando el agente tiene herramientas y acceso para completarlos.
+4. **Si queda incompleto o bloqueado:** guardar el punto alcanzado con su estado
+   explícito. Distinguir archivo guardado, commit local y commit publicado. Un
+   fallo de push requiere informar qué falta; nunca afirmar que GitHub contiene
+   un avance que solo existe en el equipo actual.
+
+Los informes completos permanecen bajo D:\logs y los recursos privados fuera
+de Git. Sus conclusiones reproducibles y metadatos útiles sí deben incorporarse
+a la documentación publicada. El manifiesto de recursos indica qué existe en
+la nube; no es una copia de los modelos o de Blender. Si algo imprescindible
+para una fase solo está fuera de Git, documentar cómo obtenerlo o reproducirlo
+localmente antes de depender de ello. No publicar credenciales o binarios de
+los juegos para intentar sincronizar los equipos.
+
+La fase PINE actual puede continuar con el repositorio y las instalaciones de
+juegos del usuario: no requiere los recursos Blender de nube. Su siguiente
+comprobación real está en [la primera sesión](#la-primera-sesión-cerrar-la-prueba-pine).
+
 ## Objetivo que debe conservarse
 
 Integrar **DMC3 HD Collection de Steam** con **God of War II de PS2 ejecutado por
@@ -263,3 +305,6 @@ Puedes pegar este texto al abrir el proyecto en Codex:
 > desconocida ni instales DDMK o hooks gráficos. Después explica qué falta para
 > detectar una acción auténtica de Dante. Conserva Blender/modelos y publica los
 > scripts y la documentación que me entregues en el GitHub del proyecto.
+> Guarda también los demás cambios de código, tests, documentación y pasos de
+> reproducción necesarios para continuar. Haz commit y push y verifica que
+> quedaron publicados; no dependas de acceso a Codex Cloud para recuperar avances.

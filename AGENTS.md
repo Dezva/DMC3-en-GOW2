@@ -40,6 +40,33 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   documentales. Comandos, precondiciones y resultados en la guía local.
 - Mantener MODLOG.md y la guía local al día, con evidencia y siguiente paso.
 
+## Persistencia obligatoria de los avances
+
+El usuario pide que **todos los cambios necesarios para progresar** queden
+guardados en GitHub, tanto si se trabaja en nube como en local. No depender de
+que Codex local pueda acceder a Codex Cloud o al historial del chat.
+
+- Al iniciar una sesión, leer el estado Git y consultar el remoto antes de
+  continuar. Conservar cambios locales y avances de otras sesiones; no hacer
+  reset destructivo ni force push para actualizar el proyecto.
+- Por cada avance relevante, guardar código, tests, documentación, configuración
+  no secreta y pasos de reproducción. Actualizar MODLOG.md con qué cambió,
+  evidencia, limitaciones y siguiente acción; mantener la guía de continuidad
+  sincronizada cuando cambie el estado o el plan.
+- Hacer commit y push al repositorio autorizado; la entrega actual usa main.
+  Verificar que el commit está en la rama remota y entregar su enlace. Un
+  archivo local o un commit sin push **no es una copia en GitHub**.
+- Si se guarda trabajo parcial, identificarlo expresamente y registrar qué falta
+  y qué pruebas no pasaron/no se ejecutaron. No presentarlo como una fase cerrada.
+- Si el push falla por acceso, red o conflicto, conservar el trabajo y comunicar
+  qué commit sigue pendiente de publicar; no declarar completada la copia remota.
+- Los recursos privados siguen fuera de Git. Publicar metadatos/hashes, recetas
+  y conclusiones técnicas necesarias para continuar; no afirmar que los assets
+  privados o el filesystem de nube se transfieren al clonar el repositorio.
+
+El procedimiento entre equipos se explica en
+[la guía de continuidad](docs/CONTINUIDAD-LOCAL.md#guardar-y-sincronizar-los-avances).
+
 Rutas de juegos, serial/CRC, hashes, referencias y pasos concretos están en
 docs/CONTINUIDAD-LOCAL.md. docs/cloud-start.md contiene instrucciones históricas
 del entorno Linux de nube; no ejecutar sus instaladores como setup de Windows.
