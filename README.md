@@ -29,7 +29,8 @@ una BIOS de PS2 y PCSX2 **2.8.2.0**, versión indicada por el usuario. La captur
 de propiedades identifica ahora **God of War II NTSC-U**, **SCUS-97481**,
 **CRC 2F123FD8**, ubicado en
 `D:\Games PS2\God of War II [NTSC]\God of War II.iso`.
-El usuario indica que GOW2 abre; no hemos ejecutado su instalación desde la nube.
+La primera prueba local de solo lectura confirmó PCSX2 v2.8.2, esa identidad
+de GOW2 y una instrucción RAM coincidente con la ISO; detalles en la guía local.
 
 La imagen europea anterior era del **primer God of War**, SCES-53133 / FB0E6D72;
 no debe utilizarse como destino de este proyecto.
@@ -49,14 +50,18 @@ Los próximos informes y muestras locales de Windows se guardarán bajo
 **`D:\logs`**, según la preferencia del usuario.
 
 **Estado:** extracción e importación 3D verificadas y diagnóstico PINE implementado.
-Cliente probado con servidor y archivos sintéticos; conexión al PCSX2 del usuario
-todavía pendiente. No hay comunicación de gameplay entre juegos, detector de
+Cliente probado con datos sintéticos y **PINE real verificado en Windows
+PowerShell 5.1**: SCUS-97481/2F123FD8, lectura 0x70000C28 en 0x00100008 igual a
+la ISO, phase1_verified=true. Segunda captura con DMC3 ejecutándose confirmada
+por PID/ruta y huella PE/SHA; sus módulos no pudieron inspeccionarse.
+No hay comunicación de gameplay entre juegos, detector de
 ataques, composición visual ni mod jugable. Consulta [la prueba PINE](docs/pine.md),
 el [contrato](docs/CONTRACT.md) y [los límites y fases](docs/arquitectura.md).
 
 ## Siguiente prueba en Windows
 
-Activa PINE en los ajustes avanzados de PCSX2 (Slot 28011), carga GOW2 y ejecuta
+En PCSX2 activa Herramientas → Mostrar ajustes avanzados; después abre Ajustes
+→ Emulación → Avanzados y baja hasta PINE (Enable, Slot 28011). Carga GOW2 y ejecuta
 desde la raíz del proyecto, en PowerShell de 64 bits:
 
 ```powershell

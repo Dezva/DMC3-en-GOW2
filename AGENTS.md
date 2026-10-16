@@ -34,7 +34,8 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   herramientas y versiones antes de utilizarlas. No instalar herramientas
   pesadas innecesarias; equipo i5-4460, GTX1050, 8GB RAM.
 - El diagnóstico PINE está implementado y probado con datos sintéticos.
-  **No hay aún puente de gameplay ni prueba real de PCSX2 desde esta sesión.**
+  **PINE real verificado en Windows/PCSX2 2.8.2; no hay puente de gameplay.**
+  DMC3 identificado por ruta/PE/SHA; módulos desconocidos. Consultar la continuidad.
   Diferenciar fuentes leídas, tests, datos reales del usuario y pruebas en juego.
 - Verificar cambios con checks relevantes; no repetir suites por cambios solo
   documentales. Comandos, precondiciones y resultados en la guía local.

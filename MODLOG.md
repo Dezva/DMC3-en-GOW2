@@ -179,3 +179,65 @@ remoto. La guía local distingue copia ZIP, cambios locales, commits y publicaci
 Se mantiene la separación de recursos privados: sus metadatos y reproducción
 están documentados, pero clonar no descarga assets de nube. PINE no depende de
 esos modelos. No hay cambios al cliente o nuevas pruebas de juego en esta entrega.
+
+## 2026-10-16 · primera prueba PINE real en Windows
+
+Checkout existente en main, limpio y coincidente con GitHub al iniciar
+(`99db3fc31a9da55d56a7fb0757fb9ca0d6a2f89f`); remoto consultado/fetch antes de
+editar. Comprobados Windows 10 Pro x64 build 19045, PowerShell 7.6.5 y Windows
+PowerShell 5.1.19041.6456 x64. PCSX2 abierto desde Program Files, versión de
+archivo/producto 2.8.2.0; dmc3.exe e ISO accesibles en las rutas previstas.
+
+Primer Probe-Pine.ps1, salida 1 por timeout TCP, conservado en
+`D:\logs\pine-probe-20261016-015652-620-7d8b36ba84784c25ad8cfbf14e2f12fa`.
+El usuario necesitó ayuda para localizar PINE. La UI oficial v2.8.2 mostró un
+error en nuestra guía: Mostrar ajustes avanzados pertenece a **Herramientas**,
+no Ajustes. Corregido en pine.md y continuidad; después Ajustes → Emulación →
+Avanzados, bajar al final hasta PINE. El usuario confirmó activación Slot 28011
+y GOW2 en partida. No se editó automáticamente el INI.
+
+Segunda ejecución con Windows PowerShell 5.1, **salida 0, phase1_verified=true,
+sin errores**. PINE respondió PCSX2 v2.8.2, running, God of War II,
+SCUS-97481, CRC 2f123fd8, disco 1.01. Read32 en **0x00100008** devolvió
+**0x70000C28**, igual a la ISO; identidad/estado válidos antes/después.
+Se leyeron report.json y los 21 eventos JSONL: 17 respuestas de lectura y una
+sola lectura RAM de cuatro bytes. Carpeta:
+`D:\logs\pine-probe-20261016-020052-357-1ccbaefbfac345fdb51c9c7a88e794d6`.
+No equivale a observar gameplay visualmente ni a detectar ataques o salud.
+
+inspect_ps2.py leyó la ISO real sin cambios y devolvió SCUS-97481, GODOFWAR2,
+entrada ELF 0x00100008 y SHA-256, salida 0. Informe nuevo en
+`D:\logs\disc-check-20261016-015829-827-566439793e184a69a736d1357d78d9af`.
+Huella PE/SHA de dmc3.exe registrada, pero DMC3 no observado ejecutándose.
+Metadatos y reproducción en la guía local; informes privados fuera de Git.
+No se modificaron originales de juegos ni memoria ni se instalaron DLL/hooks.
+El usuario después confirmó DMC3 en partida, con PCSX2 abierto. Una captura
+adicional confirmó PINE pero dejó el proceso DMC3 desconocido por MainModule
+nulo y módulos inaccesibles, incluso fuera del sandbox. Una consulta mínima
+QueryFullProcessImageNameW sí devolvió la ruta. Se añadió esa alternativa a
+Probe-Pine.ps1, usando solo PROCESS_QUERY_LIMITED_INFORMATION (0x1000), con
+cierre de handle, path_source y conservación del error MainModule. Una lista
+vacía de módulos se registra unknown; no se solicitan VM_READ/VM_WRITE ni
+debug privilege. No se amplía la lectura de memoria de juegos.
+
+**Captura final correcta con cliente actualizado**, salida 0:
+`D:\logs\pine-probe-20261016-020627-849-cef3b6e1780b4f7b8406ad4f86528806`.
+PINE/identidad/instrucción correctos y **dmc3.running=confirmed**, PID 23396,
+ruta real de la instalación esperada, misma huella PE/SHA de disco. Módulos
+DMC3 siguen desconocidos, expresamente registrado. Report.json y los 21 eventos
+JSONL revisados; hashes en continuidad. Se cumple la aceptación inicial de
+PINE y proceso DMC3 independiente, con la limitación de módulos desconocidos.
+
+Validación Windows PowerShell 5.1: dos nuevos tests de ruta con permisos mínimos
+(proceso propio/PID inválido) y ocho tests PINE anteriores correctos. Excluido
+explícitamente el test que exige DMC3 cerrado; no se cerró el juego del usuario.
+No se repitieron los 22 tests de inspectores. Logs de los diez tests en
+`D:\logs\pine-validation-20261016-020524-384-a87616c80d8447c19a12e533ea27d6ae`;
+sin fallos en la selección ejecutada. Las 31 pruebas Linux anteriores siguen
+siendo evidencia histórica, no una suite completa repetida en Windows.
+
+Siguiente fase: estudiar esta build DMC3 y comprobar acceso de lectura a
+firmas/actor antes de correlacionar reposo, ataque, salto, pausa y cambio de
+escena. No pedir esas acciones como si ya hubiese detector ni presentar el
+consumo puntual como medición de rendimiento. Sin puente de gameplay, reacción
+GOW2 ni composición visual; juegos, BIOS, informes completos y assets fuera de Git.

@@ -59,6 +59,13 @@ No hay protocolo compartido de gameplay todavía. Para el futuro: snapshots
 reemplazables, colas de eventos acotadas y descarte de estados atrasados; nunca
 reproducir ataques pendientes después de reinicio/carga. Tasas y TTL se medirán.
 
+En Windows, si MainModule no devuelve una ruta, se consulta la imagen con
+QueryFullProcessImageNameW y un handle PROCESS_QUERY_LIMITED_INFORMATION
+(0x1000), cerrado siempre al terminar. No solicita VM_READ/VM_WRITE, acceso
+completo ni privilegio de depuración. `path_source` identifica el método;
+`main_module_error` conserva el fallo anterior. Enumeración vacía/no accesible
+significa `modules_status=unknown`, aunque la ruta permita confirmar dmc3.exe.
+
 ## Ciclo de vida y prueba de aceptación
 
 Arrancar PCSX2 con PINE activado; cargar GOW2 y entrar en partida; lanzar el

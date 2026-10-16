@@ -5,6 +5,121 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## Primera prueba local · 2026-10-16
+
+**PINE real verificado:** ejecución de Probe-Pine.ps1 con salida 0,
+`phase1_verified=true`, sin errores. PCSX2 respondió `PCSX2 v2.8.2`, estado
+`running` antes/después, God of War II, **SCUS-97481 / CRC 2F123FD8**, versión
+de disco 1.01. Read32 en **0x00100008** devolvió **0x70000C28**, igual al ELF
+de la ISO (offset 4104). Se revisaron report.json y los 21 eventos JSONL;
+17 respuestas, únicamente opcodes 2,8,11,12,13,14,15 y una lectura RAM de 4 bytes.
+No se verificó visualmente el gameplay desde el agente: el usuario informó
+haber cargado partida, y PINE observó la VM en ejecución.
+
+Informes privados, fuera de Git:
+
+- Primer intento con salida 1, timeout TCP y ninguna lectura RAM:
+  `D:\logs\pine-probe-20261016-015652-620-7d8b36ba84784c25ad8cfbf14e2f12fa`.
+- Prueba correcta, salida 0:
+  `D:\logs\pine-probe-20261016-020052-357-1ccbaefbfac345fdb51c9c7a88e794d6`.
+  SHA-256 report.json
+  `261985250867c198f28246425e78b5f1d0d5a8607626c3c85d733deef4b75cab`;
+  events.jsonl
+  `7adf8afb737a3ee340afd1c6cdb3e9ef49d45737063324fc81ed50b03deedcf6`.
+- Captura con DMC3 abierto, cliente anterior: PINE correcto pero
+  `dmc3.running=unknown_candidate_present`, MainModule/módulos no accesibles:
+  `D:\logs\pine-probe-20261016-020327-264-6f85f9cd2a734b5d8a2ab6b04a7bbedc`.
+- **Captura final con cliente corregido y ambos juegos abiertos**, salida 0,
+  `phase1_verified=true`, `dmc3.running=confirmed`, sin errores globales:
+  `D:\logs\pine-probe-20261016-020627-849-cef3b6e1780b4f7b8406ad4f86528806`.
+  SHA-256 report.json
+  `9a3c0eaf6de1bc574f0a5945aec73a9d9274f6da59ce09bd2af4ccdc436ded25`;
+  events.jsonl
+  `f662e6b83db7bce8d9fa47067409f55c7bc8bb6ff974e84a14d5d1810cbb2f76`.
+  También 21 eventos, secuencias 1–21, 17 respuestas, un Read32 y los mismos
+  opcodes permitidos, instrucción e identidad; estado running antes/después.
+- Lectura independiente con inspect_ps2.py, salida 0:
+  `D:\logs\disc-check-20261016-015829-827-566439793e184a69a736d1357d78d9af\disc-report.json`.
+  ISO GODOFWAR2, 8533671936 bytes; ELF SCUS_974.81, 2125688 bytes,
+  entrada 0x00100008, SHA-256
+  `fd403603be46dea70d130695820d28b3f31de6d7e48484a5f006398a605f7dd6`.
+  No se recalculó el CRC PCSX2 ni se certificó toda la imagen.
+
+Comando real, desde la raíz, sin cambiar políticas de ejecución:
+
+```powershell
+& 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe' -NoProfile -File .\tools\Probe-Pine.ps1
+```
+
+Entorno comprobado: Windows 10 Pro x64 build 19045, Windows PowerShell
+5.1.19041.6456 de 64 bits (diagnóstico) y PowerShell 7.6.5 (shell de trabajo).
+PCSX2 desde `C:\Program Files\PCSX2\pcsx2-qt.exe`, versión de archivo/producto
+2.8.2.0. El primer intento falló antes de que el usuario activara PINE y cargara
+GOW2; el segundo pasó tras esos pasos. Se corrigió la ruta de la guía usando
+MainWindow.ui y AdvancedSettingsWidget.ui oficiales v2.8.2: **Herramientas →
+Mostrar ajustes avanzados**, después Ajustes → Emulación → Avanzados, al final
+PINE Settings, Enable y Slot 28011. No se editó el INI desde el agente.
+
+DMC3 no observado en las primeras dos capturas; después el usuario confirmó
+haber entrado en partida con Dante y mantuvo PCSX2 abierto. **PID 23396 y ruta
+real confirmados** en la captura final, coincidente con
+`D:\HayJueguitosEnLaCompu\Devil May Cry HD Collection\dmc3.exe`. Archivo dmc3.exe
+accesible, 6356432 bytes, PE x64 (`0x8664`), timestamp PE 1521798082,
+SizeOfImage 14336000, sin versión de archivo/producto declarada, SHA-256
+`4ae4bb5c83c19a649fc60edc5ca40e7f3ceee6337e4e4275025bfa9caa40c0a0`.
+Mary.dll y dinput8.dll ausentes en la raíz consultada; no se afirma ausencia
+global de mods ni compatibilidad DDMK. MainModule devolvía nulo y la enumeración
+de módulos no era accesible, incluso fuera del sandbox. Se comprobó que
+QueryFullProcessImageNameW con PROCESS_QUERY_LIMITED_INFORMATION (0x1000)
+sí podía devolver la ruta; se añadió como alternativa en Probe-Pine.ps1,
+conservando el fallo anterior en main_module_error y registrando path_source.
+No se solicita VM_READ/VM_WRITE ni debug privilege. Los módulos vacíos se
+registran expresamente **unknown**, sin afirmar ausencia de DLL cargadas.
+
+**Aceptación inicial cumplida:** PINE/identidad/instrucción verificados y DMC3
+identificado independientemente por proceso/ruta/huella. Límite: módulos DMC3
+desconocidos, sin lectura de actor ni acciones auténticas. No se midió FPS,
+latencia ni consumo continuo de ambos juegos; las cifras del informe son una
+captura puntual. Siguiente fase: estudiar esta build DMC3 y la posibilidad de
+leer firmas/actor con permisos de lectura, antes de pedir correlaciones manuales
+de reposo → ataque → reposo, salto, pausa y cambio de escena. Aún no hay detector
+de ataques, reacción GOW2 ni integración visual. No hace falta repetir acciones
+para este cliente: solo identifica proceso y una instrucción estática GOW2.
+
+Git local/remoto coincidían en `99db3fc31a9da55d56a7fb0757fb9ca0d6a2f89f`,
+main limpio al iniciar; se consultó/fetch del remoto. Para Git HTTPS se usa
+`C:\Program Files\Git\cmd\git.exe`: el Git del runtime no encontró remote-https.
+En este sandbox escribir D:\logs y acceder a GitHub requirió ejecución fuera
+del sandbox; eso no significa ejecutar PINE como administrador. No se cambiaron
+originales de los juegos ni se instalaron loaders/hooks.
+
+Validación tras cambiar el cliente: **dos nuevos tests Windows correctos**
+(ruta del proceso propio y PID inválido rechazado) y **ocho tests PINE anteriores
+correctos** con Windows PowerShell 5.1. El test
+test_fragmented_protocol_and_verified_code_read no se ejecutó porque exige
+DMC3 cerrado; no se cerró el juego del usuario. No se repitieron los 22 tests
+de inspectores sin cambios. Resultados en
+`D:\logs\pine-validation-20261016-020524-384-a87616c80d8447c19a12e533ea27d6ae`
+(process-image-tests.txt y pine-regression-tests.txt). Esto no son 33 tests
+ejecutados: fueron diez tests seleccionados y después la captura real final.
+Para reproducir la selección en PowerShell, usar Python disponible, PWSH_BIN
+apuntando a Windows PowerShell 5.1, PYTHONPATH=tests y:
+
+```python
+import unittest
+from test_pine_probe import PineProbeTests
+names = unittest.defaultTestLoader.getTestCaseNames(PineProbeTests)
+suite = unittest.TestSuite(PineProbeTests(name) for name in names
+    if name != 'test_fragmented_protocol_and_verified_code_read')
+result = unittest.TextTestRunner(verbosity=2).run(suite)
+raise SystemExit(not result.wasSuccessful())
+```
+
+Los nuevos tests se ejecutan con `python -m unittest test_process_image_path -v`
+con ese PYTHONPATH; se omiten explícitamente fuera de Windows. Para guardar
+salidas, crear una carpeta única en D:\logs y dirigir TMP/TEMP y el log de
+la consola a ella durante esa ejecución, sin cambiar variables globales.
+
 ## Guardar y sincronizar los avances
 
 **GitHub es el punto compartido de continuidad del proyecto.** Codex local no
@@ -65,20 +180,20 @@ enfoque. No hay una fusión completa ya implementada que baste con activar.
 
 | Dato | Valor / evidencia |
 |---|---|
-| Sistema del usuario | Windows; edición/build de Windows aún no recogidas |
+| Sistema del usuario | Windows 10 Pro x64, build 19045; consulta local 2026-10-16 |
 | CPU / RAM | Intel i5-4460 / 8 GB |
 | GPU | NVIDIA GTX 1050; VRAM y driver exactos por verificar |
-| PCSX2 | Usuario indica 2.8.2.0; protocolo investigado en fuentes v2.8.2 |
+| PCSX2 | Archivo/producto 2.8.2.0 y respuesta PINE PCSX2 v2.8.2 comprobados localmente |
 | Destino | God of War II NTSC-U, SCUS-97481, CRC 2F123FD8, según captura |
 | ISO | `D:\Games PS2\God of War II [NTSC]\God of War II.iso` |
 | DMC HD | `D:\HayJueguitosEnLaCompu\Devil May Cry HD Collection` |
-| Ejecutable esperado | `dmc3.exe`; hay que confirmar el proceso real y su huella |
-| PINE Windows | TCP local `127.0.0.1:28011`; desactivado de fábrica, activación real por verificar |
+| Ejecutable esperado | `dmc3.exe`, PID/ruta real y huella PE/SHA confirmados; módulos desconocidos |
+| PINE Windows | TCP local `127.0.0.1:28011`, identidad y Read32 real verificados 2026-10-16 |
 | Logs / informes / muestras nuevos | `D:\logs`, subcarpetas únicas |
 | BIOS y controles | Usuario tiene BIOS preparada; mando válido, teclado opcional |
 
-GOW2 abre según el usuario. Control completo, guardado/carga, rendimiento y
-conexión PINE no se comprobaron desde la nube. La primera descarga europea era
+GOW2 abre según el usuario; PINE quedó verificado localmente en esta sesión.
+Control completo, guardado/carga y rendimiento siguen sin medir. La primera descarga europea era
 **God of War I**, SCES-53133 / FB0E6D72: no es el destino ni un perfil compatible.
 No volver a pedir los datos ya confirmados; verificar localmente si han cambiado.
 
@@ -86,9 +201,9 @@ No volver a pedir los datos ya confirmados; verificar localmente si han cambiado
 
 | Componente | Estado comprobado | Límite |
 |---|---|---|
-| `tools/Probe-Pine.ps1` | Cliente real PowerShell, probado contra TCP sintético | Pendiente ejecutarlo con PCSX2/Windows reales |
-| Identidad y lectura PINE | Versión/estado/título/serial/CRC; Read32 de instrucción derivada del ELF | No posiciones, salud, ataques ni cámara |
-| Diagnóstico DMC3 | Inspección de proceso, ruta, PE/SHA, módulos Mary/dinput8 y memoria observada | No perfil de telemetría de combate; DDMK sin validar |
+| `tools/Probe-Pine.ps1` | TCP sintético y prueba real Windows 5.1 / PCSX2 2.8.2 correctos | No telemetría de gameplay |
+| Identidad y lectura PINE | Prueba real: SCUS-97481/2F123FD8, Read32 0x70000C28 en 0x00100008 coincide con ISO | No posiciones, salud, ataques ni cámara |
+| Diagnóstico DMC3 | Proceso/ruta real y huella PE/SHA confirmados en Windows | Módulos desconocidos; no perfil de combate, DDMK sin validar |
 | `inspect_ps2.py` | ISO9660/ELF de solo lectura; siete tests | No CHD/CSO ni CRC PNACH recalculado |
 | `inspect_pac.py` | PAC/DDS, ocho tests y extracción real de muestra | No conversión PS2 |
 | `inspect_gow_toc.py` | TOC, siete tests e índice real recibido | Segunda capa DVD9 no resuelta sin metadatos adicionales |
@@ -97,9 +212,10 @@ No volver a pedir los datos ya confirmados; verificar localmente si han cambiado
 | Gameplay entre motores | Sin implementar | No detección auténtica de ataques ni reacción GOW2 |
 | Composición visual | Investigación y requisitos documentados | Sin hooks, renderer compartido o prueba de rendimiento |
 
-Última validación: **31 tests correctos**, sin omitidos, combinando 22 tests de
+Última suite sintética: **31 tests correctos**, sin omitidos, combinando 22 tests de
 inspectores y nueve de PINE con 17 escenarios. Ejecutados en Linux/Python 3.12 y
-PowerShell 7.4.21. No equivalen a validar Windows PowerShell 5.1 o una partida.
+PowerShell 7.4.21. No equivalen a una partida. La prueba real Windows 5.1 de
+esta sesión figura arriba y valida solamente el diagnóstico PINE y la huella de disco.
 
 El cliente permite únicamente opcodes PINE 2,8,11,12,13,14,15, con respuesta
 máxima 16 KiB y timeout. Exige PCSX2 2.8.2 y serial/CRC correctos antes de Read32.
@@ -142,7 +258,8 @@ acceso a todos los procesos por el hecho de ser local.
    último directorio contiene una ejecución terminada. No volver a escanear
    toda la instalación ni pedir inventarios que ya se analizaron.
 2. Verificar rutas de ISO y `dmc3.exe`. Detectar PCSX2 y si hay partida cargada.
-   En la GUI PCSX2: Ajustes → Mostrar ajustes avanzados → Avanzados → PINE,
+   En la ventana principal PCSX2: **Herramientas → Mostrar ajustes avanzados**;
+   después **Ajustes → Emulación → Avanzados**, bajar al final hasta **PINE**,
    habilitado, Slot28011. El agente no debe editar automáticamente otros ajustes.
 3. Con GOW2 en una partida, ejecutar desde la raíz:
 
@@ -277,7 +394,8 @@ temporales; no intentan conectarse al emulador real para validar gameplay.
 antes de las pruebas con ambos juegos, o reconocer esa precondición si falla.
 No cerrar procesos del usuario automáticamente para satisfacer un test.
 
-Windows PowerShell 5.1 no se probó en la nube. Si una prueba falla en Windows,
+Windows PowerShell 5.1 no se probó en la nube; localmente pasó la prueba real
+PINE descrita arriba, sin ejecutar la suite sintética completa. Si una prueba falla en Windows,
 guardar la causa y diferenciar portabilidad, precondiciones y defecto real;
 no modificar expectativas para aparentar éxito. Los instaladores `setup_* .sh`
 del repositorio contienen rutas y runtime Linux; no son necesarios en Windows.

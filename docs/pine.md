@@ -9,6 +9,10 @@ detecta ataques ni provoca reacciones en GOW2.
 
 Lee el nombre del proceso real, su ruta, PID, fecha de arranque y consumo de
 memoria observado. El lanzador de HD Collection no cuenta como `dmc3.exe`.
+Si MainModule no devuelve ruta, usa QueryFullProcessImageNameW con únicamente
+PROCESS_QUERY_LIMITED_INFORMATION; registra `path_source` y conserva el error
+del primer método. Una enumeración de módulos vacía se registra como desconocida,
+sin afirmar que no hay DLL cargadas. No solicita privilegio de depuración.
 Registra SHA-256, tamaño, versión y cabecera PE del ejecutable en disco; también
 examina `Mary.dll`/`dinput8.dll` si existen y registra esos módulos si están
 cargados. Su presencia no demuestra compatibilidad DDMK. No lee aún estados de
@@ -19,6 +23,13 @@ PINE se contrasta con las fuentes oficiales de PCSX2 **v2.8.2**, commit
 admite la familia 2.8.2 en la cadena que devuelve PINE. Si difiere, identifica
 el juego pero omite RAM hasta revisar esa versión.
 
+**Resultado local 2026-10-16:** prueba real correcta con Windows PowerShell
+5.1 x64, PCSX2 v2.8.2, SCUS-97481/2F123FD8, VM running, instrucción
+0x70000C28 en 0x00100008 igual a la ISO, `phase1_verified=true`, sin errores.
+También se confirmó dmc3.exe por PID/ruta real y PE/SHA de disco; módulos
+desconocidos. Logs, hashes y entorno en
+[la continuidad local](CONTINUIDAD-LOCAL.md#primera-prueba-local--2026-10-16).
+
 ## Ejecutar en tu PC
 
 Descarga [el ZIP del repositorio](https://github.com/Dezva/DMC3-en-GOW2/archive/refs/heads/main.zip)
@@ -28,9 +39,14 @@ con **Download raw file** en GitHub. No necesitas acceder a rutas del entorno
 en la nube. Si descargaste el archivo suelto, abre PowerShell en su carpeta y
 ejecútalo con `.\Probe-Pine.ps1`.
 
-1. En PCSX2, abre **Ajustes → Mostrar ajustes avanzados** si están ocultos.
-   En los ajustes **Avanzados**, localiza **PINE**, activa **Enable / Habilitar**
-   y deja **Slot = 28011**. Los textos pueden variar con la traducción.
+1. En la ventana principal de PCSX2, abre **Herramientas → Mostrar ajustes
+   avanzados** (Tools → Show Advanced Settings) si están ocultos y acepta el
+   aviso. Después abre **Ajustes → Emulación** y selecciona **Avanzados** en la
+   columna izquierda. Desplázate hasta el final del panel: **PINE Settings /
+   Ajustes de PINE** está debajo de los ajustes de savestates. Activa **Enable /
+   Habilitar** y deja **Slot = 28011**. Cierra la ventana de ajustes. Los textos
+   pueden variar con la traducción. El menú que muestra las opciones avanzadas
+   es **Herramientas**, no Ajustes; comprobado en MainWindow.ui de v2.8.2.
    La configuración oficial es `[EmuCore] EnablePINE` y `PINESlot`; el script
    no modifica el INI. No necesitas abrir puertos del router.
 2. Arranca **God of War II**, entra en una partida y deja el emulador abierto.
@@ -48,8 +64,10 @@ ejecútalo con `.\Probe-Pine.ps1`.
    exportadores anteriores. No cambies la política del sistema ni ejecutes como
    administrador para esta prueba. Si falla, la salida puede cerrar la consola
    al devolver código 1; los informes se guardan antes.
-4. Busca la carpeta nueva **`D:\logs\pine-probe-...`** y adjunta **`report.json`
-   y `events.jsonl`**, también si indica error. No hacen falta ISO, BIOS o EXE.
+4. Busca la carpeta nueva **`D:\logs\pine-probe-...`**. Codex local debe leer
+   **`report.json` y `events.jsonl`** directamente, también si indica error. Solo
+   hace falta adjuntarlos si el agente no tiene acceso a tu disco. No hacen
+   falta ISO, BIOS o EXE.
 5. Primero puedes dejar DMC3 cerrado. Después abre **DMC3**, no solamente el
    menú de HD Collection, entra en una partida y repite el mismo script. Las
    ejecuciones crean carpetas distintas. Esta segunda captura confirma el
@@ -139,8 +157,9 @@ Cubren lectura, pausa, edición/versión incorrectas, VM cerrada, cambio de jueg
 instrucción distinta, ISO ausente/segmento no ejecutable/MMIO, IPC_FAIL,
 fragmentación, truncado, longitud excesiva, cadena inválida, timeout y conexión
 rechazada. Comprueban que no cambia ningún archivo fuente y que no se envía
-ningún opcode de modificación. Windows PowerShell 5.1 y los juegos reales están
-pendientes de probar en el equipo del usuario.
+ningún opcode de modificación. Son tests históricos Linux. La prueba real local
+Windows PowerShell 5.1 / PCSX2 pasó el 2026-10-16; eso no supone que esta suite
+completa se haya repetido en Windows ni valida gameplay entre juegos.
 
 Fuentes oficiales:
 

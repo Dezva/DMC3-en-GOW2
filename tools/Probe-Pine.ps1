@@ -93,25 +93,79 @@ function Get-ExecutableFingerprint([string]$Path) {
     return $result
 }
 
+function Get-LimitedProcessImagePath([int]$ProcessId) {
+    # MainModule can be unavailable even when limited image-name queries work.
+    # No VM_READ, VM_WRITE, injection, debug privilege or full-access handle.
+    if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
+        throw 'Limited process image queries require Windows.'
+    }
+    if (-not ('DmcGowDiagnostic.NativeImagePath' -as [type])) {
+        Add-Type -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Text;
+namespace DmcGowDiagnostic {
+    public static class NativeImagePath {
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern IntPtr OpenProcess(uint access, bool inherit, int pid);
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        private static extern bool QueryFullProcessImageNameW(IntPtr handle, uint flags, StringBuilder path, ref uint size);
+        [DllImport("kernel32.dll")]
+        private static extern bool CloseHandle(IntPtr handle);
+        public static string Read(int pid) {
+            IntPtr handle = OpenProcess(0x1000, false, pid); // PROCESS_QUERY_LIMITED_INFORMATION
+            if (handle == IntPtr.Zero) throw new Win32Exception(Marshal.GetLastWin32Error());
+            try {
+                StringBuilder path = new StringBuilder(32768);
+                uint size = (uint)path.Capacity;
+                if (!QueryFullProcessImageNameW(handle, 0, path, ref size))
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                return path.ToString();
+            } finally { CloseHandle(handle); }
+        }
+    }
+}
+'@
+    }
+    return [DmcGowDiagnostic.NativeImagePath]::Read($ProcessId)
+}
+
 function Get-ProcessSnapshot([Diagnostics.Process]$Process, [switch]$Dmc) {
     $row = [ordered]@{
         pid = $Process.Id; name = $Process.ProcessName; path = $null
-        executable_identity = 'unknown'; modules_status = 'not_requested'
+        executable_identity = 'unknown'; modules_status = 'not_requested'; path_source = $null
     }
     try {
         $row.working_set_mib = [Math]::Round($Process.WorkingSet64 / 1MB, 2)
         $row.private_bytes_mib = [Math]::Round($Process.PrivateMemorySize64 / 1MB, 2)
         $row.start_utc = $Process.StartTime.ToUniversalTime().ToString('o')
-        $row.path = $Process.MainModule.FileName
+    } catch { $row.inspection_error = $_.Exception.Message }
+    try {
+        $mainModule = $Process.MainModule
+        if ($null -eq $mainModule) { throw 'MainModule unavailable; trying limited image query.' }
+        $row.path = $mainModule.FileName
+        if ([string]::IsNullOrWhiteSpace($row.path)) { throw 'MainModule returned no image path.' }
+        $row.path_source = 'MainModule'
+    } catch {
+        $row.main_module_error = $_.Exception.Message
+        try {
+            $row.path = Get-LimitedProcessImagePath $Process.Id
+            $row.path_source = 'QueryFullProcessImageNameW(PROCESS_QUERY_LIMITED_INFORMATION)'
+        } catch { $row.inspection_error = $_.Exception.Message }
+    }
+    if (-not [string]::IsNullOrWhiteSpace($row.path)) {
         $baseName = [IO.Path]::GetFileName($row.path)
         if ($Dmc) {
             if ($baseName -ieq 'dmc3.exe') { $row.executable_identity = 'dmc3.exe' }
             else { $row.executable_identity = 'other_executable' }
         } else { $row.executable_identity = $baseName }
-    } catch { $row.inspection_error = $_.Exception.Message }
+    }
     if ($Dmc) {
         try {
-            $row.observed_mod_modules = @($Process.Modules | Where-Object {
+            $modules = @($Process.Modules | Where-Object { $null -ne $_ })
+            if ($modules.Count -eq 0) { throw 'Module enumeration unavailable or empty; module presence is unknown.' }
+            $row.observed_mod_modules = @($modules | Where-Object {
                 $_.ModuleName -ieq 'Mary.dll' -or $_.ModuleName -ieq 'dinput8.dll'
             } | ForEach-Object { [ordered]@{ name = $_.ModuleName; path = $_.FileName } })
             $row.modules_status = 'observed'
