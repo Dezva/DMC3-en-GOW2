@@ -8,6 +8,12 @@ y utiliza **Extraer todo** en Windows. El diagnóstico está en
 puedes descargarlo desde su página con **Download raw file**.
 Las instrucciones están en [docs/pine.md](docs/pine.md).
 
+**Para continuar en Codex local:** abre la raíz de este proyecto y utiliza
+[la guía de continuidad](docs/CONTINUIDAD-LOCAL.md). Incluye el estado comprobado,
+la próxima prueba, las fases posteriores y un mensaje listo para iniciar la
+sesión. [AGENTS.md](AGENTS.md) conserva las instrucciones para Codex y el
+[índice de documentación](docs/README.md) reúne la investigación disponible.
+
 Los scripts y la documentación se entregan mediante este repositorio, según
 la preferencia del usuario. El ZIP no incluye juegos, BIOS, modelos extraídos
 ni archivos privados de Blender; esos recursos se conservan por separado.
@@ -28,8 +34,8 @@ El usuario indica que GOW2 abre; no hemos ejecutado su instalación desde la nub
 La imagen europea anterior era del **primer God of War**, SCES-53133 / FB0E6D72;
 no debe utilizarse como destino de este proyecto.
 
-Consulta [la preparación en Windows](docs/windows.md) para obtener el inventario
-de archivos y establecer una ejecución de referencia del juego.
+Los inventarios y las muestras ya se recibieron; [la preparación en Windows](docs/windows.md)
+se conserva como referencia de los pasos anteriores y de los controles.
 El [análisis de DMC3](docs/inventario-dmc3.md) registra los inventarios y recursos
 identificados. La [ruta de implementación](docs/arquitectura.md) explica cómo se
 utiliza Universal Modder en este proyecto.

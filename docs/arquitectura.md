@@ -208,7 +208,7 @@ Las carpetas de salida deben ser nuevas. En Windows, utiliza subcarpetas bajo
 `D:\logs` para esos informes y resultados locales. Esta importación es material
 de trabajo, **no un archivo instalable en God of War II**.
 
-## Investigación del destino PS2
+## Investigación del destino PS2 para conversión (pausada)
 
 Se examinó [mogaika/god_of_war_browser](https://github.com/mogaika/god_of_war_browser),
 commit **1bfc55c0172e67c48c8e941c495333f583c721a0**. Su documentación y código
@@ -246,3 +246,5 @@ El índice permitió seleccionar R_HERO00.WAD, R_HERO01.WAD y R_PERMA.WAD para
 estudiar los recursos del personaje y posibles dependencias. No se sabe aún qué
 recurso concreto habrá que reemplazar ni se puede
 prometer una conversión compatible hasta validar el formato de destino.
+Esa investigación queda como antecedente: no hace falta resolver un reemplazo
+de recursos para continuar el diagnóstico PINE o la lectura de estados DMC3.

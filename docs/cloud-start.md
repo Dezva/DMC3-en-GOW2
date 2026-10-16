@@ -1,5 +1,10 @@
 # Inicio reutilizable del entorno de desarrollo
 
+Para la continuidad en el PC Windows del usuario, lee AGENTS.md y
+docs/CONTINUIDAD-LOCAL.md. Esta guía de nube contiene rutas específicas Linux;
+no trasladar sus instaladores a Windows ni asumir que los assets privados se
+descargan al clonar GitHub. El índice completo está en docs/README.md.
+
 Trabaja en `/workspace/DMC3-en-GOW2`, checkout existente. Cada tarea de nube ya
 está aislada: no crees un Git worktree salvo petición explícita del usuario.
 Lee instrucciones AGENTS.md aplicables, README.md, MODLOG.md, docs/CONTRACT.md,

@@ -137,7 +137,32 @@ pendiente de ejecución real; no se afirma haberlo probado.
 ## 2026-10-16 · entrega por GitHub autorizada
 
 El usuario pide que los archivos se entreguen mediante el repositorio vinculado
-para poder descargarlos. Se prepara la publicación del código propio, tests y
-documentación en main de Dezva/DMC3-en-GOW2, con enlaces al ZIP y al diagnóstico.
+para poder descargarlos. Se publicó el código propio, tests y documentación en
+main de Dezva/DMC3-en-GOW2, commit d8bd78e762792730a4709be4a9a53980e27756c7,
+con enlaces al ZIP y al diagnóstico. Se comprobó el ZIP descargado de GitHub,
+su CRC y que Probe-Pine.ps1 coincide con el código publicado.
 Se conservan fuera de Git los juegos, BIOS, muestras y resultados Blender.
 Esta publicación no valida todavía PINE en su Windows ni implica un mod jugable.
+
+## 2026-10-16 · continuidad para Codex local
+
+El usuario va a crear un entorno local para facilitar el acceso a su Windows.
+La documentación anterior ya estaba publicada. Se añade AGENTS.md para que
+Codex lea automáticamente objetivo/prioridades, y docs/CONTINUIDAD-LOCAL.md con
+estado verificado, rutas, limitaciones, primera sesión PINE, fases siguientes,
+dependencias fijadas, pruebas y mensaje de inicio. docs/README.md reúne toda la
+documentación y README enlaza la guía local.
+
+Se comprobó la conservación de los recursos privados y se generó
+docs/recursos-preservados.json con nombres/tamaños/hashes de los grupos elegidos.
+No se subieron assets ni se asumió que una clonación los trasladaría al PC. Se
+documenta cómo buscar exportaciones locales previas o reproducir una copia
+Blender más adelante, sin convertirlo en una dependencia del diagnóstico.
+
+Revisión de consistencia: retiradas referencias obsoletas a muestras todavía
+pendientes. Señalada la precondición DMC3 cerrado en el test sintético de
+detección negativa. No cambia código del puente ni su protocolo; los 31 tests
+anteriores siguen siendo evidencia histórica Linux. No se ejecutaron juegos,
+ni hubo nueva verificación de Windows o memoria real en esta entrega documental.
+Se comprobaron los enlaces relativos de los 12 documentos Markdown y los hashes
+de las 34 entradas del inventario privado; no contienen los recursos binarios.

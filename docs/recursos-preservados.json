@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "kind": "private-resource-metadata-only",
+  "verified_at_utc": "2026-10-16T04:22:06.927650+00:00",
+  "cloud_root": "/workspace/dmc3-private",
+  "files_included_in_git": false,
+  "scope": "Selected source, extracted, final Blender and GOW2 index/sample directories. Older intermediate runs and original chat attachments are not exhaustively listed.",
+  "migration": "Metadata only. A Git clone does not transfer these files or create the cloud paths on Windows.",
+  "file_count": 34,
+  "total_bytes": 15546288,
+  "files": [
+    {
+      "group": "source-sample",
+      "relative_path": "source-sample/informe.json",
+      "bytes": 340,
+      "sha256": "bac0e1cc8713447d4c1e254275add29fefe389a1e2539801d07f731199776b95"
+    },
+    {
+      "group": "source-sample",
+      "relative_path": "source-sample/pl000.pac",
+      "bytes": 1335280,
+      "sha256": "b73b6e8ee2f2088a088f4215a5a13a50700fb4e4f0bef54dc0bcce11ae7b9c5d"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/pac-report.json",
+      "bytes": 4982,
+      "sha256": "f4ee333fb67dafda0ec31aa94495ea2d65ea6030fa0c26d523072529b8d08085"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_000.bin",
+      "bytes": 616448,
+      "sha256": "d8c495b183482b58b859feccf87ad6b856a40b2153c51d1c85255eb6bad8f71c"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_001.mod",
+      "bytes": 216544,
+      "sha256": "e219e89285604cb6d800b0afdd3bec6684a6b00cd1862d464a669d2861ff3c89"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_002.pac",
+      "bytes": 177264,
+      "sha256": "987788ccb6affc227caa10847bb610a9cf11532ca92aea8b96e2c13fbffc1a69"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_003.pac",
+      "bytes": 130256,
+      "sha256": "1a1212d69f0e374055a21d8da91aebce1a5d7ac41eb874df62a70931668752b4"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_004.pac",
+      "bytes": 38800,
+      "sha256": "4cd09394503f283229caeedd29f51aa3cb9b91b9afc6fc39f0a23392999ee90d"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_005.bin",
+      "bytes": 73120,
+      "sha256": "f37e056745fb8d401c2b9582acb3b6af2c05a2dc632e0d4bd61bc28cf52b6fa2"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_006.bin",
+      "bytes": 1008,
+      "sha256": "637c9ef35bdbd1200910e262f22f757ed56c543ede173c1e37905ef0ec0f9be1"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_007.bin",
+      "bytes": 20080,
+      "sha256": "814bbd297602b594136bc9b5bff89f5419dc389a396cc471f382a7c4af1227a8"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_008.shw",
+      "bytes": 9488,
+      "sha256": "cb392ef2e874addb887d32bc44d409299a32a83a4845afcbdef31698283f2e7e"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_009.bin",
+      "bytes": 896,
+      "sha256": "6e5fe935117725c700f59d66bbd1e4b5080e3143d8d71aff5bd646a841f11807"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_010.bin",
+      "bytes": 480,
+      "sha256": "5cbbe506adf20dc180f704a94a1eab80ff8be8cbe4f161d72f79a77968addbc6"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_011.bin",
+      "bytes": 1792,
+      "sha256": "3b1db7c088f1ca589982368ea864901b14a83508c54be820a5ecf74add3ae2b0"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_012.mod",
+      "bytes": 35696,
+      "sha256": "7a2be875b3702f59a607655f7a0a412801a6aea639dcb6e3b23d9b0a09c7e740"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_013.bin",
+      "bytes": 768,
+      "sha256": "e722f24cddb34c45bbfcbdae722b8a1905aa62400a8267dcb281a591919b68aa"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/slot_014.shw",
+      "bytes": 12560,
+      "sha256": "1df8eda6ac737af7a64d38ca1dc021763093bcb06f5783cbc3b2658c49a22a18"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/texture_000.dds",
+      "bytes": 349680,
+      "sha256": "9291d97afefe2136693c10f1ee1198db0ec8590c8603a9a66ae1f9f584d4135d"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/texture_001.dds",
+      "bytes": 174928,
+      "sha256": "048cdb8df4d30b41aec08bb957b4952b861ff21dc40166d5b79b292d57e2aa67"
+    },
+    {
+      "group": "pl000-extracted",
+      "relative_path": "pl000-extracted/texture_002.dds",
+      "bytes": 87536,
+      "sha256": "a81617d8a2ae9249441e8212b1808b4cb41e99fb67b5793684efea986d1960c2"
+    },
+    {
+      "group": "dante-source-blender-v4",
+      "relative_path": "dante-source-blender-v4/blender-report.json",
+      "bytes": 5055,
+      "sha256": "4588c707d2d2036b4960c7c2e64fa5c70859f6a3d84b2b3775b1cea723314e8f"
+    },
+    {
+      "group": "dante-source-blender-v4",
+      "relative_path": "dante-source-blender-v4/dante-source-preview.png",
+      "bytes": 517697,
+      "sha256": "70db2c0b9b7b2bb4699e7f6c98284557777be1e44207ede2ca7873e7dd136ca7"
+    },
+    {
+      "group": "dante-source-blender-v4",
+      "relative_path": "dante-source-blender-v4/dante-source.blend",
+      "bytes": 2315220,
+      "sha256": "5aa14d2f11690705c3d302f5ee067892e16432079c0db4409fd897f5a8b265b0"
+    },
+    {
+      "group": "dante-source-blender-v4",
+      "relative_path": "dante-source-blender-v4/dante-source.glb",
+      "bytes": 966068,
+      "sha256": "0c5490ad78ac1bc63788bb7be8c1cc0fcabbaabef571db878bef4698ccaf1906"
+    },
+    {
+      "group": "gow-index",
+      "relative_path": "gow-index/GODOFWAR.TOC",
+      "bytes": 39000,
+      "sha256": "9b339a2dfda12827d221e173a2fb806d7be5d6c436bcffcc650e1486604d77b0"
+    },
+    {
+      "group": "gow-index",
+      "relative_path": "gow-index/SYSTEM.CNF",
+      "bytes": 57,
+      "sha256": "5e3b5adc35f6bb256a8aa1cae64694139f7d864b812795c2df99efc9215a1cef"
+    },
+    {
+      "group": "gow-index",
+      "relative_path": "gow-index/informe-gow.json",
+      "bytes": 292,
+      "sha256": "832246cde4fc92388d90aba0bfa6d611003ea411f0bcb8d08e90ae4ca79c7c2e"
+    },
+    {
+      "group": "gow-index",
+      "relative_path": "gow-index/raiz-iso.csv",
+      "bytes": 600,
+      "sha256": "7b0352a9f8f1c1b832851551bdd771e1a0a02a240ea4474a3852664b7ee67e3f"
+    },
+    {
+      "group": "gow-index",
+      "relative_path": "gow-index/toc-report.json",
+      "bytes": 375283,
+      "sha256": "4190a9df36db96f9707dd9fb3ebd33db497d589013112984c9fea2361c6988c2"
+    },
+    {
+      "group": "gow-samples",
+      "relative_path": "gow-samples/R_HERO00.WAD",
+      "bytes": 2301856,
+      "sha256": "41ed2683dfc01d6cbb4328444bba199f56df910cd82a6cd62c92cf5adf4d8a35"
+    },
+    {
+      "group": "gow-samples",
+      "relative_path": "gow-samples/R_HERO01.WAD",
+      "bytes": 2314640,
+      "sha256": "804934c2fea75d7893ed33b5c7fd3b7e2611ade39a3096a4e79d0137d35447e2"
+    },
+    {
+      "group": "gow-samples",
+      "relative_path": "gow-samples/R_PERMA.WAD",
+      "bytes": 3421104,
+      "sha256": "1efbec140179820fbfaf4685c8a1a7f7f5cc35eaa0e22e0d74ab6a28ee528760"
+    },
+    {
+      "group": "gow-samples",
+      "relative_path": "gow-samples/informe-muestras.json",
+      "bytes": 1470,
+      "sha256": "a3be62a64532d30a17855d83ee4978fead0402c7f72379d9446ceebbd056766c"
+    }
+  ]
+}

@@ -1,5 +1,10 @@
 # Inventario de HD Collection recibido
 
+**Estado vigente:** inventarios y muestra recibidos; extracción e importación
+Blender completadas. Este documento conserva la investigación de recursos.
+La prioridad actual es PINE y estados auténticos DMC3; continúa con
+[CONTINUIDAD-LOCAL.md](CONTINUIDAD-LOCAL.md), sin repetir estos inventarios.
+
 Se analizó el CSV `dmc-hd-inventario-20261015-225415-069.csv` aportado por el
 usuario. Contiene **281 registros**, con columnas `Ruta` y `Bytes`. El análisis
 usa únicamente nombres y tamaños; no se recibió el contenido de los juegos.
@@ -17,13 +22,14 @@ No faltaban recursos por haber enviado solo una de ellas.
 
 La instalación también contiene `dmc1.exe` y `dmc2.exe`. Se debe mantener la
 investigación centrada en los recursos bajo `data\dmc3` para este objetivo.
-En esa carpeta hay audio OGG y vídeos WMV, que no son necesarios para el primer
-reemplazo visual del personaje.
+En esa carpeta hay audio OGG y vídeos WMV, que no se necesitan para el diagnóstico
+PINE ni para inspeccionar el modelo de origen.
 
-## Lo que todavía no se sabe
+## Investigación inicial del NBZ (histórico)
 
-La extensión `.nbz` y el tamaño no confirman por sí solos el formato ni el recurso
-de Dante. No se ha abierto ni extraído el contenedor del usuario.
+Al comenzar, la extensión `.nbz` y el tamaño no confirmaban el formato ni el
+recurso de Dante. No se recibió el NBZ completo en la nube; posteriormente el
+usuario produjo su listado y la muestra PAC documentados más abajo.
 
 Se investigó el código fuente de [DDMK, `Mary/File.ixx`, commit
 0319ae7132a6a822fd4dede2fb7cad484900169f](https://github.com/serpentiem/ddmk/blob/0319ae7132a6a822fd4dede2fb7cad484900169f/Mary/File.ixx#L109-L209).
@@ -161,9 +167,10 @@ entrada. Si el lector produce un error, comparte ese mensaje; no renombres el
 original ni uses un informe parcial. El usuario ya aportó el listado real; esta
 instancia no tiene acceso al NBZ para repetir esa lectura.
 
-El listado permitirá escoger archivos concretos para analizar; no confirma por
-sí solo qué entrada contiene a Dante. La conversión del modelo y la investigación
-del formato de God of War II siguen pendientes.
+El listado permitió escoger pl000.pac, ya recibido, extraído e importado en
+Blender según el diario. La conversión del modelo queda pausada mientras se
+prioriza el puente PINE y la integración entre motores. Estos comandos se
+conservan como referencia, no como una solicitud de repetir el inventario.
 
 ## Estado del destino PS2
 
@@ -175,7 +182,8 @@ Corrección de la identificación anterior: el juego europeo que había arrancad
 era **God of War**, SCES-53133 / FB0E6D72, y no God of War II. Su configuración
 o sus parches no son intercambiables con los del destino confirmado.
 
-Pendientes: prueba de control del personaje, guardado y carga del segundo juego;
-acceso e investigación de sus WAD. El [índice PS2 ya se recibió y analizó](indice-gow2.md).
+Pendientes: prueba documentada de control, guardado y carga del segundo juego.
+El [índice PS2 y los tres WAD ya se recibieron](indice-gow2.md); no hace falta
+volver a pedirlos. Se conserva su investigación para una fase posterior.
 La etiqueta de
 compatibilidad de la biblioteca no sustituye una prueba funcional.
