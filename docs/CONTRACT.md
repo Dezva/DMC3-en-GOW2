@@ -1,13 +1,16 @@
-# Contrato del puente · versión 1
+# Contrato de observación · versión 2
 
-Ruta actual: diagnóstico entre procesos, **solo lectura**. La conversión de
+Ruta actual: PINE verificado y observador externo DMC3, **solo lectura**.
+Los registros PINE existentes mantienen su protocolo/esquema v1; este cambio
+documental no altera Probe-Pine.ps1. La conversión de
 recursos anterior se conserva como investigación visual; no define el objetivo
 final. Este contrato sigue la guía de puentes de Universal Modder, revisión
 23902ef42e8ea9b077bfbbf6911eb8ea0348e55a.
 
 Host previsto: Windows, PCSX2 2.8.2 (usuario: 2.8.2.0), God of War II NTSC-U,
 SCUS-97481 / CRC 2F123FD8. Invitado: DMC3 HD Collection de Steam, `dmc3.exe`;
-build y compatibilidad DDMK todavía sin verificar. No se carga ningún mod nuevo.
+build identificada por SHA/PE y guardas estáticas, con campos de gameplay aún
+candidatos. Compatibilidad DDMK no verificada; no se carga ningún mod nuevo.
 
 ## Propiedad y control
 
@@ -32,11 +35,17 @@ No se conocen escalas, ejes, handedness, cámara ni unidades de daño verificada
 de ambos juegos. `host_to_guest` queda **sin definir**, no se presupone identidad
 XYZ ni metros. Toda propuesta futura debe aportar mediciones o fuentes.
 
-La única dirección leída en esta fase procede del punto de entrada ELF de la
-ISO: una instrucción de código, no una posición, salud ni ataque. Se exige
+En el diagnóstico PINE, la dirección leída procede del punto de entrada ELF
+de la ISO: una instrucción de código, no una posición, salud ni ataque. Se exige
 segmento ejecutable file-backed, dirección alineada dentro de los 32 MiB de RAM
 EE y juego/CRC coincidentes antes de enviar Read32. No se interpreta como estado
 de combate. Se comprueba otra vez identidad y estado después de leer.
+
+El observador DMC3 deriva raíces RVA/campos de fuentes DDMK fijadas, aplicadas
+solo a una build hash/PE compatible y una base real obtenida en ejecución.
+Sus campos de motion/timer/state no establecen escala espacial ni ataques.
+La [especificación del observador](dmc3-observer.md) conserva fuentes, layout,
+guardas estáticas y limitaciones de contexto. No hay escrituras a esos campos.
 
 ## Canales y formato
 
@@ -44,6 +53,7 @@ de combate. Se comprueba otra vez identidad y estado después de leer.
 |---|---|---|---|
 | PINE TCP Windows, 127.0.0.1:28011 | Consulta → PCSX2 → respuesta | Una conexión, consultas finitas; respuesta ≤16 KiB | Timeout, cerrar y registrar; no reintentar escrituras |
 | Inspección de procesos y PE | Windows → diagnóstico | Una captura; hashes por streaming | Ausente y acceso desconocido se distinguen |
+| ReadProcessMemory DMC3 | Windows → observador externo | 1–20 Hz, bloques pequeños; captura finita ≤300 s de muestreo | Rechazar lecturas parciales/inválidas; limpiar valores anteriores |
 | `events.jsonl` | Diagnóstico → disco | Eventos finitos, esquema v1 | Error visible; no se usa como cola de órdenes |
 | `report.json` | Diagnóstico → disco | Un informe por sesión | Directorio único; no sobrescribir anteriores |
 
@@ -65,6 +75,26 @@ QueryFullProcessImageNameW y un handle PROCESS_QUERY_LIMITED_INFORMATION
 completo ni privilegio de depuración. `path_source` identifica el método;
 `main_module_error` conserva el fallo anterior. Enumeración vacía/no accesible
 significa `modules_status=unknown`, aunque la ruta permita confirmar dmc3.exe.
+
+El nuevo protocolo `dmc3-read-only-observer`, schema_version=1, tiene session.json,
+report.json y events.jsonl independientes de PINE. Guarda UTC, reloj monotónico
+ns, secuencia y generación de actor/contexto. Estado por muestra: warming_up,
+candidate_coherent o invalid. Tres muestras de contexto estable permiten
+candidatos; no prueban significado de una animación. Cambios observados de
+actor/proceso/sala/evento, pérdida de foco o error invalidan la generación.
+La validación es de lecturas entre consultas, sin transacción ni garantía contra
+recarga ABA entre ticks. No se transmiten eventos a GOW2.
+
+La memoria DMC3 se abre con QUERY_INFORMATION | VM_READ (0x410); VirtualQueryEx
+requiere QUERY_INFORMATION. No se elevan permisos ni se ajustan tokens. Error 5
+se registra; consultar la ruta con 0x1000 no demuestra acceso a RAM. Las pruebas
+de actor se suspenden ante fallo de acceso o build incompatible.
+
+Etiquetas de captura y anotaciones manuales llevan procedencia explícita y no
+generan ataques. Los pitidos solo coordinan una captura sin cambiar de ventana.
+Pérdida de foco no se considera reposo; tener foco no prueba ausencia de menús.
+El timer -1.0 sigue desconocido y descarta su muestra. Por ahora
+phase2_verified, actor_semantics_verified y authentic_attacks_detected son false.
 
 ## Ciclo de vida y prueba de aceptación
 

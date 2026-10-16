@@ -22,8 +22,10 @@ Proyecto para investigar una **integración entre motores**: Dante conserva los
 movimientos, animaciones y mecánicas auténticos de **DMC3 HD Collection** dentro
 del mundo de **God of War II de PS2**. No se limita a sustituir un modelo.
 
-**Fase actual:** comunicación entre procesos, empezando por diagnóstico PINE de
-solo lectura. El usuario utiliza Windows y tiene HD Collection
+**Fase actual:** observador externo DMC3 de solo lectura, con PINE ya verificado.
+Hay lecturas reales de campos candidatos; la validación de acciones y ciclo de
+vida sigue parcial. Véase [el observador DMC3](docs/dmc3-observer.md).
+El usuario utiliza Windows y tiene HD Collection
 para PC en `D:\HayJueguitosEnLaCompu\Devil May Cry HD Collection`. Ya dispone de
 una BIOS de PS2 y PCSX2 **2.8.2.0**, versión indicada por el usuario. La captura
 de propiedades identifica ahora **God of War II NTSC-U**, **SCUS-97481**,
@@ -58,7 +60,20 @@ No hay comunicación de gameplay entre juegos, detector de
 ataques, composición visual ni mod jugable. Consulta [la prueba PINE](docs/pine.md),
 el [contrato](docs/CONTRACT.md) y [los límites y fases](docs/arquitectura.md).
 
-## Siguiente prueba en Windows
+## Siguiente prueba en Windows: observación DMC3
+
+La evidencia PINE íntegra ya sirve; no hay que repetirla por cada captura DMC3.
+El observador usa Python x64 y biblioteca estándar, identifica nuevamente el
+proceso, comprueba huella/base real/páginas y lee bloques pequeños. No usa PINE,
+DDMK instalado ni una DLL dentro del juego. En esta sesión se utilizó el Python
+que ya incluye Codex. Comandos y perfil en [docs/dmc3-observer.md](docs/dmc3-observer.md).
+
+Para capturas manuales hay 15 s de preparación y pitidos al inicio/fin, porque
+DMC3 abre la pausa al cambiar de ventana. No se interpreta una etiqueta manual,
+BUSY ni cualquier cambio de motion como un ataque. `phase2_verified` sigue false;
+motionTimer=-1.0 se registra como desconocido y descarta esas muestras.
+
+## Repetir PINE solo si hace falta investigar
 
 En PCSX2 activa Herramientas → Mostrar ajustes avanzados; después abre Ajustes
 → Emulación → Avanzados y baja hasta PINE (Enable, Slot 28011). Carga GOW2 y ejecuta
@@ -131,5 +146,6 @@ bash tools/setup_pine_test_runtime.sh
 PWSH_BIN=/workspace/.dmc-tools/powershell-7.4.21/pwsh python3 -m unittest discover -s tests -v
 ```
 
-Sin PowerShell se omiten explícitamente las pruebas PINE y **no se considera
-verificado el puente**. El servidor TCP de los tests no es un emulador.
+Sin PowerShell se omiten explícitamente las pruebas sintéticas PINE; eso no
+borra la evidencia real local ya conservada. El servidor TCP de los tests no es
+un emulador, y PINE verificado no significa puente de gameplay implementado.

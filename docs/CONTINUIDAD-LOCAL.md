@@ -5,6 +5,119 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## Observación DMC3 · 2026-10-16 · avance parcial
+
+Referencia inicial y remoto comprobados: **4c93af92984d1efe842ae68f6913bee735701e9b**,
+main limpio, sin avances posteriores al iniciar. Se leyeron los documentos
+requeridos y los dos informes PINE con hashes publicados (020052 y 020627):
+contenido, SHA-256, 21 eventos y secuencias correctos. **No se repitió PINE**.
+La huella actual de dmc3.exe coincide con la documentada. La fase siguiente usa
+[el observador DMC3](dmc3-observer.md), independiente del diagnóstico PINE finito.
+
+### Qué se implementó y qué se comprobó
+
+- `tools/observe_dmc3.py`: captura finita Windows x64 con Python estándar;
+  `dmc3_memory.py`: APIs de consulta/lectura; `dmc3_profile.py`: guardas estáticas
+  y campos candidatos; `analyze_dmc3_capture.py`: revisión automática de logs.
+- Python local **3.12.14 x64** ya incluido en Codex. No se instaló otro runtime.
+  El PID se descubrió nuevamente: primero **21132**, iniciado 05:21:36.6928085Z,
+  con integridad alta/elevado. OpenProcess(0x410) devolvió **Win32 5**, cero
+  lecturas RAM. La consulta de ruta sí funcionaba: no demuestra acceso de lectura.
+- Se verificó el manifiesto asInvoker sin modificarlo. El usuario reabrió
+  directamente dmc3.exe sin administrador. Nuevo PID **12156**, iniciado
+  **05:29:18.123767Z**; lector y juego en integridad media/RID 8192, no elevados.
+  Se obtuvo base real ASLR **0x7FF749D60000** y tamaño 14336000. Las direcciones
+  son evidencia histórica de esta ejecución, **no parámetros para reutilizar**.
+- Perfil candidato derivado de DDMK **0319ae7132a6a822fd4dede2fb7cad484900169f**,
+  sin instalarlo. Hash/PE, una referencia RIP-relative al pool del actor y dos
+  secuencias de código de las fuentes coinciden en archivo y memoria. Evento y
+  sesión tienen evidencia de fuente/contexto; el detalle de esa diferencia,
+  offsets, tamaños, punteros y política de rangos está en dmc3-observer.md.
+- Se leyeron personaje, id/isClone, dos MotionData, motionTimer y state con
+  páginas y lecturas completas verificadas. El intento completo usa 200 bytes
+  de gameplay, no un volcado de estructuras. Hay datos reales de actor/motion;
+  **no son aún un detector de ataques ni validación semántica completa**.
+- Se descartan muestras por pérdida de foco, contexto/actor/proceso, página o
+  lectura inválida. Contexto antes/después, generaciones y tres muestras de
+  calentamiento impiden arrastrar valores antiguos. No es una transacción ni
+  detecta necesariamente una recarga ABA entre ticks. Tener foco no certifica
+  que un menú esté cerrado. g_scene de DDMK es estado del mod, no del juego.
+- Se adaptó el procedimiento al usuario: DMC3 abre pausa al cambiar de ventana.
+  Preparación **15 s**, pitido inicial, captura sin cambiar de ventana y pitido
+  final. No exigir partida activa mientras el usuario responde en el chat.
+  El usuario confirmó que los pitidos hacen más entendible la captura.
+
+### Evidencia privada en D:\logs
+
+Las carpetas siguientes son ejecuciones distintas; no asumir que la última
+contiene una captura terminada. Cada informe conserva su versión real del
+lector. Los resúmenes analizan secuencias, reloj y contadores sin detectar ataques.
+
+| Carpeta (bajo D:\logs) | Resultado |
+|---|---|
+| `dmc3-research-20261016-022124-767-087b22554c664bb48a2f4628c1e6cc98` | Índice y fuentes públicas DDMK fijadas, solo investigación |
+| `dmc3-access-20261016-022502-73c09498ed6d4aff817e9025a078cfd8` | Proceso elevado, error 5 al abrir 0x410; cero lecturas RAM |
+| `dmc3-access-20261016-023005-f794fde5038a4b12b070f43b38062860` | Proceso reabierto sin elevar; base real y MZ leídos, 64 bytes |
+| `dmc3-observe-20261016-023130-2bb2824f285c4ccea1a5ff3ba4834656` | Primeros candidatos reales: 20 muestras, 18 coherentes, 2 de calentamiento; 4173 bytes totales |
+| `dmc3-observe-20261016-023401-74c4bea167e343d48364121f70c8a0fe` | Mixta 45 s: 450 muestras, 368 coherentes, 82 inválidas; 84893 bytes; no control limpio |
+| `dmc3-observe-20261016-023634-aea8f72386cc417a8d477577486b01ed` | Control de saltos confirmado por usuario: 200 muestras, 181 coherentes, 19 inválidas; 13 timers -1.0 rechazados |
+| `dmc3-observe-20261016-023832-3c0bdbfb62a147439b8c6693ea109c48` | Plan de espada **no limpio**: usuario informó disparo inicial; no usar como control de reposo/espada |
+| `dmc3-observe-20261016-024702-93b5c31ffa994db1956f2c050369acde` | Espada con pitidos: usuario confirmó tres ataques separados y reposo, sin disparo/salto; 200 muestras, 198 coherentes, 2 de calentamiento; 40173 bytes, sin lecturas fallidas/timers rechazados |
+| `dmc3-observe-20261016-025054-9b073fab99fb467b88783a6e7fd6ff9b` | Pausa y puerta con pitidos: 300 muestras, 236 coherentes, 64 inválidas; 53661 bytes; usuario confirmó pausa, movimiento para situarse ante puerta y cruce |
+| `dmc3-observe-20261016-025259-252d8deb23ac4afd97650143201514a4` | Modo final access-only correcto: 2 lecturas, 152 bytes de cabeceras; sin RVA/actor |
+| `dmc3-tests-20261016-025204-787-aa78e9173c93413c98a55b3f5aee204b` | **26 tests correctos**: 25 sintéticos y una lectura Windows de buffer/imagen del propio Python; sin cerrar juegos |
+| `dmc3-session-review-20261016-025629-a9af75698b0045cd92fe722939d9dded` | Auditoría de dos informes PINE reutilizados y cinco capturas DMC3; hashes de fuentes y notas manuales separadas |
+
+session-review.json tiene SHA-256
+`64c7a4fb4d22b6e2ff4582c273672e783df9cd1c552a999886c57aa29a278142`.
+Cada una de esas cinco capturas conserva manual-review.json, con declaración
+posterior del usuario y sin inventar tiempos de acción. El control con pitidos
+de espada y el de pausa/puerta tienen confirmación manual explícita.
+
+La primera mixta tuvo una secuencia errónea al principio, luego repetida y
+finalmente juego minimizado, según el usuario. Las primeras capturas todavía
+no tenían el filtro de foco final. No inventar tiempos de acciones a partir
+del plan. Las etiquetas de las carpetas son intención; las confirmaciones del
+jugador son evidencia manual separada de la memoria. No hubo marcas de un
+operador independiente para cada golpe. El lector dispone de anotaciones
+monotónicas manuales, siempre unverified, que no activan ataques.
+
+Pausa/puerta: 48 muestras descartadas con evento 3 (~4,8 s), siete con evento 2,
+una con valor 11 conservado sin interpretarlo, dos sin actor y seis de
+calentamiento. Sala **127 → 114**, misión 7; se volvió a calentar aunque la
+dirección del actor se reutilizó. No hubo error de acceso/lectura. Las
+transiciones que vieron los logs y la confirmación del jugador son evidencia
+real de esa ejecución, no cobertura de todos los menús/cargas.
+
+Hashes de los dos informes con pitidos, para futuras comprobaciones:
+
+- Espada report.json:
+  `b554f65cd69fbd44c9eee2b60fb7ea042f316b26b6fd5ee14f9bb9c5f432f371`;
+  events.jsonl:
+  `40afe030e8aeaac5210d43a95c18e03b2100b5be0c8ac1f19136052093907174`.
+- Pausa/puerta report.json:
+  `ccff1dc96646c73254125136803495070adc5b6a406c28b30d4f28849cccd50e`;
+  events.jsonl:
+  `453c1c5fa54ce7d999c907b01ce2e45679304f744c3b7a8bb4e23a1925acbf88`.
+
+### Qué queda pendiente
+
+**Avance parcial de estados DMC3.** Acceso y observación candidata sí funcionan;
+`phase2_verified=false`, `actor_semantics_verified=false` y ataques detectados
+false. El timer **-1.0** aparece en control de saltos y su significado sigue
+sin validar: se rechaza, no se amplía el rango para forzar éxito. Estado BUSY o
+un cambio de motion no prueban un ataque. Se registraron valores de state fuera
+de los tres bits nombrados en la referencia DDMK y se conservaron como u32.
+
+Siguiente acción: investigar esos timers y completar correspondencia de motions
+con acciones, con repeticiones limpias, marcas temporales observadas y controles
+negativos. La captura limpia actual aporta tres ataques y reposo confirmados
+por el usuario, pero no tres ventanas de acción marcadas independientemente.
+Verificar más menús/transiciones antes de considerar un perfil robusto. No
+volver a pedir la prueba PINE ni elevar el lector; guardar cualquier error de
+acceso futuro con la nueva identidad de proceso. No avanzar a reacciones GOW2,
+escrituras, DDMK instalado ni hooks gráficos en esta entrega.
+
 ## Primera prueba local · 2026-10-16
 
 **PINE real verificado:** ejecución de Probe-Pine.ps1 con salida 0,
@@ -158,9 +271,9 @@ para una fase solo está fuera de Git, documentar cómo obtenerlo o reproducirlo
 localmente antes de depender de ello. No publicar credenciales o binarios de
 los juegos para intentar sincronizar los equipos.
 
-La fase PINE actual puede continuar con el repositorio y las instalaciones de
-juegos del usuario: no requiere los recursos Blender de nube. Su siguiente
-comprobación real está en [la primera sesión](#la-primera-sesión-cerrar-la-prueba-pine).
+La observación DMC3 actual puede continuar con el repositorio y las instalaciones
+del usuario: no requiere los recursos Blender de nube. PINE ya está verificado;
+el procedimiento histórico se conserva abajo para diagnosticar discrepancias.
 
 ## Objetivo que debe conservarse
 
@@ -170,8 +283,8 @@ auténticos de Dante dentro del mundo GOW2. El usuario precisó que un reemplazo
 de aspecto no cumple el objetivo. La ruta inicial de conversión visual quedó
 pausada; sus recursos y herramientas siguen conservados.
 
-Prioridad actual: comunicación entre procesos mediante **PINE en solo lectura**;
-después, detectar estados reales de DMC3. No avanzar a composición visual sin
+Prioridad actual: **observador DMC3 de solo lectura**, tras PINE verificado.
+Completar la validación de estados reales antes de detectar acciones. No avanzar a composición visual sin
 analizar acceso a cámara, profundidad, poses, colisiones y presupuesto del equipo.
 Si un componente no resulta viable, explicar la limitación antes de cambiar de
 enfoque. No hay una fusión completa ya implementada que baste con activar.
@@ -203,7 +316,7 @@ No volver a pedir los datos ya confirmados; verificar localmente si han cambiado
 |---|---|---|
 | `tools/Probe-Pine.ps1` | TCP sintético y prueba real Windows 5.1 / PCSX2 2.8.2 correctos | No telemetría de gameplay |
 | Identidad y lectura PINE | Prueba real: SCUS-97481/2F123FD8, Read32 0x70000C28 en 0x00100008 coincide con ISO | No posiciones, salud, ataques ni cámara |
-| Diagnóstico DMC3 | Proceso/ruta real y huella PE/SHA confirmados en Windows | Módulos desconocidos; no perfil de combate, DDMK sin validar |
+| Observación DMC3 | Acceso x64/ASLR real, campos candidatos, espada/pausa/puerta observadas con confirmación manual | Perfil semántico parcial, timer -1 desconocido, sin detector ni compatibilidad DDMK |
 | `inspect_ps2.py` | ISO9660/ELF de solo lectura; siete tests | No CHD/CSO ni CRC PNACH recalculado |
 | `inspect_pac.py` | PAC/DDS, ocho tests y extracción real de muestra | No conversión PS2 |
 | `inspect_gow_toc.py` | TOC, siete tests e índice real recibido | Segunda capa DVD9 no resuelta sin metadatos adicionales |
@@ -251,7 +364,7 @@ Una sesión local podrá utilizar solo las capacidades y rutas que tenga
 efectivamente disponibles. Detectarlas primero; no asumir control de la GUI o
 acceso a todos los procesos por el hecho de ser local.
 
-## La primera sesión: cerrar la prueba PINE
+## Procedimiento histórico de la primera prueba PINE
 
 1. Leer el estado del checkout y los informes `pine-probe-*` existentes bajo
    D:\logs, si los hay. Elegir informes por fecha/contenido, no asumir que el
@@ -415,13 +528,19 @@ Puedes pegar este texto al abrir el proyecto en Codex:
 
 > Lee AGENTS.md y docs/CONTINUIDAD-LOCAL.md de este repositorio y continúa desde
 > su estado actual. Quiero integrar los motores de DMC3 HD Collection y God of
-> War II, conservando las mecánicas y animaciones reales de Dante. Primero revisa
-> los informes locales existentes y ejecuta el diagnóstico PINE de solo lectura
-> en mi Windows cuando PCSX2 tenga GOW2 cargado. Confirma SCUS-97481/2F123FD8,
-> compara la instrucción de prueba con mi ISO y verifica el proceso real y la
-> huella de dmc3.exe. Guarda los nuevos informes en D:\logs. No escribas memoria
-> desconocida ni instales DDMK o hooks gráficos. Después explica qué falta para
-> detectar una acción auténtica de Dante. Conserva Blender/modelos y publica los
+> War II, conservando las mecánicas y animaciones reales de Dante. Comprueba el
+> estado local/remoto e incorpora avances posteriores preservando cambios.
+> Revisa integridad y contenido de los informes existentes de D:\logs. PINE ya
+> está verificado; no lo repitas salvo evidencia ausente, cambio o discrepancia.
+> Continúa el observador externo DMC3 exclusivamente de lectura desde su estado
+> actual: hash/build, PID nuevo, inicio, base real, derechos mínimos y páginas.
+> Investiga el timer -1.0 y valida semántica/motions sin transformar una etiqueta
+> manual o cambio de animación en ataque. Usa preparación y pitidos para las
+> capturas: DMC3 vuelve a pausa al cambiar de ventana. No reutilices PID/base
+> históricos, no eleves permisos, no escribas memoria ni instales DDMK/loaders
+> o hooks gráficos. Conserva desconocidos y diferencia tests, lecturas reales y
+> declaraciones del usuario. No declares la fase cerrada si falta validación.
+> Conserva Blender/modelos y publica los
 > scripts y la documentación que me entregues en el GitHub del proyecto.
 > Guarda también los demás cambios de código, tests, documentación y pasos de
 > reproducción necesarios para continuar. Haz commit y push y verifica que

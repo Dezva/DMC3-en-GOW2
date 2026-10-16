@@ -32,6 +32,11 @@ desconocidos. Logs, hashes y entorno en
 
 ## Ejecutar en tu PC
 
+PINE ya está verificado según la evidencia local. En la fase actual se revisan
+los informes existentes antes de repetirlo; `phase1_verified` no necesita DMC3
+abierto. Las nuevas capturas de gameplay candidato usan
+[el observador DMC3](dmc3-observer.md), sin modificar este diagnóstico finito.
+
 Descarga [el ZIP del repositorio](https://github.com/Dezva/DMC3-en-GOW2/archive/refs/heads/main.zip)
 y extráelo en Windows. También puedes descargar solo
 [Probe-Pine.ps1](https://github.com/Dezva/DMC3-en-GOW2/blob/main/tools/Probe-Pine.ps1)

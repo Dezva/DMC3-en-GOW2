@@ -241,3 +241,81 @@ firmas/actor antes de correlacionar reposo, ataque, salto, pausa y cambio de
 escena. No pedir esas acciones como si ya hubiese detector ni presentar el
 consumo puntual como medición de rendimiento. Sin puente de gameplay, reacción
 GOW2 ni composición visual; juegos, BIOS, informes completos y assets fuera de Git.
+
+## 2026-10-16 · observador externo DMC3, validación parcial
+
+Se comenzó desde main limpio/local-remoto **4c93af92984d1efe842ae68f6913bee735701e9b**,
+sin avances posteriores al iniciar. Se leyeron los documentos requeridos y se
+comprobaron los dos informes PINE con hashes publicados: JSON, SHA-256, 21 eventos
+y secuencias coincidentes. No se repitió PINE ni se cambió Probe-Pine.ps1.
+La huella dmc3.exe sigue siendo 4ae4bb5c83c19a649fc60edc5ca40e7f3ceee6337e4e4275025bfa9caa40c0a0.
+
+Implementados observe_dmc3.py, dmc3_memory.py, dmc3_profile.py y
+analyze_dmc3_capture.py con Python 3.12.14 x64 ya disponible. Solo consultas y
+ReadProcessMemory: handle 0x410 (QUERY_INFORMATION | VM_READ), VirtualQueryEx,
+lecturas completas y páginas legibles, identidad PID/ruta/inicio y base real
+bajo ASLR. Modo access-only independiente del perfil de gameplay. Capturas
+finitas, límites de frecuencia/tamaño y descarte de ticks atrasados. Sin API de
+escritura, debug privilege, elevación automática, DLL, DDMK instalado ni hooks.
+
+Primero, PID actual 21132 elevado/RID 12288: OpenProcess devolvió error 5 y no
+se leyó RAM, aunque funcionaba consultar la ruta. Se comprobó manifiesto asInvoker.
+Tras reapertura manual directa sin administrador, PID 12156/RID 8192 como el
+lector, inicio 05:29:18.123767Z. Base real 0x7FF749D60000, SizeOfImage 14336000;
+se leyeron cabeceras y guardas de código. Módulos adicionales no inventariados.
+
+Investigadas fuentes DDMK 0319ae7132a6a822fd4dede2fb7cad484900169f sin ejecutarlas.
+Perfil candidato: pool actor RVA C90E28 → slot 3; pool evento C90E10 → slot 8;
+sesión inline C8F250. Campos personaje, id/clone, motion index/group, timer y
+state. Hash/PE exactos, raíces en sección escribible, referencia MOV RIP-relative
+de actor en RVA 3D570 y dos secuencias de Mary/Global verificadas también en RAM.
+Evento/sesión conservan evidencia de fuente/contexto, no una firma semántica
+independiente. Procedencia, tipos, tamaños y limitaciones en dmc3-observer.md.
+
+Resultados reales:
+
+- Acceso y primer muestreo: 20 muestras, 18 candidatas coherentes, 2 de
+  calentamiento, 4173 bytes totales. Contexto y punteros se vuelven a consultar;
+  no se leen estructuras enteras ni se escanea la RAM.
+- La mixta de 45 s y el primer plan de espada no son controles limpios: el
+  usuario informó secuencia inicial incorrecta/repetida/minimización y un
+  disparo accidental en la prueba posterior. Se conservan como tales.
+- Control de saltos confirmado: 200 muestras, 181 coherentes, 13 timers **-1.0**
+  rechazados más 6 calentamientos. El significado de -1 permanece desconocido;
+  no se relajó el rango para forzar éxito.
+- DMC3 abre pausa al cambiar de ventana, según usuario. Se adaptó el observador
+  con 15 s de preparación y pitidos inicial/final. También se descartan muestras
+  cuando el PID del juego pierde el foco; tener foco no demuestra que no haya
+  menús. Los primeros logs anteriores al filtro conservan esa limitación.
+- Espada con pitidos: el usuario confirmó tres ataques separados y reposo,
+  sin salto/disparo. **200 muestras, 198 coherentes, 2 calentamientos**, sin
+  lecturas fallidas ni timers rechazados; 40173 bytes.
+- Pausa/puerta con pitidos: **300 muestras, 236 coherentes y 64 inválidas**:
+  48 evento pausa, 7 evento 2, 1 valor 11 sin interpretar, 2 sin actor y 6
+  calentamientos. Sala **127 → 114**, misión 7; dirección de actor reutilizada
+  pero muestras anteriores invalidadas y calentamiento nuevo. El usuario
+  confirmó pausa, desplazamiento para colocarse ante puerta y cruce. 53661 bytes.
+- Modo final access-only: 2 lecturas/152 bytes de cabeceras, sin raíces de actor.
+
+Las etiquetas de captura representan intención y los reportes del usuario son
+anotaciones manuales sin tiempos precisos por golpe. No se presentan como
+acciones detectadas; BUSY o cualquier cambio de motion no basta. Los registros
+tienen UTC/monotónico, sesión, secuencia/generación e invalidaciones; el analizador
+valida su consistencia y guarda hashes. No son un snapshot atómico ni detectan
+todas las recargas ABA del mismo contexto. Ningún dato se envía a GOW2.
+
+Validación final: **26 pruebas correctas** (25 sintéticas y una de lectura de
+imagen/buffer del propio proceso Python en Windows). Incluyen permisos/denegación,
+build incompatible, guardas, punteros/páginas, lecturas parciales, pérdida de
+actor/proceso/foco, pausa/contexto, timers desconocidos, etiquetas e integridad
+de logs. No se cerraron juegos ni se repitieron PINE/inspectores sin cambios.
+Log: D:\logs\dmc3-tests-20261016-025204-787-aa78e9173c93413c98a55b3f5aee204b.
+Carpetas, hashes y reproducción de capturas reales en la continuidad.
+
+Actualizados AGENTS, README, índice, contrato de observación v2, arquitectura,
+guía del observador y continuidad, incluido el prompt obsoleto de repetir PINE.
+Informe parcial: **phase2_verified=false**, semántica de actor sin certificar y
+sin detector. Próximo paso: investigar timer -1 y completar mapeo temporal de
+acciones con repeticiones/controles. No se declara cerrada la fase de estados.
+Originales de juegos, configuración, Blender y extracciones preservados; fuentes
+de investigación e informes completos quedan en D:\logs, fuera de Git.

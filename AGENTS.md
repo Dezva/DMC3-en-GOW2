@@ -12,7 +12,10 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   a sustituir el modelo de Kratos.
 - Continuar por fases: PINE de solo lectura, estados auténticos de DMC3,
   reacción comprobable GOW2, espacio/cámara/colisiones y viabilidad visual.
-- En la fase actual no escribir memoria desconocida, reemplazar a Kratos,
+- PINE ya está verificado; la tarea actual es el observador externo DMC3.
+  Leer docs/dmc3-observer.md y las evidencias más recientes de continuidad.
+  No repetir PINE si los informes íntegros sirven y no hay discrepancias.
+- En la fase actual no escribir memoria de los juegos, reemplazar a Kratos,
   instalar DDMK/loaders ni activar hooks gráficos. Explicar cualquier límite
   técnico antes de proponer un cambio de arquitectura.
 - Preservar modelos extraídos y avances Blender. Los assets están fuera de Git;
@@ -36,6 +39,10 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
 - El diagnóstico PINE está implementado y probado con datos sintéticos.
   **PINE real verificado en Windows/PCSX2 2.8.2; no hay puente de gameplay.**
   DMC3 identificado por ruta/PE/SHA; módulos desconocidos. Consultar la continuidad.
+  Ya hay lecturas reales de campos candidatos DMC3; no equivalen a un detector.
+  Si DMC3 está elevado y el lector no, registrar acceso denegado sin elevarlo.
+  Para capturas manuales usar preparación y pitidos: el usuario reportó pausa
+  automática al cambiar de ventana. No exigir partida activa mientras responde.
   Diferenciar fuentes leídas, tests, datos reales del usuario y pruebas en juego.
 - Verificar cambios con checks relevantes; no repetir suites por cambios solo
   documentales. Comandos, precondiciones y resultados en la guía local.

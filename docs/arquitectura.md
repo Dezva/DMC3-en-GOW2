@@ -10,8 +10,8 @@ de geometría es viable. Todavía no hay integración visual ni de combate.
 
 | Fase | Prueba que la cierra | Estado |
 |---|---|---|
-| 1. Comunicación | PINE identifica SCUS-97481/2F123FD8 y lee código conocido; proceso DMC3 identificado en Windows | Cliente y pruebas sintéticas; ejecución real pendiente |
-| 2. Estado auténtico DMC3 | Una acción de Dante reconocida por estado/motion, sin confundirla con pulsar un botón | Investigación de DDMK; sin perfil validado |
+| 1. Comunicación | PINE identifica SCUS-97481/2F123FD8 y lee código conocido; proceso DMC3 identificado en Windows | Verificada en Windows/PCSX2 2.8.2; informes íntegros reutilizables |
+| 2. Estado auténtico DMC3 | Una acción de Dante reconocida por estado/motion, sin confundirla con pulsar un botón | Observador externo implementado, guardas estáticas y lecturas candidatas reales; validación semántica/ciclo de vida parcial |
 | 3. Primer evento | Acción real → reacción pequeña observable en GOW2, con variable/rutina conocida y mecanismo de parada | Sin implementar; no escribir direcciones desconocidas |
 | 4. Espacio y cámara | Ejes, escala, proyección y colisiones medidos; latencia y presupuesto comprobados | Sin mediciones |
 | 5. Prueba visual | Dante animado, oclusión correcta y coincidencia espacial en un escenario pequeño | Viabilidad pendiente |
@@ -28,6 +28,11 @@ archivos e importación Blender. No había comunicación con PCSX2 ni DMC3.
 PINE es un canal nuevo y útil, no una sustitución de otro puente funcional.
 Se verificó el protocolo contra PCSX2 v2.8.2, commit
 fd9d310ccbb6b8b62c976da8886a3c8fd3a10ff3.
+
+La primera prueba real local ya pasó: PCSX2 v2.8.2, SCUS-97481/2F123FD8,
+Read32 en 0x00100008 igual a 0x70000C28. No repetirla por rutina: revisar
+integridad/contenido de los informes y repetir solo ante falta de evidencia,
+cambio relevante o discrepancia. `phase1_verified` no exige DMC3 abierto.
 
 `tools/Probe-Pine.ps1` detecta candidatos PCSX2 y DMC3, consulta versión/estado y
 datos del disco por TCP local y lee una instrucción obtenida de la ISO. Guarda
@@ -61,7 +66,36 @@ menú/carga, inicio de acción de repetición del mismo estado, y ataque de otra
 animaciones. Grupo/índice y temporizador deben correlacionarse con acciones
 observadas; una tecla o cualquier cambio de pose no prueba un ataque. Los
 hitboxes, ventanas de cancelación y confirmación de impacto son problemas
-adicionales. No hay perfil de lectura activo ni ataques auténticos detectados.
+adicionales. No hay ataques auténticos detectados.
+
+### Observador externo implementado
+
+`tools/observe_dmc3.py`, `dmc3_memory.py` y `dmc3_profile.py` mantienen una
+captura finita separada de Probe-Pine.ps1. [El perfil y sus límites](dmc3-observer.md)
+documentan RVA, origen DDMK, hashes/PE, cadenas, tamaños y páginas. La base se
+obtiene del módulo principal real bajo ASLR. No se usan PID ni direcciones
+virtuales históricas. Un SHA distinto impide aplicar el perfil de gameplay.
+
+El acceso necesita QUERY_INFORMATION | VM_READ (0x410), no solo consulta de
+nombre. El primer proceso DMC3 estaba elevado y devolvió error 5. Tras reapertura
+manual sin administrador se comprobaron cabeceras, guardas de código y campos
+candidatos de actor/motion/timer/state. No se elevaron permisos ni se instaló
+DDMK. Evento/sesión tienen evidencia de fuente y contexto acotado; su significado
+no queda certificado únicamente por que los valores estén en rango.
+
+Pérdida de actor/proceso/foco, páginas no legibles, lecturas parciales o cambios
+observados de contexto invalidan la muestra. Se usan generaciones y calentamiento;
+no se mantienen valores viejos. No hay snapshot atómico ni detector completo de
+todas las recargas del mismo contexto. g_scene de DDMK pertenece al mod y no es
+un campo del juego que este lector pueda consultar. Primer plano no equivale a
+partida activa: los menús y transiciones deben comprobarse también en juego.
+
+Se observó timer -1.0 en el control manual de saltos y se conservó como desconocido,
+sin ampliar rangos para forzar éxito. La captura mixta inicial y la que incluyó
+un disparo accidental no se usan como controles limpios. Se añadieron preparación
+y pitidos para que el jugador cierre la pausa automática al volver al juego.
+Los planes de acción, anotaciones del operador y observaciones de memoria se
+registran por separado; los primeros no son detecciones. La fase sigue parcial.
 
 `Mary/Memory.ixx` solicita una asignación de **1 GiB** en `Memory_Init`. No es una
 medida del working set real, pero desaconseja cargar el mod completo sin medir

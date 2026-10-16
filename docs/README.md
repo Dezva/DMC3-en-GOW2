@@ -10,6 +10,7 @@ leer automáticamente están en [AGENTS.md](../AGENTS.md), en la raíz.
 | [Continuidad local](CONTINUIDAD-LOCAL.md) | Estado real, Windows, siguiente sesión, fases y recursos que no viajan con Git |
 | [Contrato](CONTRACT.md) | Propiedad de estado, canales, formato y ciclo de vida |
 | [PINE](pine.md) | Activación en PCSX2, diagnóstico, campos y errores |
+| [Observador DMC3](dmc3-observer.md) | Lecturas externas, perfil candidato, permisos, validación y capturas con pitidos |
 | [Arquitectura](arquitectura.md) | Integración entre motores, DDMK, antecedente RE4/Minecraft y viabilidad visual/rendimiento |
 | [Diario](../MODLOG.md) | Evidencias, pruebas, decisiones y cambios de prioridad |
 | [Inventario DMC3](inventario-dmc3.md) | Inventarios recibidos, PAC, DDS e investigación del origen |
@@ -18,7 +19,8 @@ leer automáticamente están en [AGENTS.md](../AGENTS.md), en la raíz.
 | [Preparación Windows](windows.md) | Referencia de controles e inventarios ya completados |
 | [Inicio de nube](cloud-start.md) | Setup reproducible Linux; no es el setup de Windows |
 
-La fase vigente es PINE de solo lectura. Los documentos de inventario/exportación
+La fase vigente es observación DMC3 de solo lectura; PINE ya quedó verificado.
+Los documentos de inventario/exportación
 conservan procedimientos anteriores: no implican que haya que repetirlos ni
 retomar la conversión de aspecto. Los recursos extraídos y Blender se conservan
 fuera del repositorio. El inventario JSON solo registra metadatos; no los descarga.
