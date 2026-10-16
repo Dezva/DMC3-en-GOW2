@@ -73,6 +73,13 @@ DMC3 abre la pausa al cambiar de ventana. No se interpreta una etiqueta manual,
 BUSY ni cualquier cambio de motion como un ataque. `phase2_verified` sigue false;
 motionTimer=-1.0 se registra como desconocido y descarta esas muestras.
 
+**Revisión de capturas:** se reutilizan los logs; las primeras pruebas son
+exploratorias y una con pitidos pudo empezar mientras Dante ya golpeaba. No se
+certifican tres golpes delimitados ni combos completos a partir de esos datos.
+La [revisión de suficiencia](docs/revision-capturas-dmc3.md) distingue espada,
+combos, disparos, saltos, desplazamiento, reposo y pausa/transición. Por ahora
+solo se analiza lo existente, sin implementar funciones ni pedir otra captura.
+
 ## Repetir PINE solo si hace falta investigar
 
 En PCSX2 activa Herramientas → Mostrar ajustes avanzados; después abre Ajustes

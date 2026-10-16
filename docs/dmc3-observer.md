@@ -143,7 +143,8 @@ una salida y retorno al mismo contexto entre ticks (ABA) puede no observarse.
 
 `g_scene` en DDMK es estado de su propio mod y no se usa como dirección del juego.
 **Tener foco o EventData MAIN no demuestra que todo menú esté cerrado.** Las
-pruebas reales de pausa y cambio de sala siguen siendo necesarias. El control
+pruebas de otros menús/cargas siguen pendientes; ya hay evidencia de una pausa
+y cambio de sala específicos, sin cobertura general. El control
 de foco solo consulta a qué PID pertenece la ventana activa; no mueve ventanas.
 
 En capturas reales se observó **motionTimer=-1.0** durante el control de saltos.
@@ -161,12 +162,18 @@ la partida permanezca activa mientras responde al chat. Se adaptó la captura:
 & $observerPython .\tools\observe_dmc3.py --samples 200 --hz 10 --lead-in-seconds 15 --beep --label 'plan-reposo-tres-espada-reposo-sin-validar'
 ```
 
+El siguiente procedimiento es el plan histórico, **no una captura solicitada
+ahora**. Leer primero la [revisión de suficiencia](revision-capturas-dmc3.md):
+la espada con pitidos tiene inicio incierto según la última aclaración, y las
+primeras pruebas son exploratorias. Los pitidos usan Windows, sin descargar nada.
+
 Responder al chat, volver al juego y cerrar su pausa durante los 15 segundos
 iniciales. Al primer pitido comienza el intervalo de 20 s; permanecer quieto
 3 s, realizar tres ataques de espada separados y terminar en reposo. Segundo
 pitido: fin. Los pitidos solo coordinan al operador: **no son acciones detectadas**.
-Repetir separadamente controles de saltos sin ataques, pausa y transición por
-una puerta. No minimizar entre señales. Ventana o pantalla completa pueden
+Los controles futuros deberán decidirse por la hipótesis y la evidencia ausente;
+no repetir por rutina pausa/puerta ya observadas. No minimizar entre señales.
+Ventana o pantalla completa pueden
 usarse; el lector descarta las muestras cuando otro proceso tiene el foco.
 
 `--label` conserva la **intención de la captura**, no su cumplimiento. Para un
@@ -184,6 +191,13 @@ de acciones. No generar etiquetas observadas a partir del horario previsto.
 Antes de afirmar detección auténtica faltan repeticiones limpias, controles
 negativos y correspondencia temporal comprobable. Disparo, salto, cualquier
 cambio de animación y etiqueta manual no sustituyen ese requisito.
+
+Antes de cada petición de captura especificar duración, orden, cantidad de
+acciones, reposos y prohibiciones. Separar golpe individual, combo completo,
+disparo, salto, desplazamiento y reposo. Estudiar los combos como secuencias
+propias; múltiples cambios de motion no certifican una cadena completa. Señales
+por acción serían una mejora futura, no implementada en esta revisión. Las
+actuales solo marcan inicio/fin del muestreo, sin tiempos observados de golpes.
 
 ## Tests y límites de la entrega
 

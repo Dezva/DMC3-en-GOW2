@@ -97,6 +97,15 @@ y pitidos para que el jugador cierre la pausa automática al volver al juego.
 Los planes de acción, anotaciones del operador y observaciones de memoria se
 registran por separado; los primeros no son detecciones. La fase sigue parcial.
 
+La [revisión posterior de capturas](revision-capturas-dmc3.md) conserva las
+primeras como exploratorias y limita la de espada con pitidos por inicio
+posiblemente ya activo. Reutilizar evidencia antes de implementar o repetir.
+Separar golpe individual, combo completo, disparo, salto, desplazamiento y reposo.
+Los combos requieren estudiar secuencia, ramificaciones, interrupciones y
+recuperación propias de DMC3; no se consideran validados por varios cambios de
+motion. El timer constante 2.0 en la espada tampoco valida su uso como reloj.
+Por ahora solo se analizó suficiencia, sin nuevas funciones o pruebas en juego.
+
 `Mary/Memory.ixx` solicita una asignación de **1 GiB** en `Memory_Init`. No es una
 medida del working set real, pero desaconseja cargar el mod completo sin medir
 en un equipo con 8 GB. Se prioriza un observador externo pequeño, de solo

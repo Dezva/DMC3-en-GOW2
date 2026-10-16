@@ -77,12 +77,12 @@ skin durante exportación GLB. Draco no está disponible: GLB sin esa compresió
 El primer render colocaba el abrigo bajo el cuerpo debido a sus orígenes distintos;
 se documentó una alineación provisional para inspección estática.
 
-## Próximo paso y criterio de éxito
+## Próximo paso y criterio de éxito · actualizado
 
 El índice, muestras GOW2, pl000.pac e inventarios ya se recibieron; no pedirlos
-de nuevo. El siguiente paso real es activar PINE en PCSX2 y ejecutar
-tools/Probe-Pine.ps1 en Windows: primero GOW2 y después con DMC3 abierto.
-Adjuntar report.json y events.jsonl de D:\logs\pine-probe-...; véase docs/pine.md.
+de nuevo. PINE ya quedó verificado según las entradas locales posteriores.
+La tarea vigente es revisar suficiencia de capturas DMC3 antes de implementar
+o pedir más pruebas; véanse docs/revision-capturas-dmc3.md y continuidad.
 Éxito de esta fase: identidad PINE correcta y una instrucción de RAM coincidente
 con el ELF; proceso y huella DMC3 registrados independientemente. Eso no prueba
 combate ni composición visual. A continuación preparar un perfil DMC3 de lectura
@@ -319,3 +319,51 @@ sin detector. Próximo paso: investigar timer -1 y completar mapeo temporal de
 acciones con repeticiones/controles. No se declara cerrada la fase de estados.
 Originales de juegos, configuración, Blender y extracciones preservados; fuentes
 de investigación e informes completos quedan en D:\logs, fuera de Git.
+
+## 2026-10-16 · revisión retrospectiva y aclaración de capturas
+
+Partida desde **ec85d8b4eef4968f9788a143dea9da223d1e2c3b**, main local/remoto
+coincidentes y limpio, sin avances posteriores al consultar el remoto. El
+usuario aclaró que algunas pruebas antiguas mezclaron golpes, combos y disparos
+por falta de claridad; se conservan como exploratorias. La antigua declaración
+de solo saltos permanece, sin usarla como negativo decisivo tras esa aclaración.
+
+Las últimas con pitidos fueron inicialmente confirmadas, pero el usuario añadió
+después que una pudo comenzar mientras ya golpeaba: esperaba descargar algo y
+la señal le sorprendió. No identificó con certeza cuál ni tiempos por acción.
+No se atribuye una causa probada al intervalo inicial de espada ni se inventan
+disparos/saltos nuevos. Los pitidos ya usan winsound.Beep, sin descarga.
+
+Reanalizadas seis capturas existentes con la función de solo lectura publicada:
+JSON, sesión, secuencia, reloj y contadores consistentes. Cinco parejas report/
+events coinciden con hashes de la auditoría anterior, también comprobada. La
+espada conserva 198/200 muestras coherentes y asociación manual útil, pero no
+tres golpes delimitados: hay cuatro intervalos brutos (3,3), uno ya activo al
+inicio, que no equivalen a cuatro ataques. Timer=2.0 en todas las 198; no valida
+progreso de animación. La pausa/puerta conserva evidencia de invalidación y
+recuperación sala 127 → 114, con desplazamiento manual declarado.
+
+Nueva docs/revision-capturas-dmc3.md: suficiencia y carencias para golpe
+individual, combo completo, disparo, salto, desplazamiento, reposo y ciclo de
+vida. Los combos se estudiarán como secuencias propias, sin inferir completitud
+de cambios de motion o BUSY. Faltan identidad de combo/arma/ruta, límites y
+negativos aislados. Primero revisar significados con lo existente, sin pedir
+al jugador una secuencia que aún no sabemos distinguir. Próximas peticiones
+deberán explicar hipótesis, duración, orden, cantidad, reposos y prohibiciones.
+Posibles señales por acción quedan propuestas; no se implementaron.
+
+Auditoría privada nueva en
+`D:\logs\dmc3-capture-review-20261016-031930-aa7413b5cd734d6890ea2dc42e13e5c6`.
+capture-review.json SHA-256
+`105ef1b5c57d9eec613b00b759311c3eed5d15344cb6f108964d446840a00843`;
+clarification-after-review.json SHA-256
+`003453e2fc73d45ec62f434212ce2d6badd77fa622384c78ce2950b1f3788394`.
+Leer ambos: el segundo limita las clasificaciones manuales del primero. No se
+sobrescribieron archivos originales ni notas históricas. Informes completos
+permanecen privados; solo conclusiones/metadatos se guardan en GitHub.
+
+Actualizados instrucciones, README, índice, arquitectura, guía del observador
+y continuidad/prompt. Sin implementación, nueva captura, acceso a procesos,
+escritura en juegos ni repetición PINE. Validación de esta entrega documental:
+análisis de logs, hashes, diff y enlaces; no se repitieron suites sin cambios.
+**phase2_verified=false**; sin detector, reacción GOW2 o composición visual.

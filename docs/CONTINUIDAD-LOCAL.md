@@ -5,6 +5,44 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## Revisión posterior de capturas · 2026-10-16
+
+Punto de partida local/remoto: **ec85d8b4eef4968f9788a143dea9da223d1e2c3b**,
+main limpio y sin avances remotos posteriores al comprobarlo. El usuario aclaró
+que algunas capturas anteriores mezclaron golpes, combos y disparos por falta
+de claridad. Inicialmente confirmó las últimas con pitidos; después advirtió
+que una pudo empezar mientras ya golpeaba porque esperaba descargar algo para
+la señal. No indicó inequívocamente cuál ni tiempos de acción. Los pitidos ya
+usan Windows y no requieren descarga.
+
+**Leer [la revisión por hipótesis](revision-capturas-dmc3.md) antes de continuar.**
+Reutiliza seis capturas existentes; cinco parejas report/events conservan los
+hashes de la auditoría anterior y las seis pasan secuencia/reloj/contadores.
+Las primeras son exploratorias; la declarada de saltos no es negativo decisivo.
+La espada con pitidos conserva asociación manual útil, pero inicio incierto y
+cuatro intervalos brutos (3,3), uno ya activo al comenzar: no son cuatro ataques
+detectados ni prueba de tres golpes delimitados. Su timer vale 2.0 en todas las
+198 muestras coherentes, sin validar progreso de animación. La pausa/puerta
+sigue sirviendo para esa invalidación y recuperación, con movimiento declarado.
+No hay combo concreto completo identificado ni control aislado de disparos.
+
+Auditoría privada nueva:
+`D:\logs\dmc3-capture-review-20261016-031930-aa7413b5cd734d6890ea2dc42e13e5c6`.
+Leer capture-review.json y **clarification-after-review.json**, que añade la
+última aclaración sin alterar la primera revisión ni los originales. Hashes y
+detalle en revision-capturas-dmc3.md. Las notas antiguas siguen siendo históricas.
+
+Por petición del usuario, esta revisión solo analiza suficiencia: **sin funciones
+nuevas, capturas, consulta a procesos ni PINE**. Próximo trabajo: revisar campos
+y límites semánticos con lo existente antes de implementar o pedir pruebas.
+Si después falta un control concreto, explicar por qué y dar duración, orden,
+cantidad, reposos y prohibiciones antes de «Listo». Diferenciar golpe individual,
+combo completo, disparo, salto, desplazamiento y reposo; estudiar combos como
+acciones propias del combate original. No se piden repeticiones ahora.
+Cambios documentales verificados por diff/enlaces; suites anteriores no repetidas.
+phase2_verified sigue false. Lo que sigue conserva el informe histórico de
+implementación; sus confirmaciones manuales se leen con esta revisión posterior.
+
 ## Observación DMC3 · 2026-10-16 · avance parcial
 
 Referencia inicial y remoto comprobados: **4c93af92984d1efe842ae68f6913bee735701e9b**,
@@ -60,9 +98,9 @@ lector. Los resúmenes analizan secuencias, reloj y contadores sin detectar ataq
 | `dmc3-access-20261016-023005-f794fde5038a4b12b070f43b38062860` | Proceso reabierto sin elevar; base real y MZ leídos, 64 bytes |
 | `dmc3-observe-20261016-023130-2bb2824f285c4ccea1a5ff3ba4834656` | Primeros candidatos reales: 20 muestras, 18 coherentes, 2 de calentamiento; 4173 bytes totales |
 | `dmc3-observe-20261016-023401-74c4bea167e343d48364121f70c8a0fe` | Mixta 45 s: 450 muestras, 368 coherentes, 82 inválidas; 84893 bytes; no control limpio |
-| `dmc3-observe-20261016-023634-aea8f72386cc417a8d477577486b01ed` | Control de saltos confirmado por usuario: 200 muestras, 181 coherentes, 19 inválidas; 13 timers -1.0 rechazados |
+| `dmc3-observe-20261016-023634-aea8f72386cc417a8d477577486b01ed` | Saltos declarados originalmente: 200 muestras, 181 coherentes, 19 inválidas; 13 timers -1.0. Tras aclaración general, exploratoria y no negativo decisivo |
 | `dmc3-observe-20261016-023832-3c0bdbfb62a147439b8c6693ea109c48` | Plan de espada **no limpio**: usuario informó disparo inicial; no usar como control de reposo/espada |
-| `dmc3-observe-20261016-024702-93b5c31ffa994db1956f2c050369acde` | Espada con pitidos: usuario confirmó tres ataques separados y reposo, sin disparo/salto; 200 muestras, 198 coherentes, 2 de calentamiento; 40173 bytes, sin lecturas fallidas/timers rechazados |
+| `dmc3-observe-20261016-024702-93b5c31ffa994db1956f2c050369acde` | Espada con pitidos: inicialmente tres ataques/reposo declarados, sin disparo/salto; posible inicio ya activo aclarado después, no tres acciones delimitadas. 200 muestras, 198 coherentes, 2 calentamientos; 40173 bytes, sin lecturas fallidas/timers rechazados |
 | `dmc3-observe-20261016-025054-9b073fab99fb467b88783a6e7fd6ff9b` | Pausa y puerta con pitidos: 300 muestras, 236 coherentes, 64 inválidas; 53661 bytes; usuario confirmó pausa, movimiento para situarse ante puerta y cruce |
 | `dmc3-observe-20261016-025259-252d8deb23ac4afd97650143201514a4` | Modo final access-only correcto: 2 lecturas, 152 bytes de cabeceras; sin RVA/actor |
 | `dmc3-tests-20261016-025204-787-aa78e9173c93413c98a55b3f5aee204b` | **26 tests correctos**: 25 sintéticos y una lectura Windows de buffer/imagen del propio Python; sin cerrar juegos |
@@ -109,10 +147,10 @@ sin validar: se rechaza, no se amplía el rango para forzar éxito. Estado BUSY 
 un cambio de motion no prueban un ataque. Se registraron valores de state fuera
 de los tres bits nombrados en la referencia DDMK y se conservaron como u32.
 
-Siguiente acción: investigar esos timers y completar correspondencia de motions
-con acciones, con repeticiones limpias, marcas temporales observadas y controles
-negativos. La captura limpia actual aporta tres ataques y reposo confirmados
-por el usuario, pero no tres ventanas de acción marcadas independientemente.
+Siguiente acción: revisar esos timers y correspondencia de motions con las
+capturas existentes según revision-capturas-dmc3.md, antes de implementar más
+o pedir controles. La captura de espada aporta acciones declaradas, con inicio
+ahora incierto; no tres ventanas de acción marcadas independientemente.
 Verificar más menús/transiciones antes de considerar un perfil robusto. No
 volver a pedir la prueba PINE ni elevar el lector; guardar cualquier error de
 acceso futuro con la nueva identidad de proceso. No avanzar a reacciones GOW2,
@@ -534,6 +572,13 @@ Puedes pegar este texto al abrir el proyecto en Codex:
 > está verificado; no lo repitas salvo evidencia ausente, cambio o discrepancia.
 > Continúa el observador externo DMC3 exclusivamente de lectura desde su estado
 > actual: hash/build, PID nuevo, inicio, base real, derechos mínimos y páginas.
+> Antes de implementar o pedir capturas, lee docs/revision-capturas-dmc3.md y
+> analiza suficiencia de los logs: primeras pruebas exploratorias, inicio de
+> una con pitidos incierto. Reutiliza la pausa/puerta y los datos útiles de espada.
+> Distingue golpes individuales, combos completos, disparos, saltos, movimiento
+> y reposo. No certifiques acciones por etiquetas manuales o cambios de motion.
+> Si después hace falta una prueba concreta, explica por qué y da duración,
+> orden, número de acciones, reposos y prohibiciones; no pidas repetir por rutina.
 > Investiga el timer -1.0 y valida semántica/motions sin transformar una etiqueta
 > manual o cambio de animación en ataque. Usa preparación y pitidos para las
 > capturas: DMC3 vuelve a pausa al cambiar de ventana. No reutilices PID/base

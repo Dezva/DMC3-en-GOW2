@@ -11,6 +11,7 @@ leer automáticamente están en [AGENTS.md](../AGENTS.md), en la raíz.
 | [Contrato](CONTRACT.md) | Propiedad de estado, canales, formato y ciclo de vida |
 | [PINE](pine.md) | Activación en PCSX2, diagnóstico, campos y errores |
 | [Observador DMC3](dmc3-observer.md) | Lecturas externas, perfil candidato, permisos, validación y capturas con pitidos |
+| [Revisión de capturas DMC3](revision-capturas-dmc3.md) | Aclaraciones del jugador, evidencia reutilizable, límites por acción y controles ausentes |
 | [Arquitectura](arquitectura.md) | Integración entre motores, DDMK, antecedente RE4/Minecraft y viabilidad visual/rendimiento |
 | [Diario](../MODLOG.md) | Evidencias, pruebas, decisiones y cambios de prioridad |
 | [Inventario DMC3](inventario-dmc3.md) | Inventarios recibidos, PAC, DDS e investigación del origen |

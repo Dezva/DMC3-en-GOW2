@@ -43,6 +43,12 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   Si DMC3 está elevado y el lector no, registrar acceso denegado sin elevarlo.
   Para capturas manuales usar preparación y pitidos: el usuario reportó pausa
   automática al cambiar de ventana. No exigir partida activa mientras responde.
+  Leer docs/revision-capturas-dmc3.md antes de pedir nuevas pruebas: las antiguas
+  son exploratorias y una con pitidos tiene inicio incierto. Reutilizar evidencia.
+  Explicar duración, acciones, orden, cantidad, reposos y prohibiciones antes de
+  cada captura. Distinguir golpes individuales, combos completos, disparos,
+  saltos, desplazamiento y reposo; estudiar los combos como acciones propias.
+  Por petición actual, analizar suficiencia antes de implementar o capturar más.
   Diferenciar fuentes leídas, tests, datos reales del usuario y pruebas en juego.
 - Verificar cambios con checks relevantes; no repetir suites por cambios solo
   documentales. Comandos, precondiciones y resultados en la guía local.
