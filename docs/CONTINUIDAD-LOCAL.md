@@ -5,6 +5,39 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## Retoma de validación con el usuario · propuesta R20
+
+Nueva petición explícita: **ya autoriza coordinar pruebas controladas**, una
+por una, tras revisar evidencia. El límite anterior de no pedir capturas era
+histórico. No muestrear hasta explicar instrucciones y recibir preparación.
+Partida **ee6bde30a38ffa0327755651f8657de0a9fdccd9**, main local/remoto limpio
+y sin avances posteriores al consultar GitHub. No se sobrescribieron cambios.
+
+Revisadas directamente seis capturas con el analizador y hashes de la auditoría:
+34 archivos originales coinciden; las dos parejas report/events PINE también.
+PINE no se repitió. Se reutilizan espada/pausa y las exploratorias con sus límites.
+La investigación fijada no resuelve significado de motionTimer; no cambiar offset,
+tipo o filtros para aceptar -1.0. Los 198 valores 2.0 de espada siguen sin probar
+progreso de animación. El baseline antiguo carece de reposo/equipo confirmados.
+
+Primera prueba propuesta: **R20, solo reposo**, 25 s de preparación para volver
+al juego/cerrar pausa, pitido agudo de inicio, 20 s quieto, pitido grave final.
+200 muestras/10 Hz, señales existentes; cero espada/disparo/salto/movimiento
+voluntario/lock-on/equipo/menú/ventana. Confirmar personaje, arma, estilo y
+contexto primero; pregunta enviada, **aún no es confirmación de preparación**.
+Ficha completa y criterios en [validación controlada](dmc3-validacion-controlada.md).
+Preparación privada: D:\logs\dmc3-validation-preparation-20261016-234354-301d05ffad984276bd31887ade7779ba\preparation.json,
+SHA-256 `437489d5b6381d553d5d4bfb3fd68df4f23cddafee53460fde8e1f26acd88e77`.
+
+Hipótesis mínima: separar qué valores aparecen en reposo de la asociación
+histórica con espada; luego contrastar un golpe aislado en otra captura con el
+mismo equipo. R20 no ejecuta E1 automáticamente. A 10 Hz se estudia estabilidad,
+sin fases por frame. No hay implementación nueva, modificación de lector/perfil,
+test de juego, consulta de procesos o lectura RAM nueva en esta preparación.
+Persistir notas posteriores y errores en carpetas únicas D:\logs, fuera de Git;
+fase parcial, sin ataques autenticados o envío a GOW2. Las secciones siguientes
+son históricas y sus prohibiciones de capturas no anulan la nueva autorización.
+
 ## Análisis automatizado offline · 2026-10-16 · fase parcial
 
 Partida local/remota **a04276b29c642e1b1ce117ce662835ba5903c235**, checkout

@@ -1,5 +1,31 @@
 # Diario del proyecto
 
+## Retoma de pruebas controladas · ficha R20 propuesta
+
+Nueva petición autoriza coordinar capturas con el usuario después de revisar
+evidencia. Partida main **ee6bde30a38ffa0327755651f8657de0a9fdccd9**, limpio
+y coincidente con GitHub, sin avances posteriores al comprobarlo. Se leyeron
+instrucciones, continuidad, observador, revisión, investigación y diario.
+Reanalizadas seis capturas directamente: 34 archivos históricos coinciden con
+los hashes de auditoría. También coinciden dos parejas PINE; no se repitió PINE.
+
+Falta negativo de reposo con equipo/contexto y ejecución explícitamente confirmados.
+Propuesta mínima R20: 25 s de preparación, inicio agudo, 20 s quieto, fin grave;
+200 muestras/10 Hz y cero acciones voluntarias, con señales existentes. No se
+cambia perfil, filtro de -1 o significado del timer. Luego podría contrastarse
+un golpe individual en otra captura, mismo equipo, sin activar esa prueba ahora.
+Ficha detallada, hipótesis, prohibiciones y límites en dmc3-validacion-controlada.md.
+Informe privado: D:\logs\dmc3-validation-preparation-20261016-234354-301d05ffad984276bd31887ade7779ba\preparation.json,
+SHA-256 `437489d5b6381d553d5d4bfb3fd68df4f23cddafee53460fde8e1f26acd88e77`.
+
+Se pidió personaje/arma/estilo/contexto; esa respuesta no equivale a preparación.
+**No hubo muestreo, consulta a procesos, lectura RAM, señal acústica nueva ni
+captura real en esta preparación.** Esperar confirmación tras instrucciones.
+Actualizados AGENTS, ficha y continuidad para que el límite histórico offline
+no bloquee la nueva autorización. Validación documental y relectura de informes;
+sin suites nuevas por no cambiar código. Fase parcial, sin detector definitivo,
+ataques autenticados, escritura de memoria o reacción GOW2.
+
 ## Objetivo y ruta acordados
 
 Dante con movimientos, animaciones, combos y mecánicas originales de DMC3 HD

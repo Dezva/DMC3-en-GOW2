@@ -1,9 +1,68 @@
-# Validación futura DMC3 · diseño sin ejecutar
+# Validación controlada DMC3 · fichas y resultados
 
-Este documento prepara fichas; **no solicita ni inicia capturas**. El usuario
-está ausente y anunció que dará instrucciones antes de las pruebas. Incorporarlas
-antes de acordar cualquier sesión. El trabajo actual es exclusivamente offline.
-No se necesita PINE. No abrir/controlar juegos ni instalar grabadores/hooks.
+La nueva petición autoriza preparar y realizar pruebas con el usuario tras
+identificar evidencia faltante. **Ninguna captura nueva se ha iniciado todavía.**
+Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
+equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
+controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
+
+## Primera ficha activa: R20, control negativo de reposo
+
+Estado: **propuesta, pendiente de confirmar personaje/arma/estilo/contexto y
+preparación**. Se verificaron otra vez 34 archivos históricos y los hashes de
+dos parejas PINE. Las primeras capturas permanecen exploratorias; la espada
+con pitidos tiene inicio incierto. El baseline 023130 no tiene etiqueta de
+reposo confirmado ni contexto de equipo declarado y no sustituye a este control.
+
+Hipótesis: comprobar si el timer 2.0 y/o motions/estados candidatos de espada
+pueden aparecer sin ataques voluntarios. Primero un negativo aislado; luego,
+si sirve, una captura distinta con un solo golpe y el mismo equipo/contexto.
+R20 sola no valida la semántica de un ataque ni del temporizador.
+
+Antes de iniciar, confirmar Dante, arma cuerpo a cuerpo, estilo, misión/sala
+si se conoce, en partida sobre suelo llano y sin enemigos/interacciones cerca.
+No suponer Rebellion ni un estilo concreto. Mantener equipo/contexto para el
+posterior golpe aislado; cualquier cambio se anota, no se oculta.
+
+Procedimiento de **esta ficha únicamente**, con señales ya disponibles:
+
+1. Tras la confirmación de preparación, lanzar una captura finita con 25 s de
+   preparación: volver a DMC3, cerrar su pausa y dejar a Dante quieto. No responder
+   al chat durante el intervalo. No debe estar atacando al empezar.
+2. Primer pitido agudo (880 Hz, 200 ms): comienza el intervalo de muestreo.
+   Permanecer quieto **20 segundos**, cero pulsaciones de espada, disparo o salto.
+3. Segundo pitido grave (660 Hz, 200 ms): fin. Ya se puede volver al chat.
+4. Preguntar después si permaneció quieto entre señales y si hubo menú, enemigo,
+   movimiento/ataque accidental o cambio de foco. Registrar la declaración y
+   errores como nota posterior, sin tiempos inventados ni reemplazar originales.
+
+Evitar stick/teclas de movimiento, lock-on, cambio de equipo/estilo/devil trigger,
+pausa, minimizar, cambiar de sala/ventana. Una animación de reposo espontánea se
+conserva: no es error por sí sola ni se reclasifica como acción ofensiva.
+Si aparece una interrupción, dejar de actuar, esperar el fin y explicarla después.
+
+Configuración propuesta: 200 muestras a 10 Hz, preparación 25 s y --beep; sin
+cambios al código o perfil. Los pitidos existentes ya se usaron en capturas
+confirmadas por el usuario; no requieren descarga ni señales intermedias.
+Antes de leer gameplay se redescubren PID/ruta/inicio, SHA/PE, base real y guardas
+de lectura del observador; error de acceso/build impide continuar, sin elevarlo.
+Esto tampoco se ha ejecutado todavía para la nueva ficha.
+
+10 Hz da aproximadamente 100 ms entre muestras, suficiente para contrastar un
+tramo de reposo de 20 s, **sin cobertura por frame**. Revisar huecos/ticks omitidos
+y tiempos reales al terminar. Para el golpe posterior, los límites solo podrán
+acotarse entre muestras; si se pierden transiciones, declarar la limitación antes
+de cambiar frecuencia o repetir. No modificar el filtro de -1.0 ni usar 2.0 como
+reloj. Guardar rechazos, causas, generaciones y foco; todos los flags semánticos
+siguen false hasta evidencia suficiente. R20 no activa automáticamente la prueba E1.
+
+## Diseño posterior, no señales implementadas
+
+Las secciones siguientes conservan propuestas para otras fichas. Los diseños
+de cuenta regresiva y pitidos por acción **no están implementados**; no usarlos
+como si fuesen la ficha R20 o estuviesen sonando con el CLI actual. Antes de una
+prueba con esas señales, explicar el ajuste mínimo, implementarlo y verificarlo.
+No pedir al usuario contar entradas de un combo sin completar su ficha exacta.
 
 ## Preparación común y señales propuestas
 

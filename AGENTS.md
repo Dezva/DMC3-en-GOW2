@@ -50,9 +50,12 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   saltos, desplazamiento y reposo; estudiar los combos como acciones propias.
   La suficiencia ya se revisó; la petición posterior autoriza herramientas y
   detector experimental exclusivamente offline. Leer docs/dmc3-analisis-offline.md
-  y docs/dmc3-campos-investigacion.md. No abrir/controlar juegos durante la
-  ausencia del usuario. Esperar sus instrucciones anunciadas para nuevas capturas;
-  docs/dmc3-validacion-controlada.md es diseño, con combo aún por concretar.
+  y docs/dmc3-campos-investigacion.md. La petición posterior ya autoriza preparar
+  y coordinar pruebas controladas con el usuario, una por una, empezando por
+  reposo y golpe individual. No iniciar muestreo hasta explicar la ficha y recibir
+  confirmación de preparación; confirmar personaje/arma/estilo/contexto primero.
+  docs/dmc3-validacion-controlada.md conserva el diseño y la ficha activa R20;
+  el combo sigue por concretar. No controlar entradas o ventanas de los juegos.
   Las hipótesis offline no son ataques autenticados: mantener phase2_verified
   y authentic_attacks_detected false, sin reacción GOW2 ni eventos de impacto.
   Diferenciar fuentes leídas, tests, datos reales del usuario y pruebas en juego.
