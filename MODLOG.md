@@ -1,5 +1,28 @@
 # Diario del proyecto
 
+## 2026-10-17 · Referencias estáticas del timer: dos escrituras coincidentes
+
+Partida main local/remoto limpio **d883400fd4de4cc191286735f43bc5ffcf638fd5**.
+Sin nuevas capturas/RAM/PINE: SHA del exe conocido coincide; dos rangos .text
+de13/16 bytes en RVA0x20932C/0x21F69E coinciden con fuente DDMK fijada. Cargan
+float de otra estructura y guardan en [rdi+0x3E34]; la fuente los relaciona con
+duración de Stinger. No se interpreta como prueba de unidad/progreso general,
+salto, valor -1 ni ejecución en las capturas. Perfil/filtros permanecen iguales.
+
+Se corrigió la investigación por nombre literal que omitió referencias numéricas
+de Actor.ixx14969/15165 y helpers11967/11987. Treinta fuentes revalidadas por
+SHA/blob. Informe privado dmc3-timer-static-20261017-003000-8ba641ace1c94e80b3474d3261b1ef8a,
+report SHA `db723c5349c5451920221d1867c19eba48995d4610cfa44d894b2418ced721e3`.
+Hash streaming64KiB y29 bytes puntuales más cabeceras; originales estables,
+sin dumps, instalación o código ejecutado del juego/mod. Receta y fuentes en
+dmc3-campos-investigacion.md. Sin código nuevo/suites repetidas; checks documentales
+y reproducción real de receta, separados de tests sintéticos/capturas en juego.
+
+Siguiente: delimitar funciones e investigar lectores/escritores nativos con decoder
+x64 ligero aislado. No disponible en entorno consultado, no instalado; no afirmar
+flujo completo por dos anclas. No pedir más pruebas manuales ahora. Fase parcial,
+phase2_verified=false y ataques autenticados false; sin reacción GOW2.
+
 ## 2026-10-17 · J1-R: descripción visual de dos variantes de reposo
 
 Después de publicar/verificar **ab094fc5d79bc54fa398fb3f54b4bd176b63043d**,

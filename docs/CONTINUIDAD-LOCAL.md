@@ -5,7 +5,37 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## J1-R: variantes de reposo descritas por el usuario · 2026-10-17
+## Timer: dos referencias estáticas verificadas · 2026-10-17
+
+Desde main local/remoto limpio **d883400fd4de4cc191286735f43bc5ffcf638fd5**.
+Se siguió el paso técnico anunciado, sin nuevas capturas ni RAM/PINE. Hash
+del ejecutable conocido coincide; se comprobaron dos pares de instrucciones
+transcritos en DDMK fijado: RVA0x20932C/13 bytes y0x21F69E/16 bytes, dentro
+de .text, cargan float desde otra estructura y escriben [rdi+0x3E34]. Los
+bloques de fuente los llaman duración de Stinger de Rebellion y Yamato/Force Edge.
+No se ejecutó DDMK ni el código estudiado; nombres de fuente, no ataques validados.
+
+Revalidación de los30 fuentes por SHA-256/blob Git. Corrección: la búsqueda
+inicial por el nombre motionTimer omitió referencias numéricas de Actor.ixx:
+14969–14970 y15165–15166, helpers11967/11987. Detalles, enlaces fijados y receta
+reproducible en [investigación de campos](dmc3-campos-investigacion.md#dos-referencias-nativas-verificadas-desde-disco--2026-10-17).
+Eso respalda uso dependiente de acción, no prueba tiempo general/progreso,
+unidad, ruta de salto, origen de -1 o ejecución de esos caminos durante E1.
+Conservar perfil/filtros y muestras rechazadas; fase parcial y flags false.
+
+Informe privado nuevo: D:\logs\dmc3-timer-static-20261017-003000-8ba641ace1c94e80b3474d3261b1ef8a\report.json;
+SHA `db723c5349c5451920221d1867c19eba48995d4610cfa44d894b2418ced721e3`.
+Solo lectura rb: hash streaming64KiB, cabeceras acotadas y29 bytes puntuales,
+sin dump/scan de RAM o modificaciones. Archivo estable antes/después. Sin código
+nuevo ni suites por documentación; receta verificada contra el ejecutable real.
+
+Próximo paso concreto: decoder x64 ligero aislado para delimitar instrucciones/
+funciones y seguir lectores/escritores de +0x3E34 en inicialización/salto/negativos.
+No disponible en Python/PATH/rutas conocidas consultadas; no instalado ahora.
+No usar coincidencias crudas como instrucciones ni pedir más capturas sin una
+hipótesis diferenciable. Usuario no necesita actuar dentro del juego por ahora.
+
+## J1-R: variantes de reposo descritas por el usuario · historial
 
 Desde main publicado/verificado **ab094fc5d79bc54fa398fb3f54b4bd176b63043d**,
 el usuario añadió: inició en animación de reposo, saltó como se indicó, quedó

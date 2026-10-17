@@ -1,4 +1,4 @@
-# Campos DMC3: investigación offline · 2026-10-16
+# Campos DMC3: investigación offline · actualización 2026-10-17
 
 Revisión fijada DDMK: `0319ae7132a6a822fd4dede2fb7cad484900169f`.
 Se revisaron **30 archivos fuente**: los 28 .ixx/.cpp de Mary, ddmk.js y
@@ -12,8 +12,9 @@ raw y se comprobaron sus blobs, sin sustituirlas por main u otra revisión.
 Manifiesto privado:
 `D:\logs\dmc3-offline-research-20261016-171259-1b3c293254664b488b5ceccf158c5701\source-manifest.json`.
 Las fuentes previas siguen en la carpeta dmc3-research-20261016-022124 de continuidad.
-No se leyó el ejecutable original ni la RAM en esta sesión. La compatibilidad
-en ejecución indicada abajo es **evidencia histórica**, no una nueva conexión.
+En la investigación inicial del 16 no se leyó ejecutable ni RAM. La actualización
+del 17 verifica dos referencias desde el ejecutable en disco, sin conexión a
+procesos; la compatibilidad en ejecución citada sigue siendo evidencia histórica.
 
 ## Layout documentado y límites
 
@@ -37,6 +38,75 @@ El enum EVENT de la fuente nombra 1 MAIN, 2 TELEPORT, 3 PAUSE y 11 DELETE.
 Son nombres de fuente: el 11 observado anteriormente sigue sin validación
 semántica independiente. No reinterpretar retrospectivamente una muestra de
 transición como borrado de partida ni modificar la política MAIN del lector.
+
+## Dos referencias nativas verificadas desde disco · 2026-10-17
+
+Desde main local/remoto limpio **d883400fd4de4cc191286735f43bc5ffcf638fd5**.
+Se revalidaron SHA-256 y blobs Git de los 30 archivos fijados. La búsqueda por
+el identificador literal `motionTimer` había omitido comentarios con direcciones
+numéricas/desensamblado. **Se corrige esa limitación**, sin cambiar de revisión:
+
+| Procedencia fijada | RVA de carga → escritura | Operación transcrita en fuente y bytes comprobados |
+|---|---|---|
+| [Actor.ixx:14969](https://github.com/serpentiem/ddmk/blob/0319ae7132a6a822fd4dede2fb7cad484900169f/Mary/Actor.ixx#L14969), bloque «Get Rebellion Stinger Duration» | 0x20932C → 0x209331 | Carga float desde [rax+0x28] a xmm1 y guarda en [rdi+0x3E34]; 13 bytes |
+| [Actor.ixx:15165](https://github.com/serpentiem/ddmk/blob/0319ae7132a6a822fd4dede2fb7cad484900169f/Mary/Actor.ixx#L15165), «Get Yamato & Force Edge Stinger Duration» | 0x21F69E → 0x21F6A6 | Carga float desde [rax+0x9C] a xmm1 y guarda en [rdi+0x3E34]; 16 bytes |
+
+El SHA del ejecutable en disco coincide con la build conocida. Los dos rangos
+caen dentro de .text ejecutable respaldada por archivo y coinciden exactamente
+con la transcripción de fuente. Se leyó en modo rb: hash por bloques de 64 KiB,
+cabeceras PE acotadas y **29 bytes de código** en esas ubicaciones, sin volcar
+ejecutable/RAM, escanear procesos, ejecutar instrucciones o instalar DDMK.
+Metadatos de archivo estables antes/después. No utilizar RVA como dirección absoluta.
+
+Los helpers del mod [GetRebellionStingerDuration:11967](https://github.com/serpentiem/ddmk/blob/0319ae7132a6a822fd4dede2fb7cad484900169f/Mary/Actor.ixx#L11967)
+y [GetYamatoForceEdgeStingerDuration:11987](https://github.com/serpentiem/ddmk/blob/0319ae7132a6a822fd4dede2fb7cad484900169f/Mary/Actor.ixx#L11987)
+seleccionan stingerDuration/airStingerDuration por IN_AIR y el índice devil.
+Solo se estudiaron como texto; la configuración del mod no es una medición nativa.
+
+**Alcance:** dos caminos estáticos cargan un escalar de otra estructura y lo
+guardan en ese offset; el mod los asocia con duración de Stinger. Esto respalda
+un uso dependiente de acción y desaconseja asumir un reloj universal de animación.
+No resuelve las unidades, identidad/procedencia completa de RDI/RAX, lectores,
+otros escritores, actualización por frame, rutas del salto o significado de -1.
+No demuestra que se ejecutaran esos caminos en las capturas anteriores ni que
+los espadazos observados fueran Stinger. No se cambia offset, perfil o filtros.
+
+Informe privado: `D:\logs\dmc3-timer-static-20261017-003000-8ba641ace1c94e80b3474d3261b1ef8a\report.json`,
+SHA-256 `db723c5349c5451920221d1867c19eba48995d4610cfa44d894b2418ced721e3`.
+Hashes de los rangos: 13 bytes `ecbcdfe1b67c21cb406351b5646398513c4fc2f0be3a3c9cf4fcc259fe13b16f`;
+16 bytes `4abfb7c8c4a44c0e649fd5cdfc35505252185827d5f6f98bab99f1567680e6ad`.
+Sin código nuevo/tests sintéticos ni conexión real nueva/PINE. Fase parcial/flags false.
+
+Reproducción desde la raíz, usando el Python x64 existente (solo disco). Esta
+receta reutiliza inspect_pe, que carga un PE de tamaño acotado ≤64 MiB para
+validarlo; la comprobación real anterior usó hash streaming y lecturas puntuales:
+
+```powershell
+@'
+import sys, hashlib
+sys.path.insert(0, 'tools')
+from dmc3_profile import inspect_pe, BUILD_SHA256
+meta, data = inspect_pe(r'D:\HayJueguitosEnLaCompu\Devil May Cry HD Collection\dmc3.exe')
+assert meta['sha256'] == BUILD_SHA256, 'Build distinta: no aplicar RVA'
+for rva, size, expected in [
+    (0x20932C, 13, 'ecbcdfe1b67c21cb406351b5646398513c4fc2f0be3a3c9cf4fcc259fe13b16f'),
+    (0x21F69E, 16, '4abfb7c8c4a44c0e649fd5cdfc35505252185827d5f6f98bab99f1567680e6ad')]:
+    s = next(s for s in meta['sections'] if s['flags'] & 0x20000000
+             and s['rva'] <= rva and rva + size <= s['rva'] + s['raw_size'])
+    offset = s['raw_offset'] + rva - s['rva']
+    assert hashlib.sha256(data[offset:offset+size]).hexdigest() == expected
+    print(hex(rva), size, 'coincidente; semántica general no validada')
+'@ | & "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -
+```
+
+Siguiente comprobación: delimitar funciones/instrucciones x64 y seguir lectores/
+escritores de +0x3E34, especialmente inicialización, salto y valores negativos.
+No había decoder general disponible en los módulos Python, PATH y rutas conocidas
+consultados (capstone/iced_x86/distorm3/objdump/llvm-objdump/dumpbin); no se instaló
+otro. Una continuación puede usar un decoder ligero aislado para análisis estático,
+sin alterar el lector o los juegos. No interpretar coincidencias de bytes sin
+fronteras de instrucciones como referencias válidas. No pedir otra captura hasta
+obtener de esa investigación una hipótesis que la prueba pueda distinguir.
 
 ## Qué podemos concluir sobre el temporizador
 
@@ -67,11 +137,12 @@ fue aceptado~16,8 s, distinto de rechazos~6,4–6,7 s. Esto no respalda atribuir
 los rechazos a la animación tardía de reposo sugerida por el usuario; la causa
 de -1 sigue desconocida. No hace falta otra captura para comparar esos tiempos.
 
-En las fuentes Mary revisadas, motionTimer solo aparece en declaración y
-static_assert; el generador reproduce el campo. No encontramos un uso que
-explique cómo se incrementa, reinicia o trata -1. **Eso no significa que el
-juego nativo no lo use**: las fuentes de un mod no contienen su implementación.
-No hay base para cambiar automáticamente de offset, tipo o política de lectura.
+El identificador literal motionTimer aparece en declaración/static_assert y
+el generador reproduce el campo. La búsqueda numérica posterior encontró las
+dos escrituras anteriores; la conclusión inicial que omitía todo uso queda
+corregida. Aún no se explica cómo se actualiza en salto o se trata -1: las
+fuentes del mod no contienen la implementación completa del juego. No hay base
+para cambiar automáticamente de offset, tipo o política de lectura.
 
 Resultados históricos reanalizados:
 

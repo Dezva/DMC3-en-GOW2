@@ -103,6 +103,10 @@ no son el mismo hecho. No se solicita otra captura por rutina.
 La descripción visual posterior respalda como hipótesis contextual dos variantes
 de reposo: (0,3) espera animada y (0,0) quietud habitual, ambas state1/timer2.0.
 No son nombres universales validados ni explicación de -1.
+La investigación estática posterior verificó en disco dos escrituras a +0x3E34
+que DDMK relaciona con duración de Stinger. No valida un reloj general ni el -1
+del salto; el siguiente paso es seguir sus lectores/escritores nativos con un
+decoder x64, sin nuevas capturas por ahora. Fuentes y receta en la investigación.
 Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 
