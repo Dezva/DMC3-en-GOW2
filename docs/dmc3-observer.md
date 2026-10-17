@@ -43,8 +43,9 @@ No repetir PINE.
 La [investigación nativa](dmc3-timer-native.md) ya dispone de analizador de disco
 x64 y 13 tests sintéticos. Una ruta candidata puede retener el resultado negativo
 de una resta de speed; aún no prueba el origen de -1 en capturas. El observador
-actual no cambió. Contexto final al rechazar y campos extra evento/fase/speed son
-la siguiente mejora propuesta, sin implementar ni aceptar automáticamente -1.
+histórico no cambió. La [extensión opcional del timer](dmc3-timer-diagnostic.md)
+ya conserva contexto/calidades y evento/fase/speed, con guardas y tests; el
+negativo sigue rechazado. Perfil-only real pasó sin actor; falta captura JT1.
 
 ## Ejecutar y conservar evidencia
 

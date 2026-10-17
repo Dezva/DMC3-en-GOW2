@@ -5,7 +5,42 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## Análisis nativo del timer: herramienta y negativo retenido · 2026-10-17
+## Diagnóstico timer implementado · JT1 requiere preparación · 2026-10-17
+
+Desde main limpio/local-remoto **bd40b220bf344cbef2e3e4a1cc54978120e66792**.
+Usuario autoriza implementar hasta necesitar acción manual/programa. Nuevos
+--timer-diagnostic/--profile-only y analizador offline JSON/CSV. Extensión de
+perfil estricta con3 guardas disco/cargadas, evento/fase antes/después, speed,
+identidad/contexto comprobados aun al rechazar timer. **-1 sigue rechazado**;
+intento/calidad aparte, sin promover gameplay. Transiciones no coherentes;
+fallos de acceso/parcial/actor/escena/foco/proceso no retienen campos coherentes.
+Modo anterior conserva perfil/filtros/lecturas; nuevo22 lecturas/234 bytes,
+máximo32. Semántica/unidades de campos nuevos desconocidas.
+
+Profile-only real pasó, sin actor/señales: PID10688/inicio02:38:13.424527Z UTC/
+base0x7FF7C6920000 redescubiertos, huella conocida, tokens medios8192/0x410,
+8 lecturas/212 bytes, cero errores/muestras. Identidades históricas, no reutilizar.
+Campos nuevos del actor aún **sin captura real**.28 tests nuevos y66 regresiones
+sintéticas correctos, sin WindowsSelfRead/PINE/cerrar juegos. Detalles/receta:
+[diagnóstico timer](dmc3-timer-diagnostic.md).
+
+Perfil privado D:\logs\dmc3-observe-20261017-005434-b15d7e4e93274fb6b98d00b2fb076d69;
+report SHA `ac56b4ca0301b85aa0cb1aa6be13f04b6339ea98261f56b252a9c4e771d38f9c`,
+events SHA `153024a331e318c0926d6d6c508d906bef0a4cd80063826a7162e4a36ecd5485`,
+profile SHA `d914c6b6b842a0a9771a0ed8eac7137e45b20e10fb6802d30edb039c7405e0de`.
+Verificación/tests D:\logs\dmc3-timer-diagnostic-check-20261017-005705-58e91be160034bd4b18d369420ea2ac6;
+delivery-verification SHA `c83e3b4eeb8c5e8bf8d50b155d31f0d99ae2c548d3be11bbbe86ad13f0825723`.
+26 tests iniciales en nota histórica,28 finales en entrega, originales intactos.
+
+Próxima **JT1** necesita usuario: mismo contexto y nuevo «Listo»,25 s preparación,
+20 s/200 muestras/10 Hz, pitido largo sin entradas, corto~5 s UN toque de salto
+y soltar enseguida, aterrizar/reposo hasta grave. Cero dirección/segundo salto/
+espada/disparos/lock-on/menús/equipo/ventanas. Espera automática permitida: reposo
+es no tocar controles. No iniciada. Después confirmación manual/análisis/cadencia;
+si falta fase/umbral no afirmar causa o frames. Solo DMC3 necesario, ya accesible.
+Sin gameplay/PINE nuevo, flags false y fase parcial, sin reacción GOW2.
+
+## Análisis nativo del timer: herramienta y negativo retenido · historial
 
 Desde main local/remoto limpio **3c4d9c045b30b34fa9aab7a65ec724e63e05f1f9**.
 Se avanzó sin nuevas capturas/RAM/PINE. Hay herramienta propia de disco finita:

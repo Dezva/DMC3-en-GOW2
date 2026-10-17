@@ -4,7 +4,8 @@ Actualización posterior: [análisis nativo x64](dmc3-timer-native.md), herramie
 finita de disco y13 tests sintéticos. Se encontraron rutas de resta, fases y
 negativo retenido; siguen como hipótesis para explicar -1, sin validación causal
 de las capturas o cambio de filtros. El siguiente diagnóstico propuesto recoge
-contexto final/evento/fase/speed, todavía no implementado.
+contexto final/evento/fase/speed: [ya implementado opcionalmente](dmc3-timer-diagnostic.md),
+con perfil-only real correcto; captura de campos del actor pendiente.
 
 Revisión fijada DDMK: `0319ae7132a6a822fd4dede2fb7cad484900169f`.
 Se revisaron **30 archivos fuente**: los 28 .ixx/.cpp de Mary, ddmk.js y

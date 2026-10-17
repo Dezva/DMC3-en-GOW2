@@ -14,6 +14,8 @@ import uuid
 from dmc3_memory import ObservationError, WindowsMemory, QUERY_LIMITED, QUERY_READ, read_exact
 from dmc3_profile import (BUILD_SHA256, CandidateSampler, derive_profile, inspect_pe,
                           verify_loaded_image, verify_profile)
+from dmc3_timer_diagnostic import (TimerDiagnosticSampler, derive_timer_profile,
+                                   verify_timer_profile)
 
 
 DEFAULT_EXE = r"D:\HayJueguitosEnLaCompu\Devil May Cry HD Collection\dmc3.exe"
@@ -73,6 +75,8 @@ def annotate(args):
 
 
 def capture(args):
+    timer_diagnostic = getattr(args, "timer_diagnostic", False)
+    profile_only = getattr(args, "profile_only", False)
     run = Path(args.log_root) / ("dmc3-observe-" + datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex)
     run.mkdir(parents=True, exist_ok=False)
     start = time.perf_counter_ns()
@@ -87,6 +91,7 @@ def capture(args):
                   requires_game_foreground=True,
                   lead_in_seconds=args.lead_in_seconds, audible_cues=args.beep,
                   action_cue_seconds=getattr(args, "action_cue_seconds", None),
+                  timer_diagnostic=timer_diagnostic, profile_only=profile_only,
                   scene_detection="observed roots/mission/room/event only; same-context ABA may be missed",
                   errors=[])
     memory = None
@@ -104,7 +109,7 @@ def capture(args):
     print("Capture:", run, flush=True)
     success = False
     try:
-        event("session.start", dict(mode="access_only" if args.access_only else "candidate_sampling",
+        event("session.start", dict(mode="access_only" if args.access_only else "profile_only" if profile_only else "candidate_sampling",
                                     hz=args.hz, samples=args.samples))
         inspected = inspect_pe(args.exe)
         metadata = inspected[0]
@@ -134,44 +139,48 @@ def capture(args):
         event("memory.access", dict(verified=True, image=report["image"], candidate_reads=False))
         if not args.access_only:
             # One finite disk scan of this exact build; never a historical PID/base.
-            profile = derive_profile(args.exe, inspected=inspected)
+            derive = derive_timer_profile if timer_diagnostic else derive_profile
+            verify = verify_timer_profile if timer_diagnostic else verify_profile
+            profile = derive(args.exe, inspected=inspected)
             write_new(run / "candidate-profile.json", profile)
             event("disk.profile", dict(profile_id=profile["profile_id"], sha256=metadata["sha256"],
                                        status=profile["status"], root_evidence=profile["root_evidence"]))
-            verify_profile(memory, report["image"], metadata, profile, headers_verified=True)
+            verify(memory, report["image"], metadata, profile, headers_verified=True)
             report["loaded_profile_gates_verified"] = True
             event("loaded.profile_gates", dict(verified=True, semantic_validation=False))
-            sampler = CandidateSampler(memory, report["image"]["base"])
-            event("sampling.lead_in", dict(seconds=args.lead_in_seconds,
+            if not profile_only:
+                sampler_class = TimerDiagnosticSampler if timer_diagnostic else CandidateSampler
+                sampler = sampler_class(memory, report["image"]["base"])
+                event("sampling.lead_in", dict(seconds=args.lead_in_seconds,
                                            provenance="operator preparation; not an observed action"))
-            if args.lead_in_seconds:
-                time.sleep(args.lead_in_seconds)
-            if args.beep:
-                import winsound
-                winsound.Beep(880, 200)
-            event("sampling.begin", dict(cue_only=True, actual_action_unknown=True))
-            start_capture = time.perf_counter()
-            action_cue_emitted = False
-            for index in range(args.samples):
-                deadline = start_capture + index / args.hz
-                if time.perf_counter() - deadline > 1 / args.hz:
-                    event("sampling.skipped", dict(index=index, reason="late tick discarded; no catch-up burst"))
-                    continue
-                delay = deadline - time.perf_counter()
-                if delay > 0:
-                    time.sleep(delay)
-                action_cue_emitted = maybe_action_cue(
-                    event, getattr(args, "action_cue_seconds", None),
-                    time.perf_counter() - start_capture, action_cue_emitted)
-                sample = sampler.sample()
-                report["candidate_samples" if sample["valid"] else "invalid_samples"] += 1
-                event("candidate.sample", sample)
-                if sample.get("error", {}).get("stage") == "process_lost":
-                    break
-            event("sampling.end", dict(cue_only=True))
-            if args.beep:
-                import winsound
-                winsound.Beep(660, 200)
+                if args.lead_in_seconds:
+                    time.sleep(args.lead_in_seconds)
+                if args.beep:
+                    import winsound
+                    winsound.Beep(880, 200)
+                event("sampling.begin", dict(cue_only=True, actual_action_unknown=True))
+                start_capture = time.perf_counter()
+                action_cue_emitted = False
+                for index in range(args.samples):
+                    deadline = start_capture + index / args.hz
+                    if time.perf_counter() - deadline > 1 / args.hz:
+                        event("sampling.skipped", dict(index=index, reason="late tick discarded; no catch-up burst"))
+                        continue
+                    delay = deadline - time.perf_counter()
+                    if delay > 0:
+                        time.sleep(delay)
+                    action_cue_emitted = maybe_action_cue(
+                        event, getattr(args, "action_cue_seconds", None),
+                        time.perf_counter() - start_capture, action_cue_emitted)
+                    sample = sampler.sample()
+                    report["candidate_samples" if sample["valid"] else "invalid_samples"] += 1
+                    event("candidate.sample", sample)
+                    if sample.get("error", {}).get("stage") == "process_lost":
+                        break
+                event("sampling.end", dict(cue_only=True))
+                if args.beep:
+                    import winsound
+                    winsound.Beep(660, 200)
         if not memory.alive():
             raise ObservationError("process_lost", "Process ended before capture completion")
         # Streaming fingerprint again: no file replacement silently accepted.
@@ -179,7 +188,7 @@ def capture(args):
             digest = hashlib.file_digest(source, "sha256").hexdigest() if hasattr(hashlib, "file_digest") else _hash(source)
         if digest != metadata["sha256"]:
             raise ObservationError("disk_changed", "Executable fingerprint changed during capture")
-        success = args.access_only or report["candidate_samples"] > 0
+        success = args.access_only or profile_only or report["candidate_samples"] > 0
     except ObservationError as error:
         report["errors"].append(error.data)
         event("error", error.data)
@@ -217,6 +226,8 @@ def main(argv=None):
     parser.add_argument("--exe", default=DEFAULT_EXE)
     parser.add_argument("--log-root", default=r"D:\logs")
     parser.add_argument("--access-only", action="store_true")
+    parser.add_argument("--profile-only", action="store_true", help="Verify disk/loaded profile only; no actor sampling or cues")
+    parser.add_argument("--timer-diagnostic", action="store_true", help="Guarded event/phase/speed and rejected-timer observations")
     parser.add_argument("--samples", type=int, default=100)
     parser.add_argument("--hz", type=float, default=10)
     parser.add_argument("--label", default="unlabelled")
@@ -227,6 +238,10 @@ def main(argv=None):
     parser.add_argument("--action-cue-seconds", type=float, metavar="SECONDS",
                         help="One optional short instruction tone during sampling; requires --beep")
     args = parser.parse_args(argv)
+    if args.timer_diagnostic and (args.access_only or args.annotate):
+        parser.error("Timer diagnostic requires sampling or --profile-only")
+    if args.profile_only and (args.access_only or args.annotate or args.beep or args.lead_in_seconds or args.action_cue_seconds is not None):
+        parser.error("Profile-only cannot sample, annotate, prepare or emit cues")
     if not 1 <= args.samples <= 6000 or not 1 <= args.hz <= 20 or args.samples / args.hz > 300:
         parser.error("Use 1–20 Hz, 1–6000 samples and at most 300 seconds")
     if not 0 <= args.lead_in_seconds <= 30:

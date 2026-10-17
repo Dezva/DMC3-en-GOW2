@@ -1,5 +1,9 @@
 # Temporizador DMC3: investigación estática parcial · 2026-10-17
 
+Actualización posterior: el [diagnóstico ya está implementado](dmc3-timer-diagnostic.md),
+con tests y perfil-only real correctos. Campos del actor esperan JT1/nuevo «Listo»;
+el filtro sigue rechazando -1. «No implementado» más abajo es estado histórico.
+
 Se continuó desde main local/remoto limpio
 `3c4d9c045b30b34fa9aab7a65ec724e63e05f1f9`. No hubo nueva captura, conexión
 a procesos, PINE, escritura en juegos o instalación/ejecución de DDMK. La build

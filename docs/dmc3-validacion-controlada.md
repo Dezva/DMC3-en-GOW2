@@ -1,5 +1,10 @@
 # Validación controlada DMC3 · fichas y resultados
 
+Próxima **JT1** del [diagnóstico opcional](dmc3-timer-diagnostic.md#próxima-prueba-manual-jt1-un-solo-salto):
+implementación/tests/perfil-only real listos; falta nuevo «Listo» y captura del
+actor.25 s preparación/20 s a10 Hz, UN toque de salto al corto y reposo.
+Animaciones automáticas de espera permitidas: reposo es no tocar controles.
+
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
 identificar evidencia faltante. **R20, E1 y E1-R están completadas y confirmadas;
 J1 se conserva exploratoria por pulsación incierta; J1-R tiene toque único y

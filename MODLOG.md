@@ -1,5 +1,31 @@
 # Diario del proyecto
 
+## 2026-10-17 · Diagnóstico opcional timer y perfil real sin actor
+
+Desde main limpio/local-remoto **bd40b220bf344cbef2e3e4a1cc54978120e66792**.
+Usuario autoriza implementar hasta necesitar intervención manual. Nuevos
+dmc3_timer_diagnostic.py, analizador offline JSON/CSV, --timer-diagnostic y
+--profile-only. Tres guardas adicionales disco/cargadas; evento/fase/speed e
+identidad/contexto recomprobados antes de conservar un intento rechazado.
+Filtro finito0..1000000 intacto: -1 invalida muestra. Transiciones no coherentes,
+calidades separadas, sin campos conservados al fallar acceso/parcial/actor/
+escena/foco/proceso. Modo anterior igual; nuevo22 lecturas/234 bytes/máximo32.
+
+28 tests nuevos +66 regresiones sintéticas correctos, sin PINE/WindowsSelfRead.
+Perfil real pasó: identidad/base/huella redescubiertas, tokens medios/0x410,
+8 lecturas/212 bytes de cabeceras/código, cero errores/muestras del actor.
+Perfil privado dmc3-observe-20261017-005434-b15d7e4e93274fb6b98d00b2fb076d69,
+report SHA `ac56b4ca0301b85aa0cb1aa6be13f04b6339ea98261f56b252a9c4e771d38f9c`;
+verificación dmc3-timer-diagnostic-check-20261017-005705-58e91be160034bd4b18d369420ea2ac6,
+delivery-verification SHA `c83e3b4eeb8c5e8bf8d50b155d31f0d99ae2c548d3be11bbbe86ad13f0825723`.
+Rutas/hashes/receta en continuidad y dmc3-timer-diagnostic.md.
+
+Siguiente JT1 aún no iniciada: mismo contexto,25 s preparación/20 s a10 Hz,
+un toque de salto al corto~5 s y reposo. Requiere nuevo «Listo»; animación
+automática de espera permitida. Campos nuevos aún sin captura real, causa de
+-1/unidades/combos no probados. Fase parcial/flags false, sin gameplay/PINE nuevo,
+escrituras, DLL/hooks, impactos o reacción GOW2. Informes completos fuera de Git.
+
 ## 2026-10-17 · Analizador estático x64 y candidato de negativo por resta
 
 Desde main limpio/local-remoto **3c4d9c045b30b34fa9aab7a65ec724e63e05f1f9**.

@@ -112,6 +112,10 @@ y una pasada real desde disco. Una ruta puede guardar y retener un resultado
 negativo al restar `speed`; es una hipótesis concreta para -1, todavía sin
 trazado real que la confirme. El siguiente avance es mejorar el diagnóstico
 de contexto/fase/speed sin aceptar -1 automáticamente, antes de otra captura.
+Esa [mejora opcional ya está implementada](docs/dmc3-timer-diagnostic.md):28 tests
+nuevos y66 regresiones correctos, perfil cargado comprobado sin leer al actor.
+Falta JT1, un salto con preparación explícita, para observar realmente los campos
+nuevos. El negativo sigue rechazado; su calidad se conserva aparte.
 Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 

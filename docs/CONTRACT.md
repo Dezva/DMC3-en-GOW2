@@ -44,6 +44,9 @@ de combate. Se comprueba otra vez identidad y estado después de leer.
 El observador DMC3 deriva raíces RVA/campos de fuentes DDMK fijadas, aplicadas
 solo a una build hash/PE compatible y una base real obtenida en ejecución.
 Sus campos de motion/timer/state no establecen escala espacial ni ataques.
+La [extensión de diagnóstico](dmc3-timer-diagnostic.md) conserva calidades de
+intentos rechazados tras recheck, sin cambiar valid=false para -1 ni generar
+acciones/impactos. Contexto revalidado no equivale a semántica aceptada del timer.
 La [especificación del observador](dmc3-observer.md) conserva fuentes, layout,
 guardas estáticas y limitaciones de contexto. No hay escrituras a esos campos.
 

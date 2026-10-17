@@ -23,6 +23,10 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
 
 ## Trabajo y entregas
 
+- Continuar implementación y verificaciones autónomamente hasta necesitar una
+  acción manual del usuario o abrir un programa. Mantener avances en GitHub;
+  no detenerse solo en propuestas. Para gameplay sigue siendo necesario explicar
+  la ficha y obtener nuevo «Listo» antes de cada captura.
 - Usar el checkout existente y conservar cambios del usuario. Detectar primero
   el sistema y las herramientas disponibles; no suponer que una sesión local
   tiene GUI, permisos, PowerShell Windows o acceso a procesos de otra máquina.
@@ -60,8 +64,11 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   rechazados; no confundir el cambio tardío en reposo con esos rechazos.
   Revisar suficiencia/timer antes de pedir más capturas por rutina;
   docs/dmc3-timer-native.md añade análisis estático: negativo retenido por resta
-  es una hipótesis, no causa real probada. Siguiente diagnóstico de contexto
-  final/evento/fase/speed aún no implementado; mantener filtros y flags falsos.
+  es una hipótesis, no causa real probada. Diagnóstico opcional de contexto/
+  evento/fase/speed ya implementado: docs/dmc3-timer-diagnostic.md. Perfil real
+  comprobado sin actor,28 tests nuevos/66 regresiones sintéticas correctos.
+  JT1 requiere nueva preparación; campos nuevos aún sin captura real. Mantener
+  filtros y flags falsos. Animación automática de espera no invalida reposo.
   el combo sigue por concretar. No controlar entradas o ventanas de los juegos.
   Las hipótesis offline no son ataques autenticados: mantener phase2_verified
   y authentic_attacks_detected false, sin reacción GOW2 ni eventos de impacto.
