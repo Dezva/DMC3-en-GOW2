@@ -1,5 +1,33 @@
 # Diario del proyecto
 
+## 2026-10-17 · JT1 exploratoria y seguimiento estático del evento8
+
+Desde main limpio/local-remoto cda57168baf2e2fdf037a1a979066d29f19b0216.
+JT1 autorizada ya ejecutada:25 s preparación,20 s/200 muestras/10 Hz. Usuario
+aclaró salto accidental al largo inicial y segundo al corto; datos exploratorios,
+sin control limpio de un salto ni tiempos de input demostrados. Pide15 s para
+preparaciones futuras; oferta de repetir no inicia otra captura.
+
+179 coherentes,8 rechazos -1,3 transiciones y10 calentamientos;200 diagnósticos
+con recheck. Dos intentos evento6/fase4 y seis evento8/fase0 con -1, speed1.
+Sin Win32/parciales/pérdida observada de contexto, huella/identidad redescubiertas.
+Negativos siguen rechazados. Cadencia28,14–191,69 ms/mediana99,66 y lecturas
+19,70–54,50 ms limitan inferencia: no prueba cada resta, unidades o sentinel.
+Ambos episodios compatibles con negativo retenido; no dos controles independientes.
+
+Revisión adicional finita solo disco:222 bytes, evento8→1F47A0→helper1EF8E0;
+retorno4 lleva a1E0030 (inicializa timer2). Sin acceso nuevo al proceso; callees
+y retorno aún desconocidos, no ausencia global de escrituras. No repetir captura
+por rutina; estudiar alcance59380/retorno antes de nueva hipótesis manual.
+
+Loaders/perfil/relojes/calidades/hashes comprobados; originales intactos.
+Continuidad y diagnóstico conservan rutas completas y SHA de captura/análisis/
+nota manual/seguimiento estático. No código/filtros/perfil nuevo ni suites
+repetidas por docs;28 tests+66 regresiones previos separados de evidencia real.
+Todo privado completo bajo D:\logs, solo metadatos/conclusiones en Git.
+PINE no repetido; sin escrituras/inyección, detector auténtico o reacción GOW2.
+Fase parcial, phase2_verified=false y authentic_attacks_detected=false.
+
 ## 2026-10-17 · Diagnóstico opcional timer y perfil real sin actor
 
 Desde main limpio/local-remoto **bd40b220bf344cbef2e3e4a1cc54978120e66792**.

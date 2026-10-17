@@ -139,3 +139,48 @@ Evidencia privada completa:
 Solo código propio, fixtures sintéticos, receta/metadatos y conclusiones se
 publican. Wheel/DLL del decoder, desensamblado privado y ejecutable quedan fuera
 de Git. `phase2_verified=false`, `authentic_attacks_detected=false`.
+
+## Seguimiento del evento8 tras JT1
+
+Después de JT1 exploratoria (dos saltos declarados, inicial accidental), ya hay
+negativos con contexto revalidado: dos intentos evento6/fase4 y seis evento8/
+fase0, speed1 en todos. [Resultados y límites](dmc3-timer-diagnostic.md#jt1-real--dos-saltos-declarados-y-negativo-con-contexto-revalidado).
+Eso refuerza una hipótesis contextual; no prueba cada resta o unidades.
+
+Revisión adicional **solo disco**, build conocida y dos anclas previas verificadas;
+222 bytes seleccionados, sin escaneo nuevo ni acceso al proceso. Se reutilizó
+Capstone aislado existente, sin instalar/descargar nada. Tabla del dispatcher,
+índice7 para evento8, da RVA1F700A. Esa rama llama1F47A0. El handler completo
+(40 bytes) llama1EF8E0 y compara su resultado EAX con4; si coincide, salta a
+1E0030 con DL=5. Ese destino ya tenía la inicialización timer2 en1E011D.
+El helper completo1EF8E0 (165 bytes) termina con tailcall59380.
+
+Handler y helper no contienen operandos directos+3E34. **No implica ausencia
+de escrituras transitivas:** llamadas595B0/1F01F0/59350/59380 y sus efectos
+siguen sin resolver aquí. No se ha probado qué representa el retorno4.
+Compatible con retención hasta otra condición, no una traza de ejecución ni
+prueba de que timer controle el fin del episodio. Evento8 sigue desconocido:
+la fuente fijada lo llama UNKNOWN_6, [Vars.ixx:715](https://github.com/serpentiem/ddmk/blob/0319ae7132a6a822fd4dede2fb7cad484900169f/Mary/Vars.ixx#L715),
+blob SHA-1 comprobado contra árbol ya guardado. No renombrarlo aterrizaje.
+
+| Rango RVA / tamaño | SHA-256 de bytes en disco |
+|---|---|
+| 1F7250 / 4, entrada8 | `59e1cad31d82a8400e6707313043a8630f0ae42128e37513b80f9ffb352d5ff2` |
+| 1F700A / 13, rama | `cb85042ef93fed9e31bf6d8009ca50ea9bde000281a6652d5d79d9a6046844db` |
+| 1F47A0 / 40, handler | `70da209d7139e5b91d67be2d15ed684005a1d440cdf7d3856368942506c5c5fd` |
+| 1EF8E0 / 165, helper | `94f28be1c9aad39ee2e63e3f74a1164f68faaafbcdef0c11e07642b365cba5ef` |
+
+Receta de reproducción con las funciones ya publicadas de
+tools/inspect_dmc3_native_timer.py: inspect_pe y require_build_and_anchors;
+rva_bytes(table1F7234+7*4,4), desempaquetar u32 LE; decodificar13 bytes de esa
+rama; comprobar los límites exactos de ambos handlers en runtime_ranges y
+decodificar40/165 bytes con Cs(X86,MODE_64), detail=True. Exigir decode completo,
+guardar hashes y registrar callees sin resolver; no ampliar el recorrido sin
+presupuesto. No modificar guards del observador para imitar esta revisión.
+
+Informe privado `D:\logs\dmc3-event8-static-20261017-011129-5265c274d4c84334ba1f2b66573c165c\report.json`,
+SHA `c6e11f3fae06c3f4e0b29634e60aa58f2587b3a02416c8b330549b281909891a`.
+Disco/guardas antes y huella después coincidentes. No cambió código propio ni
+se repitieron suites. Sigue pendiente significado del retorno/avance nativo,
+unidades y semántica general. No pedir otra captura solo para borrar el error
+de JT1; preparación futura15 s, previa ficha y confirmación nueva.

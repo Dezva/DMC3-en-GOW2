@@ -67,8 +67,11 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   es una hipótesis, no causa real probada. Diagnóstico opcional de contexto/
   evento/fase/speed ya implementado: docs/dmc3-timer-diagnostic.md. Perfil real
   comprobado sin actor,28 tests nuevos/66 regresiones sintéticas correctos.
-  JT1 requiere nueva preparación; campos nuevos aún sin captura real. Mantener
-  filtros y flags falsos. Animación automática de espera no invalida reposo.
+  JT1 ya registrada: salto inicial accidental y otro al corto, exploratoria;
+  evento6/fase4/speed1 con negativo y persistencia evento8 observados tras recheck.
+  No demuestra cada resta ni unidades. No repetir por rutina. Preparación futura
+  **15 segundos**, por petición del usuario; nuevo «Listo» siempre necesario.
+  Mantener filtros y flags falsos. Animación automática de espera no invalida reposo.
   el combo sigue por concretar. No controlar entradas o ventanas de los juegos.
   Las hipótesis offline no son ataques autenticados: mantener phase2_verified
   y authentic_attacks_detected false, sin reacción GOW2 ni eventos de impacto.

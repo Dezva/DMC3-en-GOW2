@@ -5,7 +5,64 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## Diagnóstico timer implementado · JT1 requiere preparación · 2026-10-17
+## JT1 registrada, exploratoria · preparación futura15 s · 2026-10-17
+
+Desde main limpio/local-remoto **cda57168baf2e2fdf037a1a979066d29f19b0216**.
+JT1 ya se ejecutó tras ficha y nuevo «Listo»:25 s preparación/200 muestras/10 Hz,
+corto~5 s. Usuario informó salto accidental al largo inicial, reposo y otro
+salto al corto. **No es control limpio de un salto/reposo inicial**. Conservar
+exploratoria y relato literal; duraciones de pulsación/tiempos visuales y cada
+prohibición no confirmados expresamente. Pide **15 s de preparación futura**.
+No repetir por rutina; ninguna captura nueva iniciada tras su aclaración.
+
+179 coherentes,8 timer=-1 rechazados,3 transiciones durante lectura y10
+calentamientos;4 bloques.200 diagnósticos tras recheck final de identidad/contexto.
+Evento6/fase4/speed1 con -1 en ambos episodios y persistencia evento8/fase0
+con -1 (seis intentos). Cadencia mediana99,66 ms,28,14–191,69; ventanas de
+lectura19,70–54,50 ms. Dos episodios misma sesión, sin independencia controlada;
+10 Hz no prueba cada resta/cruce por cero/frames. Hipótesis de negativo retenido
+respaldada contextualmente, no causa exacta/unidades/sentinel validado.
+
+Build/identidad/base redescubiertas iguales: PID10688/inicio02:38:13.424527Z/
+base0x7FF7C6920000, huella conocida, tokens medios y acceso0x410 sin elevar.
+4408 lecturas/47012 bytes, sin errores Win32/parciales ni pérdida observada de
+actor/contexto/foco/proceso. Identidad histórica, no reutilizar. Timer=-1 aún
+invalida; datos diagnósticos no se convierten en gameplay aceptado. Flags false.
+
+Evidencia privada íntegra y revisada, originales iguales antes/después:
+
+- `D:\logs\dmc3-observe-20261017-010459-45d2ef79d54e428fbc907de5c0f91485`;
+  report SHA `133623bc0e999165ba03e39129fb7ea4b7976f3abded91cba903e0dfe5ef7fa5`,
+  events SHA `106569551f47a49eeacfa5ad9674d3b2413d463d4f11f5efe80024ef7799afd8`,
+  session SHA `9adb3d5bdf59d1d8fba85218e05ed87226ead08524e20e94c3fc013db0058ff3`,
+  profile SHA `d914c6b6b842a0a9771a0ed8eac7137e45b20e10fb6802d30edb039c7405e0de`.
+- `D:\logs\dmc3-timer-review-20261017-010835-49917b1ddfdb434a88bf0d02fa154dfc`;
+  analysis SHA `106322bd443821535e3e3d8a5592cd29eb8d828a8e5a81eaae6a0b4a5b72a776`.
+- `D:\logs\dmc3-jt1-review-20261017-010930-f060b875ddd0421b8ae471c6149c214e\manual-review.json`;
+  SHA `b953a9cb4d37bfc7f0c3495c73798a112de3036a456ba64ff0bb2e4f9cbd272e`.
+
+Se avanzó también sin usuario: revisión estática evento8 solo disco222 bytes,
+guardas/build verificadas. Rama1F700A llama1F47A0; compara retorno helper1EF8E0
+con4, salta1E0030 (ruta que inicia timer2) si coincide. Sin operandos directos
++3E34 en handler/helper, **callees/efectos transitivos no resueltos**; evento8
+UNKNOWN_6 de fuente, no renombrar aterrizaje. Informe
+`D:\logs\dmc3-event8-static-20261017-011129-5265c274d4c84334ba1f2b66573c165c\report.json`,
+SHA `c6e11f3fae06c3f4e0b29634e60aa58f2587b3a02416c8b330549b281909891a`.
+
+Detalles/receta en [diagnóstico timer](dmc3-timer-diagnostic.md),
+[seguimiento nativo](dmc3-timer-native.md#seguimiento-del-evento8-tras-jt1) y
+[validación](dmc3-validacion-controlada.md). No cambios de código/perfil/filtros
+tras JT1; loaders/análisis/hashes reales comprobados, sin suites repetidas por
+docs.28 tests nuevos/66 regresiones previos siguen evidencia separada. PINE no
+repetido, sin escrituras/mods ni reacción GOW2; fase DMC3 parcial.
+
+Siguiente técnico: resolver alcance/retorno de59380 y sus llamadores antes de
+interpretar final de motion/evento8. Captura limpia con lector extendido no
+existe aún, pero no repetir sin hipótesis discriminante. Si se necesita una:
+ficha explícita,15 s preparación, nuevo «Listo» y confirmación posterior de
+ejecución; no iniciar a partir de la oferta de repetir del usuario.
+
+## Diagnóstico timer implementado · estado anterior a JT1
 
 Desde main limpio/local-remoto **bd40b220bf344cbef2e3e4a1cc54978120e66792**.
 Usuario autoriza implementar hasta necesitar acción manual/programa. Nuevos

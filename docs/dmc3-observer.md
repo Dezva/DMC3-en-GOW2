@@ -45,7 +45,11 @@ x64 y 13 tests sintéticos. Una ruta candidata puede retener el resultado negati
 de una resta de speed; aún no prueba el origen de -1 en capturas. El observador
 histórico no cambió. La [extensión opcional del timer](dmc3-timer-diagnostic.md)
 ya conserva contexto/calidades y evento/fase/speed, con guardas y tests; el
-negativo sigue rechazado. Perfil-only real pasó sin actor; falta captura JT1.
+negativo sigue rechazado. Perfil-only real pasó sin actor. JT1 ya capturó los
+campos nuevos y dos episodios de salto declarados (el inicial accidental):
+evento6/fase4/speed1 con -1 y después evento8/fase0 con -1, contexto revalidado.
+Exploratoria, sin causa aritmética/unidades probadas o control limpio único.
+No repetir por rutina; preparación futura15 s y nueva confirmación del usuario.
 
 ## Ejecutar y conservar evidencia
 

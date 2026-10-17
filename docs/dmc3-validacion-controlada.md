@@ -1,9 +1,11 @@
 # Validación controlada DMC3 · fichas y resultados
 
-Próxima **JT1** del [diagnóstico opcional](dmc3-timer-diagnostic.md#próxima-prueba-manual-jt1-un-solo-salto):
-implementación/tests/perfil-only real listos; falta nuevo «Listo» y captura del
-actor.25 s preparación/20 s a10 Hz, UN toque de salto al corto y reposo.
-Animaciones automáticas de espera permitidas: reposo es no tocar controles.
+**JT1 ya registrada**, con el [diagnóstico opcional](dmc3-timer-diagnostic.md):
+el usuario declaró un salto accidental al primer pitido largo y otro al corto.
+Conservar exploratoria, sin reposo inicial limpio ni control exclusivo de un
+salto. No repetir por rutina: sí aporta datos de evento/fase/speed con recheck.
+**Preparación futura15 s**, petición posterior del usuario; las fichas de25 s
+inferiores son históricas. Animación automática de espera permitida.
 
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
 identificar evidencia faltante. **R20, E1 y E1-R están completadas y confirmadas;
@@ -12,6 +14,29 @@ reposo confirmados por relato posterior, con límites de lectura aún abiertos.*
 Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
 equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
 controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
+
+## JT1 registrada · 2026-10-17 · dos saltos declarados, uno accidental
+
+Código cda57168baf2e2fdf037a1a979066d29f19b0216, main local/remoto coincidente.
+Tras ficha y «Mismo contexto; listo para JT1»:25 s preparación,20 s/200 muestras
+a10 Hz, corto~5 s. Después el usuario informó salto accidental al largo, reposo
+y otro salto al corto, y pidió15 s de preparación futura. No confirmó duración
+precisa de pulsaciones, tiempos visuales independientes ni cada prohibición.
+La intención original de un salto no se convierte en ejecución limpia.
+
+**179 coherentes, ocho rechazos timer=-1, tres transiciones durante lecturas y
+diez calentamientos; cuatro bloques aceptados.**200 intentos con diagnóstico
+y contexto/identidad revalidados, incluidos negativos; cero fallos Win32/parcial/
+actor/escena/foco/proceso registrados. El recheck no es una instantánea atómica.
+En los dos episodios: evento6/fase3 con timer descendente, evento6/fase4 con -1
+y evento8/fase0 con -1; speed1 en200 intentos. No equivale a dos capturas
+controladas independientes. Detalles, hashes y límites en diagnóstico timer.
+
+Sirve para contrastar la hipótesis nativa de negativo retenido, no demuestra
+resta exacta, unidades, sentinel universal o exclusividad del salto. No repetir
+ahora solo para borrar el error inicial; no sobrescribir capturas. Primero
+estudiar ruta evento8/retención y suficiencia. Si hace falta una comprobación
+manual discriminante, explicar ficha,15 s preparación y nuevo «Listo».
 
 ## J1-R registrada · 2026-10-17 · toque único y reposo declarados
 

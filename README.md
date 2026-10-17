@@ -70,7 +70,8 @@ proceso, comprueba huella/base real/páginas y lee bloques pequeños. No usa PIN
 DDMK instalado ni una DLL dentro del juego. En esta sesión se utilizó el Python
 que ya incluye Codex. Comandos y perfil en [docs/dmc3-observer.md](docs/dmc3-observer.md).
 
-Para las pruebas controladas actuales hay 25 s de preparación y pitidos, porque
+Para las próximas pruebas hay **15 s de preparación** y pitidos, por petición
+del usuario (las capturas anteriores usaron 25 s), porque
 DMC3 abre la pausa al cambiar de ventana. No se interpreta una etiqueta manual,
 BUSY ni cualquier cambio de motion como un ataque. `phase2_verified` sigue false;
 motionTimer=-1.0 se registra como desconocido y descarta esas muestras.
@@ -114,8 +115,13 @@ trazado real que la confirme. El siguiente avance es mejorar el diagnóstico
 de contexto/fase/speed sin aceptar -1 automáticamente, antes de otra captura.
 Esa [mejora opcional ya está implementada](docs/dmc3-timer-diagnostic.md):28 tests
 nuevos y66 regresiones correctos, perfil cargado comprobado sin leer al actor.
-Falta JT1, un salto con preparación explícita, para observar realmente los campos
-nuevos. El negativo sigue rechazado; su calidad se conserva aparte.
+JT1 ya observó los campos nuevos: el usuario declaró un salto accidental al
+inicio y otro al corto; se conserva exploratoria. En ambos episodios hay
+evento6/fase4/speed1 con -1 y persistencia posterior en evento8. Eso respalda
+un negativo retenido, sin probar cada resta, sus unidades ni un control limpio
+de un salto. El negativo sigue rechazado; su calidad se conserva aparte.
+No hace falta repetir ahora; el seguimiento estático ya acota la ruta del
+evento8. Falta resolver su condición de finalización antes de más capturas.
 Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 
