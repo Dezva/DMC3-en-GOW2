@@ -56,6 +56,20 @@ es error o ataque. La animación concreta no se identificó visualmente en el
 instante del log; no afirmar que los rechazos proceden de esa animación tardía.
 «Rechazo» describe una política del lector, no mala ejecución del usuario.
 
+**Aclaración visual posterior:** el usuario describe animación de reposo al
+inicio, salto como se indicó, quietud habitual después y regreso a la animación
+de reposo más tarde. Es compatible en orden con ambos motions
+**(0,3) → (0,4) → hueco → (0,0) → (0,3)**. Hipótesis contextual: (0,3) podría
+corresponder a esa animación de espera prolongada y (0,0) a estar quieto de forma
+habitual. Las dos variantes aceptadas llevan state1/timer2.0. No llamar ataque
+al cambio entre ellas ni afirmar un nombre universal, duración visual exacta
+o causa para -1. Relato posterior sin vídeo/timestamps independientes; el hueco
+conserva sus límites. No hace falta repetir una captura solo para explicar ese
+orden. Nota literal complementaria nueva:
+`D:\logs\dmc3-j1r-idle-note-20261017-002604-7dfcb4d0494a4692baf44125809d5fe0\manual-review.json`,
+SHA `e1a28a7ba02e092ff89dae61920d5ffbeb4402c52aec3e27aac56ddf4e9ce6f4`.
+Fuentes report/events revalidadas y sin modificaciones.
+
 Sin (3,3), BUSY o hipótesis melee/ranged aceptadas en J1-R: contraste contextual
 con E1/E1-R, limitado por huecos y muestreo. Patrón similar a J1 exploratoria,
 pero J1 no es otra repetición conocida del toque breve. No afirmar repetibilidad

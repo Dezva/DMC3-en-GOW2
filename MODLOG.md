@@ -1,5 +1,18 @@
 # Diario del proyecto
 
+## 2026-10-17 · J1-R: descripción visual de dos variantes de reposo
+
+Después de publicar/verificar **ab094fc5d79bc54fa398fb3f54b4bd176b63043d**,
+el usuario describió animación de reposo inicial→salto→quietud habitual→animación
+de reposo otra vez. Compatible en orden con (0,3)→(0,4)→hueco→(0,0)→(0,3).
+Asociación manual contextual propuesta para las dos variantes, no nombres
+universales/tiempos visuales ni causa de -1; ambas aceptadas state1/timer2.
+Nota privada nueva dmc3-j1r-idle-note-20261017-002604-7dfcb4d0494a4692baf44125809d5fe0,
+manual-review SHA `e1a28a7ba02e092ff89dae61920d5ffbeb4402c52aec3e27aac56ddf4e9ce6f4`.
+Report/events revalidados/intactos. Sin capturas/RAM/PINE nuevas, código,
+filtros o suites. No repetir solo por ese cambio; investigar timer primero.
+Actualizadas fichas y continuidad; fase parcial/flags false, sin reacción GOW2.
+
 ## 2026-10-17 · J1-R real: toque único declarado y contraste de reposo
 
 Desde main limpio/local-remoto **39449efbdd14dacc3e4779f1293d84dbafa82290**,

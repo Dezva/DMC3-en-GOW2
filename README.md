@@ -100,6 +100,9 @@ completo y no hay ataque autenticado. J1-R ya tiene toque único y reposo
 declarados: 192 coherentes y cuatro rechazos -1. El cambio posterior durante
 reposo sí pasó las guardas y ocurrió unos diez segundos después de los rechazos;
 no son el mismo hecho. No se solicita otra captura por rutina.
+La descripción visual posterior respalda como hipótesis contextual dos variantes
+de reposo: (0,3) espera animada y (0,0) quietud habitual, ambas state1/timer2.0.
+No son nombres universales validados ni explicación de -1.
 Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 

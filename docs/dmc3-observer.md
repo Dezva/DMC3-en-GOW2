@@ -34,6 +34,10 @@ Motion(0,4)/state1 o2, timer9,8,2,11,5; 2.0 también aparece con state2. Rechazo
 ~6,4–6,7 s y cambio posterior aceptado en reposo~16,8 s son hechos distintos;
 no atribuirlos a la misma animación. No hace falta otra captura por rutina;
 revisar timer/huecos antes de ampliar hipótesis. Sin semántica universal validada.
+Usuario describió después reposo animado inicial, salto, quietud habitual y
+reposo animado otra vez: compatible en orden con (0,3)→(0,4)→hueco→(0,0)→(0,3).
+Asociación manual tentativa de dos variantes de reposo, ambas state1/timer2.0,
+sin nombres universales, tiempos visuales exactos ni causa demostrada para -1.
 No repetir PINE.
 
 ## Ejecutar y conservar evidencia

@@ -5,7 +5,23 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## J1-R: toque único/reposo declarados · 2026-10-17
+## J1-R: variantes de reposo descritas por el usuario · 2026-10-17
+
+Desde main publicado/verificado **ab094fc5d79bc54fa398fb3f54b4bd176b63043d**,
+el usuario añadió: inició en animación de reposo, saltó como se indicó, quedó
+en quietud habitual y luego regresó a la animación. Compatible en orden con
+(0,3)→(0,4)→hueco→(0,0)→(0,3). Conservar como hipótesis manual contextual:
+(0,3) espera prolongada/animada; (0,0) quietud habitual. Ambas aceptadas state1/
+timer2.0, no ataques ni semántica universal. Sin tiempos visuales independientes;
+esta aclaración no identifica la causa de -1 ni elimina el hueco.
+
+Nota literal nueva privada y hashes originales revalidados:
+D:\logs\dmc3-j1r-idle-note-20261017-002604-7dfcb4d0494a4692baf44125809d5fe0\manual-review.json;
+SHA `e1a28a7ba02e092ff89dae61920d5ffbeb4402c52aec3e27aac56ddf4e9ce6f4`.
+No nueva captura/RAM/PINE, código, filtros o suites. Siguiente sigue investigar
+uso nativo del timer antes de pedir más pruebas; fase parcial y flags false.
+
+## J1-R: toque único/reposo declarados · datos y revisión anterior
 
 Partida main **39449efbdd14dacc3e4779f1293d84dbafa82290**, local/remoto limpio
 y coincidente. Captura única tras ficha y «Mismo contexto; listo para J1-R»:
