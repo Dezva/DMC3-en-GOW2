@@ -5,7 +5,51 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## E1-R confirmada · J1 propuesta · 2026-10-17
+## J1 registrada · confirmación posterior pendiente · 2026-10-17
+
+Partida main **0e7ea97a7c80638590d6b0244c8c57317f528d90**, local/remoto limpio
+y coincidente. Tras ficha completa y «Listo para J1», captura única finita:
+25 s preparación, 200 muestras/10 Hz, señal a ~5 s. **Todavía falta respuesta
+posterior** sobre salto único visible/reposo/señales/incidentes; se preguntó al
+terminar. No convertir preparación/pitidos en prueba de ejecución correcta.
+
+190 coherentes; seis rechazos timer=-1.0 y cuatro calentamientos (dos iniciales,
+dos recuperación). Dos bloques separados por el hueco, nunca unidos. Sin errores
+Win32/lecturas parciales, pérdida de foco, ticks omitidos o cambio de contexto
+observado. Build/base/PID/inicio se redescubrieron y coincidían con R20/E1/E1-R;
+tokens medios sin elevar, 0x410, 3369 lecturas/39645 bytes. No reutilizar PID/base.
+
+Ambos motions (grupo,índice): (0,3)/state1 → (0,4)/state1 (2 muestras) →
+(0,4)/state2 (4) → hueco → (0,0)/state1 → (0,3)/state1. Timer durante las seis
+(0,4) aceptadas: 9,9,0,12,6,0; restantes 184 aceptadas=2.0. Seis rechazos -1:
+tres con bytes [4,0,4,0]/state2 y tres [31,0,31,0]/state1. Esos campos parciales
+se guardan antes del recheck final, no son snapshots coherentes. Generaciones
+por invalidación no prueban pérdida del actor. Filtros conservados, semántica
+de timer/progreso/cuenta regresiva/sentinel desconocida. No inferir reinicios.
+
+Sin (3,3), BUSY o hipótesis melee/ranged aceptados en J1, contraste preliminar
+con E1/E1-R, aún no negativo limpio confirmado. Hueco/recalentamiento impiden
+delimitar fin completo del episodio. 10 Hz nominal; mediana 99,88 ms, rango
+44,05–148,40, sin precisión por frame. Ficha, secuencia y límites en
+[validación controlada](dmc3-validacion-controlada.md#j1-registrada--2026-10-17--confirmación-posterior-pendiente).
+
+Captura: D:\logs\dmc3-observe-20261017-000835-e67da5c481c84a9288f7503e9e571c8a.
+report SHA-256 `261d4d6352f1e9ce687097c963c2c87cbd4367dde7ca0cf84f047d4bce90f6fc`;
+events `31a17db9503a26272268c635d014228c7b743c28fb58ac3898e463745afab9b9`.
+Comparación R20/E1/E1-R/J1 y j1-review.json (confirmación pendiente):
+D:\logs\dmc3-timeline-20261017-001144-2170f5e7ebf24e379924f77eabe275fd;
+analysis SHA-256 `e1602d41a4050f09772c978d7354ca6dd58ae736f936702adc76547951446d9d`.
+Cuatro parejas report/events verificadas antes/después; originales intactos.
+
+Próximo paso: guardar respuesta posterior y valorar una sola repetición J1-R
+si confirma ejecución limpia y se necesita repetibilidad, con nueva preparación.
+No hay otra captura autorizada por «Listo para J1». Antes de modificar timer,
+falta estudiar referencias nativas estáticas acotadas de +0x3E34; no realizado.
+Sin código/tests nuevos, suites repetidas o PINE; lectura exclusivamente, fase
+parcial, phase2_verified=false y authentic_attacks_detected=false. Sin GOW2.
+Las secciones inferiores conservan el historial; el estado superior prevalece.
+
+## E1-R confirmada · J1 propuesta (historial)
 
 Partida **449529a50c7c2b1b55487ec6a79406bedbbf683d**, main local/remoto limpio
 y coincidente. Tras «Listo para E1-R» se ejecutó la única repetición prevista:
@@ -825,9 +869,12 @@ Puedes pegar este texto al abrir el proyecto en Codex:
 > Lee docs/revision-capturas-dmc3.md, docs/dmc3-analisis-offline.md y
 > docs/dmc3-campos-investigacion.md. Ya hay analizador offline y pruebas sintéticas;
 > reutiliza los informes finales y hashes, sin confundir hipótesis con ataques.
-> No abras ni controles juegos ni hagas capturas durante mi ausencia. Espera mis
-> instrucciones anunciadas antes de pruebas en juego. El protocolo futuro no
-> está ejecutado y las señales intermedias no están implementadas. Las primeras
+> No abras ni controles juegos ni hagas capturas durante mi ausencia. Las pruebas
+> controladas están autorizadas una por una tras ficha completa y un nuevo «Listo».
+> R20/E1/E1-R están confirmadas; J1 registrada espera respuesta posterior.
+> Lee docs/dmc3-validacion-controlada.md para el estado más reciente. La señal
+> intermedia única --action-cue-seconds ya está implementada, probada y utilizada.
+> No hay cuenta regresiva ni múltiples señales de acción. Las primeras
 > capturas son exploratorias y una con pitidos tiene inicio incierto.
 > Distingue golpes individuales, combos completos, disparos, saltos, movimiento
 > y reposo. No certifiques acciones por etiquetas manuales o cambios de motion.

@@ -70,7 +70,7 @@ proceso, comprueba huella/base real/páginas y lee bloques pequeños. No usa PIN
 DDMK instalado ni una DLL dentro del juego. En esta sesión se utilizó el Python
 que ya incluye Codex. Comandos y perfil en [docs/dmc3-observer.md](docs/dmc3-observer.md).
 
-Para capturas manuales hay 15 s de preparación y pitidos al inicio/fin, porque
+Para las pruebas controladas actuales hay 25 s de preparación y pitidos, porque
 DMC3 abre la pausa al cambiar de ventana. No se interpreta una etiqueta manual,
 BUSY ni cualquier cambio de motion como un ataque. `phase2_verified` sigue false;
 motionTimer=-1.0 se registra como desconocido y descarta esas muestras.
@@ -84,16 +84,18 @@ fue documental. La petición posterior autorizó e implementó el
 [análisis offline](docs/dmc3-analisis-offline.md): 34 tests sintéticos y seis
 capturas históricas reanalizadas, sin abrir juegos ni pedir otra captura. La
 [investigación de campos](docs/dmc3-campos-investigacion.md) mantiene desconocida
-la semántica de motionTimer; el [protocolo futuro](docs/dmc3-validacion-controlada.md)
-espera las instrucciones del usuario.
+la semántica de motionTimer; las [fichas y resultados](docs/dmc3-validacion-controlada.md)
+conservan las pruebas controladas autorizadas una por una.
 
 En la validación posterior ya se completó **R20 de reposo**, confirmada por el
 usuario: 198 muestras coherentes, timer=2.0 también sin atacar. Esto no identifica
 un ataque ni valida un reloj de animación. E1 también se completó y confirmó:
 un espadazo declarado, un episodio motion (3,3)/state65537 y timer aún fijo 2.0.
 E1-R reprodujo el episodio de 16 muestras, con una muestra final sin BUSY y
-timer aún fijo. Falta contraste con otra acción; no hay ataque autenticado.
-J1 propone un solo salto con nueva preparación explícita. Resultados y procedimiento
+timer aún fijo. J1 ya se registró tras preparación explícita: 190 coherentes,
+motion (0,4), timer variable y seis rechazos -1.0; falta confirmación posterior
+del usuario. El hueco impide delimitar el episodio completo y no hay ataque autenticado.
+Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 
 ## Repetir PINE solo si hace falta investigar

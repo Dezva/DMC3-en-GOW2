@@ -1,6 +1,6 @@
 # Observador externo DMC3 · solo lectura
 
-Estado 2026-10-16: **acceso real y campos candidatos observados**, con validación
+Estado 2026-10-17: **acceso real y campos candidatos observados**, con validación
 de acciones/menús/transiciones todavía parcial. No hay detector de ataques,
 puente de gameplay, reacción GOW2 ni composición visual. `phase2_verified` y
 `authentic_attacks_detected` permanecen false. Un código de salida 0 solo indica
@@ -15,13 +15,18 @@ conservan la autorización y confirmación exigidas para cada nueva captura.
 Actualización de validación controlada: R20 ya se ejecutó con reposo confirmado
 por el usuario; ambos motions (grupo 0/índice 3), state=1 y timer=2.0 estables.
 Una lectura coherente más el relato permiten asociación contextual, no semántica
-universal. Resultado y siguiente ficha E1 en [validación controlada](dmc3-validacion-controlada.md).
+universal. Resultados en [validación controlada](dmc3-validacion-controlada.md).
 E1 ya se ejecutó y el usuario confirmó un espadazo: (3,3)/state65537 por 16
 muestras, timer 2.0 constante antes/durante/después. Asociación contextual sin
 exclusividad o autenticación independiente. E1-R repitió las 16 muestras (3,3),
 con state1 en la última; BUSY y motion no tienen límites necesariamente iguales,
-y las lecturas múltiples pueden cruzar frames. J1, un solo salto, espera nueva
-preparación como contraste mínimo, manteniendo filtros.
+y las lecturas múltiples pueden cruzar frames. J1 ya se registró tras su propio
+«Listo», pendiente de confirmación posterior: 190 coherentes, seis rechazos -1
+y cuatro calentamientos. Motion (0,4)/state=1 o 2, timer 9,9,0,12,6,0 en seis
+coherentes; no valida progreso ni sentinel. Los campos parciales rechazados no
+superaron recheck final. No unir los dos bloques o llamar pérdida de actor al
+cambio de generación por política. Sin (3,3)/BUSY aceptado en J1, negativo aún
+pendiente y limitado por el hueco; filtros conservados.
 No repetir PINE.
 
 ## Ejecutar y conservar evidencia

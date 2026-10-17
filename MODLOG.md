@@ -1,5 +1,40 @@
 # Diario del proyecto
 
+## 2026-10-17 · J1 registrada, timer variable y seis rechazos preservados
+
+Desde main local/remoto limpio **0e7ea97a7c80638590d6b0244c8c57317f528d90**,
+J1 se ejecutó tras ficha y «Listo»: 25 s preparación, 200 muestras/10 Hz,
+señal a ~5 s. Falta confirmación posterior de salto único/reposo/señales y
+ausencia de incidentes, ya solicitada. Preparación no equivale a ejecución.
+
+190 coherentes, seis rechazos timer=-1 y cuatro calentamientos. Ambos motions
+(0,4) en seis aceptadas: state1 dos y state2 cuatro, timer9,9,0,12,6,0.
+Otras 184 aceptadas timer2.0. Errores -1 conservan bytes [4,0,4,0]/state2
+(tres) y [31,0,31,0]/state1 (tres), campos parciales previos al recheck final.
+No ampliar filtros ni unir huecos: dos bloques. Generaciones por invalidación
+no significan desaparición del actor. Sin (3,3), BUSY o candidatos melee/ranged
+aceptados, pero negativo pendiente de relato y limitado por hueco/muestreo.
+Timer no validado como progreso, cuenta regresiva, reinicio o sentinel.
+
+Identidad/build/base redescubiertas coincidentes; tokens medios, handle 0x410,
+3369 lecturas/39645 bytes; sin errores Win32/parciales, foco/contexto o ticks
+omitidos. Cadencia 44,05–148,40 ms, mediana 99,88; no por frame ni fin de salto
+delimitado. Detalles en validación controlada y continuidad.
+Captura privada dmc3-observe-20261017-000835-e67da5c481c84a9288f7503e9e571c8a,
+report SHA `261d4d6352f1e9ce687097c963c2c87cbd4367dde7ca0cf84f047d4bce90f6fc`,
+events SHA `31a17db9503a26272268c635d014228c7b743c28fb58ac3898e463745afab9b9`.
+Comparación de cuatro controles en
+dmc3-timeline-20261017-001144-2170f5e7ebf24e379924f77eabe275fd,
+analysis SHA `e1602d41a4050f09772c978d7354ca6dd58ae736f936702adc76547951446d9d`.
+Hashes originales comprobados antes/después; j1-review.json marca relato pendiente.
+
+Actualizados estado, límites, preparación de 25 s y prompt de continuidad obsoleto:
+la señal intermedia ya existe y las pruebas se autorizan una por una. Sin cambios
+de código/perfil/filtros; no repetir suites por documentación o PINE. Próximo:
+guardar respuesta posterior antes de valorar repetición; estudiar referencias
+nativas del timer antes de modificar su política. Fase parcial, flags false,
+sin impactos, reacción GOW2, escrituras o instalaciones. Informes privados fuera de Git.
+
 ## 2026-10-17 · E1-R repetible y siguiente negativo J1
 
 Desde main local/remoto **449529a50c7c2b1b55487ec6a79406bedbbf683d**, limpio,

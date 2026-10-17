@@ -2,12 +2,82 @@
 
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
 identificar evidencia faltante. **R20, E1 y E1-R están completadas y confirmadas;
-J1, un solo salto, está propuesta y requiere nueva preparación.**
+J1 ya se registró y espera confirmación posterior de ejecución del usuario.**
 Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
 equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
 controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
 
-## E1-R confirmada · 2026-10-17 · siguiente contraste J1
+## J1 registrada · 2026-10-17 · confirmación posterior pendiente
+
+Desde main local/remoto limpio **0e7ea97a7c80638590d6b0244c8c57317f528d90**,
+tras «Listo para J1» y la ficha completa: 25 s de preparación, 200 muestras/10 Hz,
+señal corta a ~5 s y fin tras ~20 s. Esa respuesta autoriza la captura, no
+demuestra un salto ejecutado. Se preguntó después por una pulsación/salto visible,
+aterrizaje, reposo, señales e incidentes; **respuesta todavía pendiente**.
+No etiquetar estos datos como control negativo limpio hasta recibirla.
+
+Identidad/build/base redescubiertas y coincidentes con R20/E1/E1-R: SHA conocido,
+PID 10688/inicio 2026-10-17T02:38:13.424527Z, base 0x7FF7C6920000. Son datos
+históricos de esta ejecución. Ambos tokens medios, sin elevar; acceso 0x410,
+3369 lecturas/39645 bytes, sin errores Win32, lecturas parciales, pérdida de
+foco ni cambio de contexto observado. Misión 7/sala 127/posición 2/MAIN.
+
+**190 coherentes, seis rechazos por timer=-1.0 y cuatro de calentamiento**
+(dos iniciales y dos al recuperar). Dos bloques; no unirlos a través del hueco.
+El avance de generación provocado por la política no demuestra pérdida de actor.
+Puntero/contexto coinciden antes y después; no hay snapshot atómico o garantía ABA.
+Los pares siguientes usan **(grupo, índice)** en ambos canales:
+
+| Tramo del registro | Motion | state | Timer aceptado | Muestras coherentes |
+|---|---|---|---|---|
+| Inicial | (0,3) | 1 | 2.0 | 60 |
+| Cambio previo a AIR de fuente | (0,4) | 1 | 9.0, 9.0 | 2 |
+| AIR según enum de fuente | (0,4) | 2 | 0.0, 12.0, 6.0, 0.0 | 4 |
+| Después del hueco y calentamiento | (0,0) | 1 | 2.0 | 98 |
+| Final | (0,3) | 1 | 2.0 | 26 |
+
+Los seis errores conservan -1.0: tres con bytes motion `[4,0,4,0]`/state2,
+tres con `[31,0,31,0]`/state1. Son **campos parciales**: el rechazo ocurre antes
+de revalidar contexto al final, por lo que no se autentica (0,31) ni aterrizaje.
+Conservarlos íntegros sin ampliar filtros. Las 184 muestras aceptadas restantes
+tienen timer2.0. Los descensos 9→0, 12→6→0 no prueban reinicios de animación;
+no se validan unidades, progreso, cuenta regresiva ni significado de -1.
+
+Desde primera muestra: entrada registrada a (0,4) entre 6,090–6,195 s;
+state2 entre 6,299–6,407 s; última coherente (0,4) a 6,699 s. Rechazos
+6,787–7,289 s, calentamiento 7,390–7,502 s y recuperación coherente 7,598 s.
+El fin del episodio queda censurado por el hueco; **no medir duración completa
+del salto o aterrizaje**. Marcas posteriores a lecturas múltiples, no fronteras
+nativas. Cadencia mediana 99,88 ms, rango 44,05–148,40 ms, sin ticks omitidos.
+Señal corta a 5,00053 s desde reloj de muestreo, llamada ~64,15 ms; no mide input.
+10 Hz alcanza para ver estas muestras, no transiciones por frame ni exclusividad.
+
+No hay (3,3), BUSY ni hipótesis melee/ranged en las muestras aceptadas de J1.
+Eso distingue los **registros** de los espadazos E1/E1-R, pero el negativo requiere
+la confirmación manual pendiente y tiene un hueco; no demuestra cero falsos
+positivos globales. R20/E1/E1-R sí permanecen confirmadas y sin cambios.
+
+Captura privada:
+`D:\logs\dmc3-observe-20261017-000835-e67da5c481c84a9288f7503e9e571c8a`.
+report SHA-256 `261d4d6352f1e9ce687097c963c2c87cbd4367dde7ca0cf84f047d4bce90f6fc`;
+events SHA-256 `31a17db9503a26272268c635d014228c7b743c28fb58ac3898e463745afab9b9`.
+Comparación íntegra R20/E1/E1-R/J1 (JSON/CSV y j1-review.json):
+`D:\logs\dmc3-timeline-20261017-001144-2170f5e7ebf24e379924f77eabe275fd`;
+analysis SHA-256 `e1602d41a4050f09772c978d7354ca6dd58ae736f936702adc76547951446d9d`.
+Las cuatro parejas report/events se comprobaron contra sus hashes publicados,
+antes/después del análisis; no se alteraron. La revisión nueva indica relato
+pendiente, sin inventar nota de ejecución ni tiempos de acciones.
+
+Siguiente: registrar la respuesta posterior antes de decidir otra captura. Si
+confirma J1 limpia, hay contraste contextual preliminar y -1 reproducido bajo
+un protocolo controlado; falta repetición antes de asignar significado estable
+a (0,4)/state2. Una eventual J1-R necesita ficha y nuevo «Listo». No repetir
+espada por rutina ni intentar resolver el timer repitiendo acciones sin una
+hipótesis distinguible. Investigar referencias nativas estáticas de +0x3E34
+antes de cambiar perfil/filtros; sigue sin realizarse. Sin código nuevo, suites
+repetidas, PINE, escrituras, impacto o reacción GOW2; fase parcial y flags false.
+
+## E1-R confirmada · historial anterior a J1
 
 E1-R se ejecutó desde **449529a50c7c2b1b55487ec6a79406bedbbf683d** tras nueva
 preparación explícita. El usuario confirmó una sola pulsación y un espadazo,
@@ -41,7 +111,7 @@ Relato en manual-review.json. Comparación R20/E1/E1-R y e1r-review.json en
 analysis.json SHA-256 `11910bbcc51f0ba7913cb9b1bb41e2b9408462f15112960560bfe335a2622ace`.
 No se alteraron las fuentes originales ni se repitió PINE.
 
-### J1 propuesta: un solo salto, ningún ataque
+### Ficha J1 utilizada (propuesta histórica)
 
 Hipótesis mínima: comprobar si el patrón (3,3)/BUSY del espadazo aparece en una
 acción distinta y contrastar el timer con el contexto donde antes apareció -1.
@@ -64,7 +134,8 @@ desde el suelo. **No cambiar arma/estilo ni de sala para preparar la prueba.**
 No lock-on, movimiento voluntario, equipo, menús, minimizar o cambiar de ventana.
 Configuración existente 200 muestras/10 Hz, --lead-in-seconds 25 --beep
 --action-cue-seconds 5. No ajuste nuevo de sonido, direcciones o filtros.
-**J1 no se ha iniciado**; la confirmación posterior E1-R no la autoriza.
+J1 se ejecutó después con su propio «Listo»; resultado y confirmación pendiente
+en la sección superior. La confirmación posterior E1-R no autorizaba J1.
 
 Conservar rechazos y su causa, incluidos -1: no ampliar rango para aceptarlos.
 Si el timer invalida una muestra, sus campos parciales no se presentan como
