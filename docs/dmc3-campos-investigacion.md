@@ -48,8 +48,10 @@ El episodio (3,3)/state65537 tiene asociación manual contextual; no es todavía
 un ataque identificado independientemente. Detalles y hashes en
 [validación controlada](dmc3-validacion-controlada.md).
 
-J1 posterior se registró tras preparación; todavía espera confirmación manual
-de ejecución. Seis muestras coherentes (0,4) muestran timer **9,9,0,12,6,0**,
+J1 posterior se registró tras preparación; usuario declaró salto al tono corto
+y reposo posterior, pero no recuerda cuánto mantuvo el botón. Es exploratoria
+para el protocolo de pulsación breve; no atribuir el timer a mantener el botón.
+Seis muestras coherentes (0,4) muestran timer **9,9,0,12,6,0**,
 con state=1 en dos y state=2 en cuatro. Otras 184 coherentes mantienen 2.0; seis
 rechazos conservan -1.0 con campos parciales anteriores al recheck final.
 El campo sí varía en este registro, pero no muestra un progreso monótono

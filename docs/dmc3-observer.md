@@ -21,12 +21,14 @@ muestras, timer 2.0 constante antes/durante/después. Asociación contextual sin
 exclusividad o autenticación independiente. E1-R repitió las 16 muestras (3,3),
 con state1 en la última; BUSY y motion no tienen límites necesariamente iguales,
 y las lecturas múltiples pueden cruzar frames. J1 ya se registró tras su propio
-«Listo», pendiente de confirmación posterior: 190 coherentes, seis rechazos -1
+«Listo»: 190 coherentes, seis rechazos -1
 y cuatro calentamientos. Motion (0,4)/state=1 o 2, timer 9,9,0,12,6,0 en seis
 coherentes; no valida progreso ni sentinel. Los campos parciales rechazados no
 superaron recheck final. No unir los dos bloques o llamar pérdida de actor al
-cambio de generación por política. Sin (3,3)/BUSY aceptado en J1, negativo aún
-pendiente y limitado por el hueco; filtros conservados.
+cambio de generación por política. Usuario declaró salto al tono corto y reposo
+posterior; no recuerda duración de pulsación. J1 conserva asociación exploratoria,
+sin protocolo de toque breve validado. Sin (3,3)/BUSY aceptado, contraste limitado
+por el hueco y relato incompleto; filtros conservados. J1-R propuesta, no iniciada.
 No repetir PINE.
 
 ## Ejecutar y conservar evidencia

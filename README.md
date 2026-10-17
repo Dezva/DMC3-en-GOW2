@@ -93,8 +93,10 @@ un ataque ni valida un reloj de animación. E1 también se completó y confirmó
 un espadazo declarado, un episodio motion (3,3)/state65537 y timer aún fijo 2.0.
 E1-R reprodujo el episodio de 16 muestras, con una muestra final sin BUSY y
 timer aún fijo. J1 ya se registró tras preparación explícita: 190 coherentes,
-motion (0,4), timer variable y seis rechazos -1.0; falta confirmación posterior
-del usuario. El hueco impide delimitar el episodio completo y no hay ataque autenticado.
+motion (0,4), timer variable y seis rechazos -1.0. El usuario declaró salto y
+reposo posterior, pero no recuerda cuánto mantuvo el botón: J1 es exploratoria
+respecto al protocolo de pulsación breve. El hueco impide delimitar el episodio
+completo y no hay ataque autenticado. Se propone J1-R con soltar inmediato.
 Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 

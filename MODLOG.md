@@ -1,5 +1,23 @@
 # Diario del proyecto
 
+## 2026-10-17 · Aclaración J1: duración de pulsación desconocida
+
+Desde main local/remoto limpio **154e41b10c3ebc02a8b31bfbc25ac7702c088a03**.
+Usuario declaró salto al tono corto, soltar estando en el suelo y reposo hasta
+grave; al aclarar si mantuvo hasta aterrizar o soltó enseguida, no lo recuerda.
+J1 queda exploratoria para toque breve, sin convertir ese recuerdo en retención
+confirmada ni atribuirle causalidad sobre timer/rechazos. Datos se conservan.
+No asumir que confirmó expresamente todos los controles de la pregunta.
+
+Nota privada nueva bajo D:\logs\dmc3-j1-clarification-20261017-001819-86a6f30dd5d840449e15d5fc9a672f27,
+manual-review.json SHA `b2a67d37c16d4e61a8639b5c5dbc57b87ea22519ba7baeb1dd8aa98713d017f4`.
+report/events y análisis anterior revalidados, sin sobrescribir originales.
+Propuesta mínima J1-R con toque único y soltar enseguida al despegar, ficha
+25 s preparación/20 s registro y nuevo «Listo» imprescindible, aún no iniciada.
+No repetición idéntica de J1 incierta ni prueba causal de retener frente a soltar.
+Actualizada continuidad/estado, sin nueva RAM/PINE, código, filtros, suites o
+escrituras; comprobaciones documentales e integridad. Fase parcial, flags false.
+
 ## 2026-10-17 · J1 registrada, timer variable y seis rechazos preservados
 
 Desde main local/remoto limpio **0e7ea97a7c80638590d6b0244c8c57317f528d90**,

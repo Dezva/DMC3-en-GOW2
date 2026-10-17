@@ -55,7 +55,8 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   reposo y golpe individual. No iniciar muestreo hasta explicar la ficha y recibir
   confirmación de preparación; confirmar personaje/arma/estilo/contexto primero.
   docs/dmc3-validacion-controlada.md conserva R20/E1/E1-R confirmadas y J1 registrada
-  (confirmación posterior pendiente; seis timer=-1 rechazados, no ampliar filtros);
+  (salto declarado, duración de pulsación incierta; seis timer=-1 rechazados,
+  no ampliar filtros). J1-R propuesta exige soltar enseguida y nuevo «Listo»;
   el combo sigue por concretar. No controlar entradas o ventanas de los juegos.
   Las hipótesis offline no son ataques autenticados: mantener phase2_verified
   y authentic_attacks_detected false, sin reacción GOW2 ni eventos de impacto.

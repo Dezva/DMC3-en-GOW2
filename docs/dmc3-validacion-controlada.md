@@ -2,19 +2,24 @@
 
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
 identificar evidencia faltante. **R20, E1 y E1-R están completadas y confirmadas;
-J1 ya se registró y espera confirmación posterior de ejecución del usuario.**
+J1 se conserva exploratoria: salto declarado, duración de pulsación incierta.**
 Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
 equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
 controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
 
-## J1 registrada · 2026-10-17 · confirmación posterior pendiente
+## J1 registrada · 2026-10-17 · relato posterior y límites
 
 Desde main local/remoto limpio **0e7ea97a7c80638590d6b0244c8c57317f528d90**,
 tras «Listo para J1» y la ficha completa: 25 s de preparación, 200 muestras/10 Hz,
 señal corta a ~5 s y fin tras ~20 s. Esa respuesta autoriza la captura, no
-demuestra un salto ejecutado. Se preguntó después por una pulsación/salto visible,
-aterrizaje, reposo, señales e incidentes; **respuesta todavía pendiente**.
-No etiquetar estos datos como control negativo limpio hasta recibirla.
+demuestra un salto ejecutado. Después el usuario relató pulsar salto al sonido
+corto, soltar estando en el suelo y quedar en reposo hasta el grave. Ante la
+pregunta de si lo mantuvo hasta aterrizar o soltó enseguida: **«No recuerdo con
+certeza»**. Conservar salto/reposo declarados, duración de pulsación desconocida.
+No afirmar toque breve, mantenimiento hasta aterrizar, tres señales o ausencia
+de otras acciones expresamente confirmados: el relato no resuelve todo eso.
+J1 sirve como asociación exploratoria; no control limpio del protocolo previsto.
+Tampoco demuestra que mantener el botón causara los valores o el hueco.
 
 Identidad/build/base redescubiertas y coincidentes con R20/E1/E1-R: SHA conocido,
 PID 10688/inicio 2026-10-17T02:38:13.424527Z, base 0x7FF7C6920000. Son datos
@@ -53,8 +58,8 @@ Señal corta a 5,00053 s desde reloj de muestreo, llamada ~64,15 ms; no mide inp
 10 Hz alcanza para ver estas muestras, no transiciones por frame ni exclusividad.
 
 No hay (3,3), BUSY ni hipótesis melee/ranged en las muestras aceptadas de J1.
-Eso distingue los **registros** de los espadazos E1/E1-R, pero el negativo requiere
-la confirmación manual pendiente y tiene un hueco; no demuestra cero falsos
+Eso distingue los **registros** de los espadazos E1/E1-R, pero el negativo tiene
+duración de pulsación incierta, relato incompleto y un hueco; no demuestra cero falsos
 positivos globales. R20/E1/E1-R sí permanecen confirmadas y sin cambios.
 
 Captura privada:
@@ -65,17 +70,43 @@ Comparación íntegra R20/E1/E1-R/J1 (JSON/CSV y j1-review.json):
 `D:\logs\dmc3-timeline-20261017-001144-2170f5e7ebf24e379924f77eabe275fd`;
 analysis SHA-256 `e1602d41a4050f09772c978d7354ca6dd58ae736f936702adc76547951446d9d`.
 Las cuatro parejas report/events se comprobaron contra sus hashes publicados,
-antes/después del análisis; no se alteraron. La revisión nueva indica relato
-pendiente, sin inventar nota de ejecución ni tiempos de acciones.
+antes/después del análisis; no se alteraron. j1-review.json conserva el estado
+histórico de relato pendiente. Aclaración posterior en nueva carpeta privada:
+`D:\logs\dmc3-j1-clarification-20261017-001819-86a6f30dd5d840449e15d5fc9a672f27\manual-review.json`,
+SHA-256 `b2a67d37c16d4e61a8639b5c5dbc57b87ea22519ba7baeb1dd8aa98713d017f4`.
+Incluye ambas respuestas literales, incógnitas y hashes originales revalidados.
+No reescribir análisis previo ni inventar tiempos de acciones.
 
-Siguiente: registrar la respuesta posterior antes de decidir otra captura. Si
-confirma J1 limpia, hay contraste contextual preliminar y -1 reproducido bajo
-un protocolo controlado; falta repetición antes de asignar significado estable
-a (0,4)/state2. Una eventual J1-R necesita ficha y nuevo «Listo». No repetir
+Siguiente: **J1-R** para obtener un registro con pulsación breve explícita.
+La ambigüedad de J1 impide llamarla repetición idéntica; no compara por sí sola
+duración mantenida frente a breve. Falta repetibilidad antes de asignar significado
+estable a (0,4)/state2. Necesita ficha y nuevo «Listo». No repetir
 espada por rutina ni intentar resolver el timer repitiendo acciones sin una
 hipótesis distinguible. Investigar referencias nativas estáticas de +0x3E34
 antes de cambiar perfil/filtros; sigue sin realizarse. Sin código nuevo, suites
 repetidas, PINE, escrituras, impacto o reacción GOW2; fase parcial y flags false.
+
+### J1-R propuesta: un toque de salto y soltar enseguida
+
+Finalidad: obtener una asociación manual con salto breve sin ambigüedad sobre
+mantener el botón; comprobar si reaparecen (0,4)/state2 y rechazos -1. No probar
+unidades del timer ni atribuir diferencias a una causa con una sola pareja.
+Mismo Dante/Rebellion/Gunslinger, misión 7 normal, mismo lugar y sin enemigos.
+
+1. Tras nuevo «Listo», **25 s** para volver al juego, cerrar pausa y quedar quieto.
+2. Pitido largo agudo: inicio de **20 s** de muestreo (200 muestras/10 Hz), reposo.
+3. Único pitido corto a ~5 s: **tocar salto una sola vez y soltar de inmediato
+   al despegar**; no mantener hasta volver al suelo ni volver a pulsar en el aire.
+4. Aterrizar sin entradas y seguir quieto hasta pitido grave final. Se permite
+   volver al chat después; nunca responder durante el registro.
+5. Prohibido espada, disparos, dirección, segundo salto, lock-on, estilo,
+   cambios de equipo, menús, minimizar o cambiar de ventana durante esos 20 s.
+6. Después confirmar salto visible único, soltar inmediato, reposos/señales e
+   incidentes. Si mantuvo el botón o hubo otra acción, conservar el error y
+   reclasificar sin improvisar acciones extra.
+
+**No iniciada.** No hay mejora de sonido o lector, y el hueco por -1 puede
+reaparecer: conservar muestras rechazadas y no prometer límites de aterrizaje.
 
 ## E1-R confirmada · historial anterior a J1
 
@@ -134,7 +165,7 @@ desde el suelo. **No cambiar arma/estilo ni de sala para preparar la prueba.**
 No lock-on, movimiento voluntario, equipo, menús, minimizar o cambiar de ventana.
 Configuración existente 200 muestras/10 Hz, --lead-in-seconds 25 --beep
 --action-cue-seconds 5. No ajuste nuevo de sonido, direcciones o filtros.
-J1 se ejecutó después con su propio «Listo»; resultado y confirmación pendiente
+J1 se ejecutó después con su propio «Listo»; resultado y relato posterior
 en la sección superior. La confirmación posterior E1-R no autorizaba J1.
 
 Conservar rechazos y su causa, incluidos -1: no ampliar rango para aceptarlos.

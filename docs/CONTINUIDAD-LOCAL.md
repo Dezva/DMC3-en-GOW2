@@ -5,7 +5,32 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## J1 registrada · confirmación posterior pendiente · 2026-10-17
+## J1: relato posterior con pulsación incierta · 2026-10-17
+
+Desde main local/remoto limpio **154e41b10c3ebc02a8b31bfbc25ac7702c088a03**.
+El usuario relató pulsar salto al sonido corto, soltar estando en el suelo y
+reposo hasta el grave. Preguntado si mantuvo hasta aterrizar o soltó enseguida:
+**«No recuerdo con certeza»**. Salto/reposo declarados; duración de pulsación
+desconocida, sin confirmar expresamente todos los otros controles preguntados.
+J1 queda exploratoria para el protocolo breve, sin desechar sus datos ni
+atribuir los valores del timer a mantener el botón.
+
+Nota posterior nueva con ambas respuestas literales, incógnitas y hashes:
+D:\logs\dmc3-j1-clarification-20261017-001819-86a6f30dd5d840449e15d5fc9a672f27\manual-review.json;
+SHA-256 `b2a67d37c16d4e61a8639b5c5dbc57b87ea22519ba7baeb1dd8aa98713d017f4`.
+report/events J1 y analysis.json anterior revalidados e intactos; la revisión
+anterior de «pendiente» sigue como historia, esta nota la complementa.
+
+Siguiente mínima propuesta **J1-R**, mismo equipo/contexto, 25 s preparación,
+20 s/10 Hz; quieto al tono largo, a ~5 s **una pulsación de salto y soltar
+enseguida al despegar**, sin esperar al suelo; aterrizar/reposo hasta grave.
+Sin ninguna otra acción/menú/ventana. Ficha completa en validación controlada;
+exige nuevo «Listo» y no se ha iniciado. Resolver pulsación breve no establece
+por sí solo significado del timer ni compara causalmente una retención conocida.
+Sin nueva RAM/PINE, código, filtros o tests; solo notas y comprobaciones de
+integridad/enlaces. Fase parcial, flags false. Historial numérico debajo.
+
+## J1 registrada · estado anterior al relato posterior
 
 Partida main **0e7ea97a7c80638590d6b0244c8c57317f528d90**, local/remoto limpio
 y coincidente. Tras ficha completa y «Listo para J1», captura única finita:
@@ -31,7 +56,7 @@ Sin (3,3), BUSY o hipótesis melee/ranged aceptados en J1, contraste preliminar
 con E1/E1-R, aún no negativo limpio confirmado. Hueco/recalentamiento impiden
 delimitar fin completo del episodio. 10 Hz nominal; mediana 99,88 ms, rango
 44,05–148,40, sin precisión por frame. Ficha, secuencia y límites en
-[validación controlada](dmc3-validacion-controlada.md#j1-registrada--2026-10-17--confirmación-posterior-pendiente).
+[validación controlada](dmc3-validacion-controlada.md#j1-registrada--2026-10-17--relato-posterior-y-límites).
 
 Captura: D:\logs\dmc3-observe-20261017-000835-e67da5c481c84a9288f7503e9e571c8a.
 report SHA-256 `261d4d6352f1e9ce687097c963c2c87cbd4367dde7ca0cf84f047d4bce90f6fc`;
@@ -871,7 +896,8 @@ Puedes pegar este texto al abrir el proyecto en Codex:
 > reutiliza los informes finales y hashes, sin confundir hipótesis con ataques.
 > No abras ni controles juegos ni hagas capturas durante mi ausencia. Las pruebas
 > controladas están autorizadas una por una tras ficha completa y un nuevo «Listo».
-> R20/E1/E1-R están confirmadas; J1 registrada espera respuesta posterior.
+> R20/E1/E1-R están confirmadas; J1 es exploratoria por duración de pulsación
+> incierta. J1-R propuesta requiere soltar salto enseguida y nuevo «Listo».
 > Lee docs/dmc3-validacion-controlada.md para el estado más reciente. La señal
 > intermedia única --action-cue-seconds ya está implementada, probada y utilizada.
 > No hay cuenta regresiva ni múltiples señales de acción. Las primeras

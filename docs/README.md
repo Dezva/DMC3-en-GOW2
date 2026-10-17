@@ -14,7 +14,7 @@ leer automáticamente están en [AGENTS.md](../AGENTS.md), en la raíz.
 | [Revisión de capturas DMC3](revision-capturas-dmc3.md) | Aclaraciones del jugador, evidencia reutilizable, límites por acción y controles ausentes |
 | [Análisis offline DMC3](dmc3-analisis-offline.md) | API/CLI temporal, JSON/CSV, hipótesis, pruebas sintéticas y resultados históricos |
 | [Investigación de campos](dmc3-campos-investigacion.md) | DDMK fijado, canales inferior/superior, anomalías de timer y campos complementarios pendientes |
-| [Validación controlada](dmc3-validacion-controlada.md) | R20/E1/E1-R confirmadas, J1 registrada con relato pendiente, timer/rechazos y límites |
+| [Validación controlada](dmc3-validacion-controlada.md) | R20/E1/E1-R confirmadas, J1 exploratoria por pulsación incierta, ficha J1-R y límites |
 | [Arquitectura](arquitectura.md) | Integración entre motores, DDMK, antecedente RE4/Minecraft y viabilidad visual/rendimiento |
 | [Diario](../MODLOG.md) | Evidencias, pruebas, decisiones y cambios de prioridad |
 | [Inventario DMC3](inventario-dmc3.md) | Inventarios recibidos, PAC, DDS e investigación del origen |
