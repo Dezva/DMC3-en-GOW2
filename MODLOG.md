@@ -1,5 +1,35 @@
 # Diario del proyecto
 
+## 2026-10-17 · Analizador estático x64 y candidato de negativo por resta
+
+Desde main limpio/local-remoto **3c4d9c045b30b34fa9aab7a65ec724e63e05f1f9**.
+Añadidos inspect_dmc3_native_timer.py, requirements opcional Windows con SHA y
+13 tests sintéticos correctos. Finito/solo disco, build y anclas exigidas, rangos
+PE acotados, operandos/tamaño/calidad/alcanzabilidad local; sin abrir procesos.
+Capstone oficial aislado bajo D:\logs, sin Python global/juegos modificados.
+Distribución5.0.9/binding5.0.7/API5.0 registrados, no ocultar discrepancia.
+
+Pasada real de disco:240 candidatas/95 rangos,225 caminos locales y3 rangos de
+decode incompleto. Revisión estática acotada enlaza caso5/JUMP fuente conT=9,
+caso6 desconocido con5/14, restas de speed+14 y fase que conserva resultado
+negativo. Ejemplo0−1 explica una posibilidad, no demuestra causa de muestras,
+unidad, sentinel, tiempo de combo o semántica de todas las referencias.
+Sin store inmediato-1 en este conjunto limitado; no afirmar inexistencia global.
+
+Informe privado dmc3-native-timer-20261017-004202-c8487fcef47c429897ec31475d3272e8,
+SHA `8221506a31dea8039b4c7a897a1159f8f2fdf94e30753dd363fd31666a936442`;
+revisión y decoder dmc3-native-review-20261017-003643-4f0140f82236407da880c1e7f4f5dafa,
+native-interpretation SHA `543e17720891fbc551f041c87ecf8e190a038e88b983ce8761454e4e69806736`;
+tests SHA `f0d182ca5ce786bfed81b9de7c3793111ed186d22235d628eced0ae59b6930d3`.
+Addendum corrige cita speed3007→3008, sin cambio de offset. Receta/fuentes y
+límites en dmc3-timer-native.md; informes/decoder/ejecutable fuera de Git.
+
+No nuevas capturas/RAM/PINE, escrituras o modificación del sampler/perfil/filtros.
+Próximo: diagnóstico de rechazo con contexto final/calidad por campo y lecturas
+justificadas de evento/fase/speed, tests, después captura mínima autorizada si
+distingue hipótesis. Todavía no implementado. Fase DMC3 parcial, flags false,
+sin detector/impactos/GOW2. Checks relevantes separados de evidencia real.
+
 ## 2026-10-17 · Hipótesis del usuario sobre pausas de combos
 
 Desde publicado/verificado **84358f3c0450fef5694d2eda8cb6064c8faabaeb** se

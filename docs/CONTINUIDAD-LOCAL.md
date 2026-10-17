@@ -5,7 +5,48 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## Hipótesis temporal de combos propuesta por el usuario · 2026-10-17
+## Análisis nativo del timer: herramienta y negativo retenido · 2026-10-17
+
+Desde main local/remoto limpio **3c4d9c045b30b34fa9aab7a65ec724e63e05f1f9**.
+Se avanzó sin nuevas capturas/RAM/PINE. Hay herramienta propia de disco finita:
+tools/inspect_dmc3_native_timer.py, tests y dependencia opcional aislada. Capstone
+wheel oficial5.0.9/SHA fijado,1.273.459 bytes, extraído bajo D:\logs (~9 MB),
+sin modificar Python global/juegos. Dist5.0.9/binding5.0.7/API(5,0,1280) registrados.
+
+Build conocida y dos anclas verificadas; 240 referencias candidatas/95 rangos
+PE,225 con camino directo local y3 rangos con decode lineal incompleto. No son
+240 referencias con actor o ejecución probados. Tabla nativa del selector+3E08
+lleva caso5 a1F45E0 (iniciaT=9); caso6 a1F43F0, con valores5/14 y restas de
+actor+14 (speed según fuente, unidades desconocidas). En una fase guarda un
+resultado negativo, avanza fase y puede retenerlo. Hipótesis comprobable de -1
+por resta (ejemplo0−1), no sentinel validado ni causa de J1-R demostrada.
+Caso5 es JUMP=5 en fuente fijada; caso6 conserva nombre desconocido. No inferir
+que la ruta se ejecutó realmente por el relato o por coincidencia de valores.
+
+**13 tests sintéticos correctos**, ninguno abre juegos. La pasada real de disco
+es evidencia distinta, sin ejecución del juego/mod ni alteración del observador.
+Detalles, límites, receta y fuentes primarias en
+[investigación nativa](dmc3-timer-native.md). No repetir suites sin motivo.
+Informe privado: D:\logs\dmc3-native-timer-20261017-004202-c8487fcef47c429897ec31475d3272e8\report.json,
+SHA `8221506a31dea8039b4c7a897a1159f8f2fdf94e30753dd363fd31666a936442`.
+Decoder/manifiesto/tests/revisión:
+D:\logs\dmc3-native-review-20261017-003643-4f0140f82236407da880c1e7f4f5dafa;
+native-interpretation.json SHA `543e17720891fbc551f041c87ecf8e190a038e88b983ce8761454e4e69806736`,
+review-addendum.json corrige cita speed3007→3008, assert3035 válido;
+synthetic-tests.txt SHA `f0d182ca5ce786bfed81b9de7c3793111ed186d22235d628eced0ae59b6930d3`.
+Wheel/DLL, ejecutable y desensamblado privado fuera de Git.
+
+Siguiente tarea concreta: mejorar diagnóstico de rechazos con recheck final de
+actor/contexto y calidad separada; justificar/comprobar evento+3E08/u32,
+fase+3E10/u8 y speed+14/f32. **No implementado o capturado todavía.** Mantener
+timer desconocido/rechazado, no ampliar filtros para hacerlo pasar; validar
+perfil/guardas/tests antes de una nueva preparación de salto. No reutilizar
+PID/base históricos. Luego contraste finito de fases/resta/retención, si permite
+distinguir hipótesis; no solicitar combos sin arma/ruta completa. Motion/state
+pueden progresar como candidatos sin usar timer/BUSY como ataque. Fase parcial,
+phase2_verified=false y authentic_attacks_detected=false, sin reacción GOW2.
+
+## Hipótesis temporal de combos propuesta por el usuario · historial
 
 Después de publicar/verificar **84358f3c0450fef5694d2eda8cb6064c8faabaeb**,
 el usuario plantea si el timer puede relacionarse con «golpe, espera, golpe,

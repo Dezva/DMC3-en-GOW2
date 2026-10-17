@@ -1,5 +1,11 @@
 # Campos DMC3: investigación offline · actualización 2026-10-17
 
+Actualización posterior: [análisis nativo x64](dmc3-timer-native.md), herramienta
+finita de disco y13 tests sintéticos. Se encontraron rutas de resta, fases y
+negativo retenido; siguen como hipótesis para explicar -1, sin validación causal
+de las capturas o cambio de filtros. El siguiente diagnóstico propuesto recoge
+contexto final/evento/fase/speed, todavía no implementado.
+
 Revisión fijada DDMK: `0319ae7132a6a822fd4dede2fb7cad484900169f`.
 Se revisaron **30 archivos fuente**: los 28 .ixx/.cpp de Mary, ddmk.js y
 Scripts/dmc3_create_data.js. Nueve copias existentes se reutilizaron y 21 se
@@ -99,7 +105,7 @@ for rva, size, expected in [
 '@ | & "$env:USERPROFILE\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -
 ```
 
-Siguiente comprobación: delimitar funciones/instrucciones x64 y seguir lectores/
+Siguiente comprobación de esa etapa: delimitar funciones/instrucciones x64 y seguir lectores/
 escritores de +0x3E34, especialmente inicialización, salto y valores negativos.
 No había decoder general disponible en los módulos Python, PATH y rutas conocidas
 consultados (capstone/iced_x86/distorm3/objdump/llvm-objdump/dumpbin); no se instaló
@@ -107,6 +113,8 @@ otro. Una continuación puede usar un decoder ligero aislado para análisis est�
 sin alterar el lector o los juegos. No interpretar coincidencias de bytes sin
 fronteras de instrucciones como referencias válidas. No pedir otra captura hasta
 obtener de esa investigación una hipótesis que la prueba pueda distinguir.
+Ese paso se continuó después con el analizador nativo enlazado arriba; la falta
+de decoder describe el estado anterior, no el actual.
 
 ## Qué podemos concluir sobre el temporizador
 

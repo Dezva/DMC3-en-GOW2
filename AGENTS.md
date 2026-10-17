@@ -59,6 +59,9 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   no ampliar filtros). J1-R ya tiene toque único y reposo declarados, cuatro -1
   rechazados; no confundir el cambio tardío en reposo con esos rechazos.
   Revisar suficiencia/timer antes de pedir más capturas por rutina;
+  docs/dmc3-timer-native.md añade análisis estático: negativo retenido por resta
+  es una hipótesis, no causa real probada. Siguiente diagnóstico de contexto
+  final/evento/fase/speed aún no implementado; mantener filtros y flags falsos.
   el combo sigue por concretar. No controlar entradas o ventanas de los juegos.
   Las hipótesis offline no son ataques autenticados: mantener phase2_verified
   y authentic_attacks_detected false, sin reacción GOW2 ni eventos de impacto.

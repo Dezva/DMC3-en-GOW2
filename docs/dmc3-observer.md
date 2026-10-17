@@ -40,6 +40,12 @@ Asociación manual tentativa de dos variantes de reposo, ambas state1/timer2.0,
 sin nombres universales, tiempos visuales exactos ni causa demostrada para -1.
 No repetir PINE.
 
+La [investigación nativa](dmc3-timer-native.md) ya dispone de analizador de disco
+x64 y 13 tests sintéticos. Una ruta candidata puede retener el resultado negativo
+de una resta de speed; aún no prueba el origen de -1 en capturas. El observador
+actual no cambió. Contexto final al rechazar y campos extra evento/fase/speed son
+la siguiente mejora propuesta, sin implementar ni aceptar automáticamente -1.
+
 ## Ejecutar y conservar evidencia
 
 Requiere Windows y Python **x64, 3.10 o posterior**, solo biblioteca estándar.

@@ -1,0 +1,3 @@
+# Optional disk-only research dependency, Windows x64 wheel from official PyPI.
+# Install into a unique private --target directory, never into a game or globally.
+capstone==5.0.9 --hash=sha256:732cedbbb56d42e723f14d7af6387f1454194a820b4b96b56d1e53f865ef85d0

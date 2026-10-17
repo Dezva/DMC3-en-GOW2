@@ -107,6 +107,11 @@ La investigación estática posterior verificó en disco dos escrituras a +0x3E3
 que DDMK relaciona con duración de Stinger. No valida un reloj general ni el -1
 del salto; el siguiente paso es seguir sus lectores/escritores nativos con un
 decoder x64, sin nuevas capturas por ahora. Fuentes y receta en la investigación.
+Ya hay [analizador estático x64](docs/dmc3-timer-native.md), con 13 tests sintéticos
+y una pasada real desde disco. Una ruta puede guardar y retener un resultado
+negativo al restar `speed`; es una hipótesis concreta para -1, todavía sin
+trazado real que la confirme. El siguiente avance es mejorar el diagnóstico
+de contexto/fase/speed sin aceptar -1 automáticamente, antes de otra captura.
 Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 

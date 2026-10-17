@@ -14,6 +14,7 @@ leer automáticamente están en [AGENTS.md](../AGENTS.md), en la raíz.
 | [Revisión de capturas DMC3](revision-capturas-dmc3.md) | Aclaraciones del jugador, evidencia reutilizable, límites por acción y controles ausentes |
 | [Análisis offline DMC3](dmc3-analisis-offline.md) | API/CLI temporal, JSON/CSV, hipótesis, pruebas sintéticas y resultados históricos |
 | [Investigación de campos](dmc3-campos-investigacion.md) | DDMK fijado, dos escrituras nativas del timer verificadas en disco, anomalías y límites |
+| [Timer: análisis nativo](dmc3-timer-native.md) | Herramienta estática x64, 13 tests, rutas de resta/fases y siguiente diagnóstico |
 | [Validación controlada](dmc3-validacion-controlada.md) | R20/E1/E1-R confirmadas, J1 exploratoria, J1-R con toque/reposo declarados y límites |
 | [Arquitectura](arquitectura.md) | Integración entre motores, DDMK, antecedente RE4/Minecraft y viabilidad visual/rendimiento |
 | [Diario](../MODLOG.md) | Evidencias, pruebas, decisiones y cambios de prioridad |
