@@ -54,7 +54,7 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   y coordinar pruebas controladas con el usuario, una por una, empezando por
   reposo y golpe individual. No iniciar muestreo hasta explicar la ficha y recibir
   confirmación de preparación; confirmar personaje/arma/estilo/contexto primero.
-  docs/dmc3-validacion-controlada.md conserva R20 confirmada y E1 propuesta;
+  docs/dmc3-validacion-controlada.md conserva R20/E1 confirmadas y E1-R propuesta;
   el combo sigue por concretar. No controlar entradas o ventanas de los juegos.
   Las hipótesis offline no son ataques autenticados: mantener phase2_verified
   y authentic_attacks_detected false, sin reacción GOW2 ni eventos de impacto.

@@ -1,7 +1,8 @@
 # Validación controlada DMC3 · fichas y resultados
 
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
-identificar evidencia faltante. **R20 está completada; E1 sigue sin iniciar.**
+identificar evidencia faltante. **R20 y E1 están completadas y confirmadas;
+una repetición de E1 sigue pendiente de nueva preparación.**
 Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
 equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
 controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
@@ -35,7 +36,64 @@ previa, no vídeo de la ejecución. Análisis en
 `D:\logs\dmc3-timeline-20261016-235300-a26781cdf9024d9580d05fca7d62a3a4`,
 analysis.json SHA-256 `522d0d71d767c50c8b26306db96bc93072b7d72c1f644be72841e897a73bc666`.
 
-### E1 propuesta, aún no ejecutada
+### E1 ejecutada y confirmada
+
+Se lanzó desde **476130021a7edd6ce47bbe22eb1c4b39f83be564** después de «Listo
+para E1». El usuario confirmó después una sola pulsación y un espadazo visible,
+reposo antes/después y tres señales oídas, sin incidentes declarados.
+
+200 muestras, 198 coherentes y dos de calentamiento; mismo contexto misión 7/
+sala 127/posición 2/MAIN, un bloque, sin pérdida de actor/foco/contexto, errores
+de lectura o ticks omitidos. Identidad/build/base se redescubrieron y coincidían
+con R20; lector/juego medios y no elevados, 3405 lecturas/40173 bytes.
+
+| Tramo observado | Ambas parejas (grupo, índice) | state | Muestras coherentes |
+|---|---|---|---|
+| Reposo previo declarado | (0,3) | 1 | 59 |
+| Único episodio de familia melee | (3,3) | 65537 | 16 |
+| Reposo posterior declarado, primer patrón | (0,0) | 1 | 100 |
+| Reposo posterior declarado, segundo patrón | (0,3) | 1 | 23 |
+
+Timer=2.0 en las **198 coherentes**, sin reinicios observados; no se rechazó
+ningún timer. Por tanto este campo no muestra progreso del espadazo en esta
+captura; su semántica continúa desconocida. (0,0) y (0,3) aparecen durante
+reposo declarado: el cambio entre ellos no es otro ataque. Una sola E1 no prueba
+exclusividad de (3,3)/65537 ni convierte BUSY en ataque.
+
+Origen temporal: **primera muestra**, distinto del comienzo de pitido/muestreo.
+Entrada al episodio acotada entre **5,995–6,098 s**, salida entre
+**7,604–7,701 s**; tramo observado 1,506 s, no duración completa certificada de
+la animación. La primera muestra (3,3) aparece ~1,164 s después del inicio de
+la señal corta: no se conoce la hora de pulsación y esto no mide latencia de input.
+Sin vídeo/observador independiente, se conserva asociación manual contextual.
+
+Cadencia real: mediana 100,11 ms, mínimo 62,14 y máximo **156,40 ms** (intervalo
+que abarca la señal); llamada de sonido acotada por eventos durante 62,97 ms.
+Se conservaron todas las muestras y no hubo ticks omitidos. Basta para observar
+este tramo de 16 muestras y acotar sus límites; no resuelve partes por frame,
+ventanas de cancelación, contacto o hitboxes. No aumentar frecuencia por rutina.
+
+Captura privada:
+`D:\logs\dmc3-observe-20261016-235733-2960ab20ee8f4c6287ca42eeb511567f`.
+report.json SHA-256 `f3057e8493f7173807e83b7d434b1f95fd6a1ed2ac2f56cf75de4fdeed4406de`;
+events.jsonl SHA-256 `d2cceb19c179a4df936c8005061e5d4c1ce80e46ab82a1e73aedba7e6fcd8684`.
+Relato en manual-review.json, sin tiempos de acción inventados. Comparación R20/E1:
+`D:\logs\dmc3-timeline-20261016-235923-4a113a6765a148b2b5370291d66bec8b`,
+analysis.json SHA-256 `d0b7d4dedacd37073b69a7ba19bed1dda555cf8aebeaec00121c5cbaae136856`;
+e1-review.json conserva límites y cadencia. Fuentes originales sin modificar.
+
+### Siguiente: E1-R, una única repetición idéntica propuesta
+
+Objetivo: comprobar repetibilidad del episodio y del timer constante, no
+corregir un error de E1 (el usuario la confirmó limpia). Misma ficha de abajo,
+25 s preparación, 20 s/10 Hz, tono corto a ~5 s para **una** pulsación de espada;
+misma Rebellion/Gunslinger/lugar, reposo antes/después, sin otras acciones.
+Requiere otro «Listo»; no se lanzó automáticamente con el relato posterior.
+Después comparar y decidir el negativo distinto mínimo que falte antes de
+proponer regla; no pedir combo, salto y disparo juntos. Sin detector definitivo,
+phase2_verified=false y authentic_attacks_detected=false.
+
+### Procedimiento y señal utilizados en E1
 
 Objetivo: contrastar R20 con **una sola pulsación de espada**, conservando Dante,
 Rebellion, Gunslinger y el mismo lugar, sin enemigos. Comprobar si cambian ambos

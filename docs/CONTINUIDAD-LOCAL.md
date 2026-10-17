@@ -5,6 +5,47 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## E1 ejecutada y confirmada · repetición propuesta
+
+Desde main local/remoto limpio **476130021a7edd6ce47bbe22eb1c4b39f83be564**.
+Usuario confirmó «Listo para E1» después de conocer toda la ficha; se ejecutaron
+25 s preparación + 200 muestras/10 Hz (~20 s) y señal única a ~5 s. Después
+confirmó una pulsación y un espadazo visible, reposo antes/después y tres tonos
+oídos, sin incidentes. No transformar ese relato en tiempos de acción observados.
+
+**198 coherentes y dos de calentamiento**, mismo contexto que R20 (misión 7,
+sala 127, posición 2, MAIN), un bloque, sin errores de lectura, foco/actor/contexto
+o ticks omitidos. PID 10688/inicio/base/build redescubiertos y coincidentes;
+ambos tokens medios no elevados, 0x410, 3405 lecturas/40173 bytes. No reutilizar
+estas identidades históricas para próximas ejecuciones.
+
+Ambas parejas motion: (0,3)/state1 → **(3,3)/state65537** (16 muestras) →
+(0,0)/state1 → (0,3)/state1. Timer=2.0 en las 198 coherentes, cero rechazos/reset.
+Una asociación manual limpia y contraste R20; todavía no prueba repetibilidad,
+exclusividad de motion/BUSY, impactos ni semántica universal. El cambio de los
+dos patrones posteriores ocurrió durante reposo declarado, no otro golpe.
+
+Límites del episodio desde primera muestra: inicio 5,995–6,098 s y fin
+7,604–7,701 s; tramo observado 1,506 s. Primera (3,3) ~1,164 s tras señal corta,
+sin conocer hora de pulsación: no es medida de latencia. Cadencia mediana
+100,11 ms (62,14–156,40), mayor hueco alrededor del sonido; evento de emisión
+duró ~62,97 ms, sin ticks omitidos. No precisión por frame o ventanas de combate.
+
+Captura privada: D:\logs\dmc3-observe-20261016-235733-2960ab20ee8f4c6287ca42eeb511567f.
+report.json SHA-256 `f3057e8493f7173807e83b7d434b1f95fd6a1ed2ac2f56cf75de4fdeed4406de`;
+events.jsonl SHA-256 `d2cceb19c179a4df936c8005061e5d4c1ce80e46ab82a1e73aedba7e6fcd8684`.
+Nota posterior manual-review.json nueva, sin alterar esas fuentes. Comparación:
+D:\logs\dmc3-timeline-20261016-235923-4a113a6765a148b2b5370291d66bec8b;
+analysis.json SHA-256 `d0b7d4dedacd37073b69a7ba19bed1dda555cf8aebeaec00121c5cbaae136856`.
+
+Siguiente propuesta **E1-R**, solo una repetición idéntica para comprobar
+repetibilidad, misma Rebellion/Gunslinger/lugar, 25 s preparación y ~20 s,
+reposo → señal corta a ~5 s para una pulsación → reposo. Necesita nueva
+confirmación; no iniciada. Ficha completa en dmc3-validacion-controlada.md.
+Después decidir el negativo distinto mínimo antes de reglas, sin probar todo
+a la vez. Código/perfil/filtros sin cambios; no suites nuevas por esta entrega
+documental. No se repitió PINE. Fase parcial y flags semánticos false.
+
 ## R20 ejecutada y confirmada · E1 propuesta
 
 Desde main local/remoto limpio **0da01d353cc0b9a9f0eea19b59f1db44a4c7ee09**.

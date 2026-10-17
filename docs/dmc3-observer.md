@@ -16,7 +16,10 @@ Actualización de validación controlada: R20 ya se ejecutó con reposo confirma
 por el usuario; ambos motions (grupo 0/índice 3), state=1 y timer=2.0 estables.
 Una lectura coherente más el relato permiten asociación contextual, no semántica
 universal. Resultado y siguiente ficha E1 en [validación controlada](dmc3-validacion-controlada.md).
-E1 sigue pendiente de nueva preparación. No repetir PINE.
+E1 ya se ejecutó y el usuario confirmó un espadazo: (3,3)/state65537 por 16
+muestras, timer 2.0 constante antes/durante/después. Asociación contextual sin
+exclusividad o autenticación independiente; E1-R espera nueva preparación.
+No repetir PINE.
 
 ## Ejecutar y conservar evidencia
 

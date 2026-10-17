@@ -1,5 +1,41 @@
 # Diario del proyecto
 
+## E1 real confirmada · contraste con reposo y repetición pendiente
+
+Desde **476130021a7edd6ce47bbe22eb1c4b39f83be564**, main local/remoto limpio,
+se ejecutó E1 tras «Listo»: 25 s preparación, 200 muestras/10 Hz y señal a ~5 s.
+Usuario confirmó un solo espadazo/pulsación, reposo antes/después y tres tonos,
+sin incidentes. Mismo equipo/contexto que R20; identidad/base/build redescubiertos
+y coincidentes, tokens medios, no elevados, consulta/lectura 0x410 solamente.
+
+198 coherentes, dos de calentamiento; sin errores/contexto/foco/actor o ticks
+omitidos. 3405 lecturas/40173 bytes. Ambas parejas motion (0,3)/state1 →
+(3,3)/65537 por 16 muestras → (0,0)/1 → (0,3)/1. Timer=2.0 durante las 198,
+sin resets o rechazos: no muestra progreso del espadazo. Los dos patrones finales
+aparecen durante reposo declarado y no se cuentan como ataques distintos.
+Un episodio asociado manualmente, sin autenticación independiente o exclusividad.
+
+Límites desde primera muestra: entrada 5,995–6,098 s, salida 7,604–7,701 s;
+1,506 s de tramo observado, no duración completa de animación. La primera (3,3)
+ocurre ~1,164 s después de la señal, sin hora observada de input; no medir latencia
+con eso. Cadencia mediana 100,11 ms, rango 62,14–156,40 alrededor del sonido;
+emisión ~62,97 ms, ningún tick omitido. No precisión por frame/contacto/cancelaciones.
+
+Captura dmc3-observe-20261016-235733-2960ab20ee8f4c6287ca42eeb511567f;
+hash report `f3057e8493f7173807e83b7d434b1f95fd6a1ed2ac2f56cf75de4fdeed4406de`,
+events `d2cceb19c179a4df936c8005061e5d4c1ce80e46ab82a1e73aedba7e6fcd8684`.
+manual-review.json nuevo; report/events intactos. Análisis comparado R20/E1:
+dmc3-timeline-20261016-235923-4a113a6765a148b2b5370291d66bec8b;
+hash analysis.json `d0b7d4dedacd37073b69a7ba19bed1dda555cf8aebeaec00121c5cbaae136856`.
+Rutas completas en continuidad; informes completos privados bajo D:\logs.
+
+Siguiente E1-R propuesta: una repetición idéntica para repetibilidad, no porque
+E1 fuera errónea. Misma ficha y equipo, exige nuevo «Listo», aún no lanzada.
+Después escoger negativo distinto mínimo; no convertir BUSY/motion en ataque
+general ni pulsación/señal en observación independiente. Sin cambios de código,
+perfil/filtros, suites repetidas o PINE. **phase2_verified=false** y ataques
+autenticados false; sin escrituras, DLL/hooks, impactos o reacción GOW2.
+
 ## R20 real confirmada · señal única preparada para E1
 
 R20 autorizada explícitamente: 25 s preparación, ~20 s / 200 muestras / 10 Hz.

@@ -40,6 +40,14 @@ transición como borrado de partida ni modificar la política MAIN del lector.
 
 ## Qué podemos concluir sobre el temporizador
 
+Validación posterior R20/E1: reposo y un espadazo separados, ambos confirmados
+por el usuario con Rebellion/Gunslinger, mantienen **2.0 en las 198 muestras
+coherentes de cada captura**, aun cambiando motion/state en E1. No muestra
+progreso de ese espadazo, sin decidir unidad/sentinel o incompatibilidad nativa.
+El episodio (3,3)/state65537 tiene asociación manual contextual; no es todavía
+un ataque identificado independientemente. Detalles y hashes en
+[validación controlada](dmc3-validacion-controlada.md).
+
 En las fuentes Mary revisadas, motionTimer solo aparece en declaración y
 static_assert; el generador reproduce el campo. No encontramos un uso que
 explique cómo se incrementa, reinicia o trata -1. **Eso no significa que el
