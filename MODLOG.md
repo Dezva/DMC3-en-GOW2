@@ -81,8 +81,10 @@ se documentó una alineación provisional para inspección estática.
 
 El índice, muestras GOW2, pl000.pac e inventarios ya se recibieron; no pedirlos
 de nuevo. PINE ya quedó verificado según las entradas locales posteriores.
-La tarea vigente es revisar suficiencia de capturas DMC3 antes de implementar
-o pedir más pruebas; véanse docs/revision-capturas-dmc3.md y continuidad.
+Ya hay analizador offline probado sobre las capturas existentes, con hipótesis
+sin ataques autenticados. Siguiente paso: resolver campos y preparar validación
+según las instrucciones anunciadas por el usuario; no abrir juegos ni pedir
+pruebas ahora. Véanse docs/dmc3-analisis-offline.md y continuidad.
 Éxito de esta fase: identidad PINE correcta y una instrucción de RAM coincidente
 con el ELF; proceso y huella DMC3 registrados independientemente. Eso no prueba
 combate ni composición visual. A continuación preparar un perfil DMC3 de lectura
@@ -367,3 +369,73 @@ y continuidad/prompt. Sin implementación, nueva captura, acceso a procesos,
 escritura en juegos ni repetición PINE. Validación de esta entrega documental:
 análisis de logs, hashes, diff y enlaces; no se repitieron suites sin cambios.
 **phase2_verified=false**; sin detector, reacción GOW2 o composición visual.
+
+## 2026-10-16 · análisis temporal offline y detector experimental de hipótesis
+
+La nueva petición autoriza avanzar offline durante la ausencia del usuario;
+supersede el límite de implementación de la revisión anterior, sin autorizar
+juegos/pruebas manuales. Partida **a04276b29c642e1b1ce117ce662835ba5903c235**,
+main local/remoto limpio y sin avances posteriores al comprobarlo. Se leyeron
+instrucciones, continuidad, diario, contrato, revisión y herramientas actuales.
+
+Investigación: 30 fuentes DDMK fijadas, 1.650.199 bytes; nueve copias existentes,
+21 textos públicos descargados y todos los blobs comprobados contra árbol fijado.
+MotionData[0/1] corresponden a inferior/superior según la fuente. El timer float32
++0x3E34 coincide con Vars/generador, pero no hay lógica explicativa de su uso
+en las fuentes Mary revisadas. No se resolvió unidad, sentinel -1 ni motivo de
+2.0 constante en espada. Las declaraciones/generador no son pruebas semánticas
+independientes. Documentados campos complementarios; **perfil y lector intactos**.
+
+Implementados tools/dmc3_temporal.py y tools/analyze_dmc3_timeline.py: validación
+estricta sin ordenar/deduplicar entradas, cronologías, ambos motions/state,
+bloques por contexto/actor/generación y pérdidas, segmentos estables, descenso
+de timer, comparaciones de firmas/motivos y exportación JSON/CSV/Markdown a
+carpetas únicas fuera de los históricos. API pura y determinista sin backend
+Windows. Edges censurados y transiciones acotadas entre muestras; no tiempos
+de acción inventados. Separadas memoria registrada, declaración, hipótesis y
+acciones autenticadas (vacías).
+
+Regla experimental de familia superior derivada de DDMK con guardas de build:
+eventos melee/ranged de motion y cadenas adyacentes candidatas. No son ataques,
+combo completo o impacto; sin nombres inventados ni BUSY/timer/pitidos como
+prueba de ataque. No se usa el texto manual como feature. Perfil desconocido
+conserva datos brutos sin reglas de familia; error de integridad aborta exportación.
+
+Reanalizadas seis capturas históricas, **1.370 muestras**: 1.193 aceptadas, 177
+rechazadas, 21 bloques, 80 segmentos, 63 runs superiores. Los 34 archivos
+originales conservan hashes antes/después. Trece episodios hipotéticos de
+familia cuerpo a cuerpo y una cadena `(3,3) → (3,6)` en la mixta; **no son trece
+golpes ni un combo validado**. Espada: cuatro hipótesis, primera ya activa;
+sin tres ventanas independientes. Cero ranged incluso en la captura con disparo
+declarado: cobertura insuficiente, no negativo autenticado. Nueve firmas de
+motion/state, siete superiores y ocho motivos repetidos sin nombre de acción.
+
+**34 tests sintéticos correctos**: separados/cadenas, reposo/movimientos no
+ofensivos, actor/foco/pausa/sala/generación, canales, timer desconocido/negativo,
+duplicados/incompletos/retrasados/desorden, JSON ambiguo/nonfinite/overflow,
+build, etiquetas/cues, hashes, CSV y reproducibilidad. CSV reales cotejados
+contra JSON. No se ejecutaron tests que lean juegos ni se repitieron PINE/Windows.
+
+Salida final:
+`D:\logs\dmc3-timeline-20261016-231402-e35c3bbc301c4da5a0b81813aaa4f9bf`.
+analysis.json SHA-256
+`ab20e0f3d717ed098a506b1c8e098873cf4e70162155eceac5dec62e779e3886`;
+synthetic-tests-delivery.txt SHA-256
+`4929de99ce643112afdea035e5153b62977f68e0c8fcb45639606016d91c8a85`.
+Invocación/manifiesto en dmc3-offline-validation-20261016-231219; fuentes en
+dmc3-offline-research-20261016-171259; rutas completas en continuidad. Checkpoints
+intermedios preservados. Informes/fuentes completos privados fuera de Git.
+
+Documentados API/resultados, investigación y protocolo futuro por acción, con
+preparación, cuenta regresiva, señales, orden, cantidades, reposos/prohibiciones,
+controles y sincronización independiente propuesta. No ejecutado; señales por
+acción aún sin implementar y ficha de combo pendiente de ruta/entradas exactas.
+Usuario anunció instrucciones antes de pruebas: **esperar, no solicitar capturas**.
+Actualizados AGENTS/README/índice, arquitectura, contrato, observador y continuidad.
+
+Sin abrir/controlar juegos, consultar RAM/procesos, repetir PINE, elevar lector,
+instalar mod/hooks, tocar originales/partidas/ISO/BIOS ni reacción/composición GOW2.
+Blender/extracciones preservados. Avance parcial verificable; **phase2_verified=false,
+authentic_attacks_detected=false**. Pendientes significado del timer/otros campos,
+observación independiente, controles aislados, repeticiones y validación fuera
+del conjunto exploratorio antes de afirmar reconocimiento auténtico.

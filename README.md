@@ -24,7 +24,9 @@ del mundo de **God of War II de PS2**. No se limita a sustituir un modelo.
 
 **Fase actual:** observador externo DMC3 de solo lectura, con PINE ya verificado.
 Hay lecturas reales de campos candidatos; la validación de acciones y ciclo de
-vida sigue parcial. Véase [el observador DMC3](docs/dmc3-observer.md).
+vida sigue parcial. Ya hay un [analizador temporal offline](docs/dmc3-analisis-offline.md)
+con JSON/CSV, comparación de segmentos e hipótesis experimentales, sin ataques
+autenticados. Véase también [el observador DMC3](docs/dmc3-observer.md).
 El usuario utiliza Windows y tiene HD Collection
 para PC en `D:\HayJueguitosEnLaCompu\Devil May Cry HD Collection`. Ya dispone de
 una BIOS de PS2 y PCSX2 **2.8.2.0**, versión indicada por el usuario. La captura
@@ -77,8 +79,13 @@ motionTimer=-1.0 se registra como desconocido y descarta esas muestras.
 exploratorias y una con pitidos pudo empezar mientras Dante ya golpeaba. No se
 certifican tres golpes delimitados ni combos completos a partir de esos datos.
 La [revisión de suficiencia](docs/revision-capturas-dmc3.md) distingue espada,
-combos, disparos, saltos, desplazamiento, reposo y pausa/transición. Por ahora
-solo se analiza lo existente, sin implementar funciones ni pedir otra captura.
+combos, disparos, saltos, desplazamiento, reposo y pausa/transición. Esa revisión
+fue documental. La petición posterior autorizó e implementó el
+[análisis offline](docs/dmc3-analisis-offline.md): 34 tests sintéticos y seis
+capturas históricas reanalizadas, sin abrir juegos ni pedir otra captura. La
+[investigación de campos](docs/dmc3-campos-investigacion.md) mantiene desconocida
+la semántica de motionTimer; el [protocolo futuro](docs/dmc3-validacion-controlada.md)
+espera las instrucciones del usuario.
 
 ## Repetir PINE solo si hace falta investigar
 

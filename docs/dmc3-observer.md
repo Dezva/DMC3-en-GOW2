@@ -6,6 +6,12 @@ puente de gameplay, reacción GOW2 ni composición visual. `phase2_verified` y
 `authentic_attacks_detected` permanecen false. Un código de salida 0 solo indica
 acceso correcto o disponibilidad de candidatos, según el modo.
 
+La petición posterior incorporó [análisis temporal offline](dmc3-analisis-offline.md),
+sin modificar este lector/perfil. La [investigación fijada](dmc3-campos-investigacion.md)
+identifica motionData[0/1] como canales inferior/superior según DDMK; el timer
+sigue sin unidades/sentinel validados. Las [fichas futuras](dmc3-validacion-controlada.md)
+no se ejecutan ahora y esperan instrucciones del usuario.
+
 ## Ejecutar y conservar evidencia
 
 Requiere Windows y Python **x64, 3.10 o posterior**, solo biblioteca estándar.

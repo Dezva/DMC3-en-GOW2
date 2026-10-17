@@ -1,0 +1,49 @@
+{
+  "provenance": "Synthetic scenarios; no game recording or action validation",
+  "cadence_hz": 10,
+  "cases": {
+    "separated_candidates": [
+      {"upper": [0, 0], "repeat": 3},
+      {"upper": [3, 3], "state": 65537, "repeat": 3},
+      {"upper": [0, 0], "repeat": 3},
+      {"upper": [3, 3], "state": 65537, "repeat": 3},
+      {"upper": [0, 0], "repeat": 3}
+    ],
+    "chained_candidates": [
+      {"upper": [0, 0], "repeat": 2},
+      {"upper": [3, 1], "repeat": 2},
+      {"upper": [3, 2], "repeat": 2},
+      {"upper": [3, 3], "repeat": 2},
+      {"upper": [0, 0], "repeat": 2}
+    ],
+    "nonoffensive": [
+      {"upper": [0, 0], "repeat": 2},
+      {"upper": [0, 3], "repeat": 2},
+      {"upper": [0, 4], "state": 2, "repeat": 2},
+      {"upper": [8, 2], "repeat": 2},
+      {"upper": [0, 0], "lower": [3, 3], "state": 65537, "repeat": 2}
+    ],
+    "lost_actor": [
+      {"upper": [3, 1], "repeat": 2},
+      {"invalid": "actor_unavailable", "generation": 2},
+      {"upper": [3, 2], "generation": 3, "repeat": 2}
+    ],
+    "pause_room_generation": [
+      {"upper": [3, 1], "repeat": 2},
+      {"invalid": "context_unknown", "error": {"event": 3}, "generation": 2},
+      {"upper": [3, 2], "generation": 3, "repeat": 2},
+      {"upper": [3, 3], "context": [7, 0, 114, 1, 1, 0, 0, 0], "repeat": 2},
+      {"upper": [3, 4], "generation": 4, "repeat": 2}
+    ],
+    "unknown_timer": [
+      {"upper": [3, 1], "repeat": 2},
+      {"invalid": "motion_timer", "error": {"value": "-1.0"}, "generation": 2},
+      {"upper": [3, 2], "generation": 3, "repeat": 2}
+    ],
+    "focus_loss": [
+      {"upper": [3, 1], "repeat": 2},
+      {"invalid": "foreground_lost", "generation": 2},
+      {"upper": [3, 2], "generation": 3, "repeat": 2}
+    ]
+  }
+}

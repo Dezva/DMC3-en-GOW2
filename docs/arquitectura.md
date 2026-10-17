@@ -11,7 +11,7 @@ de geometría es viable. Todavía no hay integración visual ni de combate.
 | Fase | Prueba que la cierra | Estado |
 |---|---|---|
 | 1. Comunicación | PINE identifica SCUS-97481/2F123FD8 y lee código conocido; proceso DMC3 identificado en Windows | Verificada en Windows/PCSX2 2.8.2; informes íntegros reutilizables |
-| 2. Estado auténtico DMC3 | Una acción de Dante reconocida por estado/motion, sin confundirla con pulsar un botón | Observador externo implementado, guardas estáticas y lecturas candidatas reales; validación semántica/ciclo de vida parcial |
+| 2. Estado auténtico DMC3 | Una acción de Dante reconocida por estado/motion, sin confundirla con pulsar un botón | Observador y analizador temporal offline con hipótesis de familias/cadenas; validación semántica/ciclo de vida parcial, sin ataques autenticados |
 | 3. Primer evento | Acción real → reacción pequeña observable en GOW2, con variable/rutina conocida y mecanismo de parada | Sin implementar; no escribir direcciones desconocidas |
 | 4. Espacio y cámara | Ejes, escala, proyección y colisiones medidos; latencia y presupuesto comprobados | Sin mediciones |
 | 5. Prueba visual | Dante animado, oclusión correcta y coincidencia espacial en un escenario pequeño | Viabilidad pendiente |
@@ -105,6 +105,15 @@ Los combos requieren estudiar secuencia, ramificaciones, interrupciones y
 recuperación propias de DMC3; no se consideran validados por varios cambios de
 motion. El timer constante 2.0 en la espada tampoco valida su uso como reloj.
 Por ahora solo se analizó suficiencia, sin nuevas funciones o pruebas en juego.
+
+Después se autorizó e implementó un [analizador temporal offline](dmc3-analisis-offline.md),
+separado del backend Windows, sin abrir procesos. Reconstruye segmentos de ambos
+canales/state, bloques de contexto, comparaciones y candidatos de familias de
+arma/cadenas con procedencia e incertidumbre. Una cadena de IDs no es un combo
+completo; no genera impactos. [Investigación DDMK](dmc3-campos-investigacion.md):
+offset/tipo de timer coinciden con la fuente, pero no se resolvieron sus unidades
+o -1. El lector/perfil permanecen intactos. La fase 2 sigue abierta, con flags
+false; [validación futura](dmc3-validacion-controlada.md) pendiente de instrucciones.
 
 `Mary/Memory.ixx` solicita una asignación de **1 GiB** en `Memory_Init`. No es una
 medida del working set real, pero desaconseja cargar el mod completo sin medir

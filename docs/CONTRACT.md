@@ -96,6 +96,23 @@ Pérdida de foco no se considera reposo; tener foco no prueba ausencia de menús
 El timer -1.0 sigue desconocido y descarta su muestra. Por ahora
 phase2_verified, actor_semantics_verified y authentic_attacks_detected son false.
 
+## Análisis temporal offline, sin canal de órdenes
+
+`dmc3_temporal.py` y `analyze_dmc3_timeline.py` consumen archivos históricos,
+sin abrir procesos ni sockets. Protocolo de salida dmc3-offline-analysis-bundle,
+schema_version=1, con capturas dmc3-offline-temporal-analysis y comparación.
+Separan observación registrada, declaración del usuario, hipótesis y acciones
+autenticadas (lista vacía). Los tiempos ns son de muestras; los límites de una
+acción no se inventan a partir de pitidos o del inicio de captura.
+
+Muestras inválidas/calientes, contexto/actor/generación/foco, huecos y ticks
+omitidos cortan continuidad. Duplicados/desorden de la envoltura se rechazan, no
+se reordenan. La build desconocida no habilita la regla de familias DDMK. Los
+candidatos no llevan nombres de ataques; cadenas no prueban combo completo.
+`impact_events=[]`, `authentic_attacks_detected=false`, `phase2_verified=false`.
+Esta API puede servir para investigar un puente futuro, **no para accionar GOW2**.
+Formato, reglas, presupuestos y evidencias en [análisis offline](dmc3-analisis-offline.md).
+
 ## Ciclo de vida y prueba de aceptación
 
 Arrancar PCSX2 con PINE activado; cargar GOW2 y entrar en partida; lanzar el

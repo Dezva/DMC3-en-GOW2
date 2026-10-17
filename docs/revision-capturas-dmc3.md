@@ -1,5 +1,9 @@
 # Revisión de capturas DMC3 · 2026-10-16
 
+Esta revisión conserva su alcance histórico. Una petición posterior autorizó
+el [analizador offline](dmc3-analisis-offline.md) y su investigación, sin nuevas
+capturas; no elimina las incertidumbres/manualidad descritas aquí.
+
 Revisión retrospectiva desde main local/remoto
 `ec85d8b4eef4968f9788a143dea9da223d1e2c3b`, sin cambios locales previos ni
 avances remotos posteriores al comprobarlo. **Sin funciones nuevas, capturas,

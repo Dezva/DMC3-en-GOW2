@@ -5,6 +5,89 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## Análisis automatizado offline · 2026-10-16 · fase parcial
+
+Partida local/remota **a04276b29c642e1b1ce117ce662835ba5903c235**, checkout
+limpio y sin commits posteriores al consultar main. La petición adjunta posterior
+autoriza trabajar autónomamente con archivos, investigación y fixtures mientras
+el usuario está en la facultad. Luego anunció que dará instrucciones antes de
+pruebas en juego. **No abrir/controlar juegos ni solicitar capturas ahora.**
+La restricción anterior de no implementar pertenecía a la revisión retrospectiva;
+ahora se implementaron exclusivamente herramientas offline autorizadas.
+
+Lectura necesaria: [análisis offline](dmc3-analisis-offline.md),
+[investigación de campos](dmc3-campos-investigacion.md) y
+[protocolo futuro sin ejecutar](dmc3-validacion-controlada.md). Las aclaraciones
+de revision-capturas-dmc3.md permanecen: antiguas exploratorias, inicio de una
+con pitidos incierto, relatos/manualidad sin tiempos inventados.
+
+### Qué quedó implementado y probado
+
+- `tools/dmc3_temporal.py`: API offline determinista para validar registros,
+  reconstruir ambos motions/state/contextos, segmentos/runs y generaciones,
+  pérdidas, huecos, descenso de timer y comparar firmas/motivos entre capturas.
+- `tools/analyze_dmc3_timeline.py`: CLI con manifiesto de hashes/revisiones;
+  exporta JSON, cinco CSV y resumen Markdown a una carpeta única D:\logs.
+  Nunca escribe en la captura histórica. Sin backend Windows, procesos o IPC.
+- Detector experimental: hipótesis de familias de arma según MotionData superior
+  y fuente DDMK; cadenas de motions adyacentes sin declarar combo completo.
+  No usa BUSY/pitidos/etiquetas/timer como ataque. Build desconocida no habilita
+  esas reglas. Sin nombres de ataques, impactos, daño o reacción GOW2.
+- **34 tests sintéticos correctos**, en tests/test_dmc3_temporal.py y fixtures
+  explícitamente sintéticos. Actor/foco/pausa/sala/generación, dos canales,
+  timer desconocido/negativo, muestras atrasadas/duplicadas/incompletas/desorden,
+  JSON/overflow, build, procedencia, hashes y exportación reproducible.
+  No se repitieron suites Windows/PINE/inspectores sin cambios.
+- Se reanalizaron **seis capturas / 1.370 muestras**, 1.193 aceptadas, 177
+  rechazadas, 21 bloques, 80 segmentos y 63 runs superiores. Nueve firmas de
+  ambos motions/state, siete superiores, ocho motivos repetidos; sin semántica
+  autenticada. Los **34 archivos originales** conservan hashes antes/después.
+- La espada devuelve cuatro hipótesis de familia melee, la primera con límite
+  inicial desconocido; no cuatro ataques. La mixta 45 s devuelve una cadena
+  candidata `(3,3) → (3,6)` sin identificar combo. La captura con disparo
+  accidental no da candidato ranged: cobertura insuficiente, no ausencia de disparo.
+
+### Investigación y lo que no quedó resuelto
+
+DDMK **0319ae7132a6a822fd4dede2fb7cad484900169f**: 30 archivos fuente,
+1.650.199 bytes, nueve copias previas reutilizadas y 21 textos públicos nuevos;
+blobs Git coincidentes con el árbol fijado y SHA-256 conservados. No se ejecutó
+el mod. Fuentes/manifiesto en
+`D:\logs\dmc3-offline-research-20261016-171259-1b3c293254664b488b5ceccf158c5701`.
+
+MotionData[0/1] son inferior/superior según fuente; coinciden en las 1.193
+aceptadas, sin probar redundancia. Offset float32 +0x3E34 coincide con Vars y
+generador (representaciones relacionadas, no pruebas independientes). No se
+halló en Mary lógica que explique actualización/unidades/sentinel de motionTimer.
+En espada las 198 aceptadas valen 2.0; en saltos/mixta posterior hay 17 rechazos
+-1.0 con state crudo 1 o 2, antes de revalidar contexto. No certifica reloj de
+animación, valor exclusivo de salto ni fallo de puntero. Mantener desconocido.
+Otros campos/timers/action/chainCount están documentados como investigación;
+**no se cambiaron dmc3_profile.py, el lector ni sus rangos**.
+
+### Informes y reproducción
+
+Salida final:
+`D:\logs\dmc3-timeline-20261016-231402-e35c3bbc301c4da5a0b81813aaa4f9bf`.
+analysis.json SHA-256
+`ab20e0f3d717ed098a506b1c8e098873cf4e70162155eceac5dec62e779e3886`.
+synthetic-tests-delivery.txt SHA-256
+`4929de99ce643112afdea035e5153b62977f68e0c8fcb45639606016d91c8a85`.
+Manifiesto esperado/invocación en
+`D:\logs\dmc3-offline-validation-20261016-231219-b4cca074d33c45b6972ed3af9c74c594`.
+La salida 231219 y test logs anteriores son checkpoints preservados. CLI,
+API, presupuestos, criterios y comandos en dmc3-analisis-offline.md. Los CSV
+se comprobaron contra filas JSON; informes completos y fuentes no van a Git.
+
+**No hubo captura nueva, lectura de procesos, PINE, elevación de lector,
+instaladores/hooks, escrituras ni acceso a juegos/ISO/BIOS/partidas.**
+Blender y extracciones se preservan. phase2_verified=false y
+authentic_attacks_detected=false. El protocolo futuro propone cuenta regresiva
+y señales por acción, **todavía no implementadas**; la herramienta actual solo
+emite inicio/fin. Fichas de combo requieren arma/ruta/entradas/ritmo confirmados.
+Esperar las instrucciones del usuario para capturas; no ejecutar el diseño ahora.
+Lo que sigue conserva el historial de revisión e implementación anterior.
+
 ## Revisión posterior de capturas · 2026-10-16
 
 Punto de partida local/remoto: **ec85d8b4eef4968f9788a143dea9da223d1e2c3b**,
@@ -572,9 +655,13 @@ Puedes pegar este texto al abrir el proyecto en Codex:
 > está verificado; no lo repitas salvo evidencia ausente, cambio o discrepancia.
 > Continúa el observador externo DMC3 exclusivamente de lectura desde su estado
 > actual: hash/build, PID nuevo, inicio, base real, derechos mínimos y páginas.
-> Antes de implementar o pedir capturas, lee docs/revision-capturas-dmc3.md y
-> analiza suficiencia de los logs: primeras pruebas exploratorias, inicio de
-> una con pitidos incierto. Reutiliza la pausa/puerta y los datos útiles de espada.
+> Lee docs/revision-capturas-dmc3.md, docs/dmc3-analisis-offline.md y
+> docs/dmc3-campos-investigacion.md. Ya hay analizador offline y pruebas sintéticas;
+> reutiliza los informes finales y hashes, sin confundir hipótesis con ataques.
+> No abras ni controles juegos ni hagas capturas durante mi ausencia. Espera mis
+> instrucciones anunciadas antes de pruebas en juego. El protocolo futuro no
+> está ejecutado y las señales intermedias no están implementadas. Las primeras
+> capturas son exploratorias y una con pitidos tiene inicio incierto.
 > Distingue golpes individuales, combos completos, disparos, saltos, movimiento
 > y reposo. No certifiques acciones por etiquetas manuales o cambios de motion.
 > Si después hace falta una prueba concreta, explica por qué y da duración,
