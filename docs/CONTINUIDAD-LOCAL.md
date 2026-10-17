@@ -28,6 +28,10 @@ contexto primero; pregunta enviada, **aún no es confirmación de preparación**
 Ficha completa y criterios en [validación controlada](dmc3-validacion-controlada.md).
 Preparación privada: D:\logs\dmc3-validation-preparation-20261016-234354-301d05ffad984276bd31887ade7779ba\preparation.json,
 SHA-256 `437489d5b6381d553d5d4bfb3fd68df4f23cddafee53460fde8e1f26acd88e77`.
+Respuesta de contexto posterior: misión 7 normal, inicio desde partida guardada;
+dispone de Cerberus/Rebellion y pistolas/escopeta, sala desconocida. Se pidió
+Rebellion activa, Dante, estilo y suelo sin enemigos; aún pendientes. Nota nueva
+context-user-report.json en la misma carpeta. No hay «Listo» ni captura iniciada.
 
 Hipótesis mínima: separar qué valores aparecen en reposo de la asociación
 histórica con espada; luego contrastar un golpe aislado en otra captura con el

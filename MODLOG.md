@@ -17,6 +17,10 @@ un golpe individual en otra captura, mismo equipo, sin activar esa prueba ahora.
 Ficha detallada, hipótesis, prohibiciones y límites en dmc3-validacion-controlada.md.
 Informe privado: D:\logs\dmc3-validation-preparation-20261016-234354-301d05ffad984276bd31887ade7779ba\preparation.json,
 SHA-256 `437489d5b6381d553d5d4bfb3fd68df4f23cddafee53460fde8e1f26acd88e77`.
+Contexto aportado después: misión 7 normal al inicio de una partida guardada;
+Cerberus/Rebellion y pistolas/escopeta disponibles. Sala desconocida; se pidió
+confirmar Rebellion activa, Dante, estilo y entorno sin enemigos. Nota privada
+context-user-report.json nueva; respuesta de contexto no equivale a «Listo».
 
 Se pidió personaje/arma/estilo/contexto; esa respuesta no equivale a preparación.
 **No hubo muestreo, consulta a procesos, lectura RAM, señal acústica nueva ni
