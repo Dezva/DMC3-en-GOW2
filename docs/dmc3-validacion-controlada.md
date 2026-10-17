@@ -2,10 +2,82 @@
 
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
 identificar evidencia faltante. **R20, E1 y E1-R están completadas y confirmadas;
-J1 se conserva exploratoria: salto declarado, duración de pulsación incierta.**
+J1 se conserva exploratoria por pulsación incierta; J1-R tiene toque único y
+reposo confirmados por relato posterior, con límites de lectura aún abiertos.**
 Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
 equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
 controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
+
+## J1-R registrada · 2026-10-17 · toque único y reposo declarados
+
+Código **39449efbdd14dacc3e4779f1293d84dbafa82290**, main local/remoto limpio
+y coincidente. Tras ficha completa y «Mismo contexto; listo para J1-R», lectura
+finita con 25 s de preparación y 200 muestras/10 Hz (~20 s), tono a ~5 s.
+Usuario confirmó después **un toque de salto al tono corto y reposo como se
+indicó**; sugirió que una animación tras permanecer quieto explicase los rechazos.
+No aportó tiempos visuales independientes ni confirmó expresamente cada otra
+pregunta (tres señales, salto visible único, cada acción prohibida). No informó
+incidentes. No ampliar su declaración a una validación completa del protocolo.
+
+**192 coherentes, cuatro rechazos timer=-1.0 y cuatro calentamientos** (dos
+iniciales y dos recuperación), dos bloques. Identidad/build/base redescubiertas
+coincidentes con capturas anteriores: PID10688/inicio02:38:13.424527Z UTC,
+base0x7FF7C6920000, SHA conocido; tokens medios sin elevar y acceso0x410.
+3381 lecturas/39821 bytes, sin errores Win32/parciales, foco/contexto/actor
+observados o ticks omitidos. No reutilizar esa identidad histórica.
+
+| Tramo | Ambos motions (grupo,índice) | state | Timer aceptado en orden | Muestras |
+|---|---|---|---|---|
+| Inicial | (0,3) | 1 | 2.0 | 57 |
+| Cambio previo a AIR de fuente | (0,4) | 1 | 9.0 | 1 |
+| AIR según enum de fuente | (0,4) | 2 | 8.0, 2.0, 11.0, 5.0 | 4 |
+| Recuperación tras hueco | (0,0) | 1 | 2.0 | 98 |
+| Final | (0,3) | 1 | 2.0 | 32 |
+
+Timer2.0 en 188 coherentes, **incluida una state2/(0,4)**; tampoco identifica
+reposo. Secuencia durante (0,4): 9,8,2,11,5; no reloj general monótono.
+Cuatro -1: uno conserva bytes [4,0,4,0]/state2 y tres [31,0,31,0]/state1.
+Son errores parciales previos al recheck final, no aterrizajes coherentes.
+No cambiar filtros, unir huecos, inferir pérdida de actor por generaciones,
+reinicio de animación por descenso, unidades o sentinel validado.
+
+Desde primera muestra: entrada (0,4) entre 5,791–5,901 s, state2 entre
+5,901–5,991 s; última coherente del episodio6,293 s. Rechazos6,386–6,685 s,
+calentamiento6,800–6,901 s, recuperación6,990 s. Fin completo no delimitable.
+Marcas tras múltiples lecturas, no fronteras nativas. Mediana100,26 ms,
+rango36,03–162,20 ms, sin ticks omitidos. Tono a5,00004 s/coste68,78 ms;
+no hora observada de input o latencia. 10 Hz no resuelve frames/contactos.
+
+**Hipótesis de animación de reposo del usuario:** el cambio aceptado posterior
+(0,0)→(0,3), state1/timer2, ocurre entre **16,695–16,804 s**, unos diez segundos
+después de los rechazos. E1/E1-R también tenían cambios aceptados durante reposo
+declarado. Son hechos distintos en estos registros: no todo cambio de motion
+es error o ataque. La animación concreta no se identificó visualmente en el
+instante del log; no afirmar que los rechazos proceden de esa animación tardía.
+«Rechazo» describe una política del lector, no mala ejecución del usuario.
+
+Sin (3,3), BUSY o hipótesis melee/ranged aceptadas en J1-R: contraste contextual
+con E1/E1-R, limitado por huecos y muestreo. Patrón similar a J1 exploratoria,
+pero J1 no es otra repetición conocida del toque breve. No afirmar repetibilidad
+validada de ese input, exclusividad universal, golpes detectados o duración real.
+R20 y las dos E1 ya bastan para conservar sus asociaciones contextuales; no
+repetirlas por rutina. **No hace falta otra captura ahora** para contrastar la
+explicación de reposo tardío. Antes de una regla o nuevas pruebas, revisar uso
+nativo estático del timer y las limitaciones del muestreo; tarea aún pendiente.
+Combos completos/disparos siguen sin control dedicado y no se solicitan ahora.
+
+Captura: `D:\logs\dmc3-observe-20261017-002123-b9067c1c3ea04c5fa64fa30ab76a2e45`;
+report SHA `5ed52ca2bbcd3bdb918e8c58265dd19c32369f06b00998c7d2fcde92be75dae7`,
+events SHA `f6d9b281f64b6f23ac6a58d78d3a63ef6c09d1072dcf308d0ddb48f22efb13b7`.
+Comparación cinco capturas, JSON/CSV y j1r-review.json previo a respuesta:
+`D:\logs\dmc3-timeline-20261017-002305-bcecda50b7814cfb98ea0b0d4fe5d904`;
+analysis SHA `9bf8f01568ea9b2b2e5efa3892f3829d5c0f20ab2c048312c5da5452fa18d898`.
+Nota posterior nueva (complementa la revisión previa sin sobrescribirla):
+`D:\logs\dmc3-j1r-confirmation-20261017-002344-1af930c1df94475192ca9bbe23b64c27\manual-review.json`,
+SHA `7ae85dfef1c808d40e1b42080aa668ae7df5b9cb1f0525320a5532e3259febb8`.
+Cinco parejas report/events verificadas antes/después y nota J1 revalidada;
+fuentes intactas. Sin código nuevo, suites repetidas, PINE o escrituras;
+phase2_verified=false, authentic_attacks_detected=false, sin impacto/GOW2.
 
 ## J1 registrada · 2026-10-17 · relato posterior y límites
 
@@ -86,7 +158,7 @@ hipótesis distinguible. Investigar referencias nativas estáticas de +0x3E34
 antes de cambiar perfil/filtros; sigue sin realizarse. Sin código nuevo, suites
 repetidas, PINE, escrituras, impacto o reacción GOW2; fase parcial y flags false.
 
-### J1-R propuesta: un toque de salto y soltar enseguida
+### Ficha J1-R utilizada: un toque de salto y soltar enseguida
 
 Finalidad: obtener una asociación manual con salto breve sin ambigüedad sobre
 mantener el botón; comprobar si reaparecen (0,4)/state2 y rechazos -1. No probar
@@ -105,7 +177,8 @@ Mismo Dante/Rebellion/Gunslinger, misión 7 normal, mismo lugar y sin enemigos.
    incidentes. Si mantuvo el botón o hubo otra acción, conservar el error y
    reclasificar sin improvisar acciones extra.
 
-**No iniciada.** No hay mejora de sonido o lector, y el hueco por -1 puede
+Ejecutada después con su propio «Listo»; resultados en la sección superior.
+No hubo mejora de sonido o lector, y el hueco por -1 puede
 reaparecer: conservar muestras rechazadas y no prometer límites de aterrizaje.
 
 ## E1-R confirmada · historial anterior a J1

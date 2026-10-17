@@ -1,5 +1,36 @@
 # Diario del proyecto
 
+## 2026-10-17 · J1-R real: toque único declarado y contraste de reposo
+
+Desde main limpio/local-remoto **39449efbdd14dacc3e4779f1293d84dbafa82290**,
+tras nuevo «Listo» y ficha, 25 s preparación+200 muestras/10 Hz. Usuario confirmó
+un toque al corto y reposo; no tiempos visuales ni respuesta expresa a todos
+los otros controles. Sugirió animación tras reposo como causa de rechazos.
+192 coherentes, cuatro timer=-1 rechazados y cuatro calentamientos, dos bloques.
+Cinco coherentes motion(0,4), state1 una/state2 cuatro, timer9,8,2,11,5.
+Timer2.0 también aparece con state2; no usar como reposo o reloj general.
+Campos de errores parciales antes del recheck, sin ampliar filtros/unir huecos.
+
+Rechazos6,386–6,685 s; cambio aceptado(0,0)→(0,3) durante reposo declarado
+16,695–16,804 s: hechos separados, no atribuir -1 al cambio tardío. Rechazo
+describe política del lector, no mala prueba. Sin (3,3)/BUSY/candidatos aceptados;
+contraste contextual con E1/E1-R, sin exclusividad/detector. J1 sigue exploratoria.
+Identidad/build/base redescubiertas coincidentes; tokens medios/0x410,3381
+lecturas/39821 bytes, sin Win32/parciales/foco/contexto/ticks omitidos. Cadencia
+36,03–162,20 ms/mediana100,26, sin fin completo delimitable ni precisión por frame.
+
+Captura dmc3-observe-20261017-002123-b9067c1c3ea04c5fa64fa30ab76a2e45;
+report SHA `5ed52ca2bbcd3bdb918e8c58265dd19c32369f06b00998c7d2fcde92be75dae7`,
+events SHA `f6d9b281f64b6f23ac6a58d78d3a63ef6c09d1072dcf308d0ddb48f22efb13b7`.
+Análisis cinco capturas dmc3-timeline-20261017-002305-bcecda50b7814cfb98ea0b0d4fe5d904,
+SHA `9bf8f01568ea9b2b2e5efa3892f3829d5c0f20ab2c048312c5da5452fa18d898`;
+nota posterior dmc3-j1r-confirmation-20261017-002344-1af930c1df94475192ca9bbe23b64c27,
+manual-review SHA `7ae85dfef1c808d40e1b42080aa668ae7df5b9cb1f0525320a5532e3259febb8`.
+Rutas completas en continuidad. Cinco parejas verificadas antes/después, fuentes
+intactas, informes privados fuera de Git. Sin código/filtros nuevos, suites
+repetidas, PINE o escrituras. Próximo: revisar timer estáticamente y suficiencia,
+sin otra captura por rutina; fase parcial, flags false, sin reacción GOW2.
+
 ## 2026-10-17 · Aclaración J1: duración de pulsación desconocida
 
 Desde main local/remoto limpio **154e41b10c3ebc02a8b31bfbc25ac7702c088a03**.

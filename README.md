@@ -96,7 +96,10 @@ timer aún fijo. J1 ya se registró tras preparación explícita: 190 coherentes
 motion (0,4), timer variable y seis rechazos -1.0. El usuario declaró salto y
 reposo posterior, pero no recuerda cuánto mantuvo el botón: J1 es exploratoria
 respecto al protocolo de pulsación breve. El hueco impide delimitar el episodio
-completo y no hay ataque autenticado. Se propone J1-R con soltar inmediato.
+completo y no hay ataque autenticado. J1-R ya tiene toque único y reposo
+declarados: 192 coherentes y cuatro rechazos -1. El cambio posterior durante
+reposo sí pasó las guardas y ocurrió unos diez segundos después de los rechazos;
+no son el mismo hecho. No se solicita otra captura por rutina.
 Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 

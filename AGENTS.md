@@ -56,7 +56,9 @@ El [índice de documentación](docs/README.md) enlaza las demás investigaciones
   confirmación de preparación; confirmar personaje/arma/estilo/contexto primero.
   docs/dmc3-validacion-controlada.md conserva R20/E1/E1-R confirmadas y J1 registrada
   (salto declarado, duración de pulsación incierta; seis timer=-1 rechazados,
-  no ampliar filtros). J1-R propuesta exige soltar enseguida y nuevo «Listo»;
+  no ampliar filtros). J1-R ya tiene toque único y reposo declarados, cuatro -1
+  rechazados; no confundir el cambio tardío en reposo con esos rechazos.
+  Revisar suficiencia/timer antes de pedir más capturas por rutina;
   el combo sigue por concretar. No controlar entradas o ventanas de los juegos.
   Las hipótesis offline no son ataques autenticados: mantener phase2_verified
   y authentic_attacks_detected false, sin reacción GOW2 ni eventos de impacto.

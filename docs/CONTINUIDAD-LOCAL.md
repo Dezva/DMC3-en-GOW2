@@ -5,7 +5,49 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
-## J1: relato posterior con pulsación incierta · 2026-10-17
+## J1-R: toque único/reposo declarados · 2026-10-17
+
+Partida main **39449efbdd14dacc3e4779f1293d84dbafa82290**, local/remoto limpio
+y coincidente. Captura única tras ficha y «Mismo contexto; listo para J1-R»:
+25 s preparación, 200 muestras/10 Hz. Usuario confirmó toque único al corto
+y reposo como se indicó; propuso animación de reposo como causa de rechazos.
+No inventar tiempos visuales ni confirmar por él cada otra pregunta no resuelta.
+
+192 coherentes, cuatro rechazos -1 y cuatro calentamientos, dos bloques.
+Ambos motions (0,3)→(0,4)/state1 (1 muestra)→(0,4)/state2 (4)→hueco→
+(0,0)/state1→(0,3)/state1. Timer de cinco (0,4):9,8,2,11,5; 188 coherentes
+valen2.0, incluida una state2: no identifica reposo/progreso. Errores parciales
+-1: uno bytes[4,0,4,0]/state2, tres[31,0,31,0]/state1, antes del recheck final.
+Conservar filtros/huecos, semántica desconocida, generaciones no son actor perdido.
+Sin (3,3)/BUSY/candidatos melee/ranged aceptados; contraste contextual con espada,
+sin exclusividad/ataque autenticado. J1 sigue exploratoria por duración incierta.
+
+Rechazos entre6,386–6,685 s desde primera muestra; cambio durante reposo declarado
+(0,0)→(0,3) aceptado entre16,695–16,804 s. No son el mismo hecho; el cambio
+tardío no explica por sí solo -1. Rechazo es política, no error del usuario.
+Mediana100,26 ms/rango36,03–162,20; sin ticks omitidos, fin del episodio no
+delimitable por hueco. Identidad/build/base redescubiertas coincidentes, tokens
+medios, acceso0x410,3381 lecturas/39821 bytes; sin errores Win32/parciales ni
+cambio de foco/contexto observado. No reutilizar PID/base históricos.
+
+Captura D:\logs\dmc3-observe-20261017-002123-b9067c1c3ea04c5fa64fa30ab76a2e45;
+report SHA `5ed52ca2bbcd3bdb918e8c58265dd19c32369f06b00998c7d2fcde92be75dae7`,
+events SHA `f6d9b281f64b6f23ac6a58d78d3a63ef6c09d1072dcf308d0ddb48f22efb13b7`.
+Comparación cinco capturas/j1r-review.json previo a respuesta:
+D:\logs\dmc3-timeline-20261017-002305-bcecda50b7814cfb98ea0b0d4fe5d904;
+analysis SHA `9bf8f01568ea9b2b2e5efa3892f3829d5c0f20ab2c048312c5da5452fa18d898`.
+Nota posterior complementaria nueva con respuesta literal e hipótesis:
+D:\logs\dmc3-j1r-confirmation-20261017-002344-1af930c1df94475192ca9bbe23b64c27\manual-review.json;
+SHA `7ae85dfef1c808d40e1b42080aa668ae7df5b9cb1f0525320a5532e3259febb8`.
+Cinco parejas revalidadas antes/después; originales y notas históricas intactos.
+
+Siguiente: no pedir otra captura por rutina. Ya se puede separar cambio tardío
+en reposo/rechazos con lo existente. Revisar referencias nativas estáticas de
++0x3E34 y límites por huecos antes de proponer regla o nueva hipótesis comprobable;
+no realizado. Ficha/detalle en dmc3-validacion-controlada.md. Sin código/tests
+nuevos, suites repetidas o PINE; lectura solamente, fase parcial/flags false.
+
+## J1: relato posterior con pulsación incierta (historial)
 
 Desde main local/remoto limpio **154e41b10c3ebc02a8b31bfbc25ac7702c088a03**.
 El usuario relató pulsar salto al sonido corto, soltar estando en el suelo y
@@ -897,7 +939,8 @@ Puedes pegar este texto al abrir el proyecto en Codex:
 > No abras ni controles juegos ni hagas capturas durante mi ausencia. Las pruebas
 > controladas están autorizadas una por una tras ficha completa y un nuevo «Listo».
 > R20/E1/E1-R están confirmadas; J1 es exploratoria por duración de pulsación
-> incierta. J1-R propuesta requiere soltar salto enseguida y nuevo «Listo».
+> incierta. J1-R ya tiene toque único y reposo declarados; sus cuatro -1 siguen
+> rechazados. No repetir capturas por rutina: revisar suficiencia y timer primero.
 > Lee docs/dmc3-validacion-controlada.md para el estado más reciente. La señal
 > intermedia única --action-cue-seconds ya está implementada, probada y utilizada.
 > No hay cuenta regresiva ni múltiples señales de acción. Las primeras

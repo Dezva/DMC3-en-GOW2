@@ -28,7 +28,12 @@ superaron recheck final. No unir los dos bloques o llamar pérdida de actor al
 cambio de generación por política. Usuario declaró salto al tono corto y reposo
 posterior; no recuerda duración de pulsación. J1 conserva asociación exploratoria,
 sin protocolo de toque breve validado. Sin (3,3)/BUSY aceptado, contraste limitado
-por el hueco y relato incompleto; filtros conservados. J1-R propuesta, no iniciada.
+por el hueco y relato incompleto; filtros conservados. J1-R ya tiene toque único
+y reposo declarados: 192 coherentes, cuatro -1 rechazados y cuatro calentamientos.
+Motion(0,4)/state1 o2, timer9,8,2,11,5; 2.0 también aparece con state2. Rechazos
+~6,4–6,7 s y cambio posterior aceptado en reposo~16,8 s son hechos distintos;
+no atribuirlos a la misma animación. No hace falta otra captura por rutina;
+revisar timer/huecos antes de ampliar hipótesis. Sin semántica universal validada.
 No repetir PINE.
 
 ## Ejecutar y conservar evidencia

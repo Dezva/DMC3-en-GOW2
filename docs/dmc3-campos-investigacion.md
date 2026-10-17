@@ -59,6 +59,14 @@ general ni resuelve unidades/cuenta regresiva/sentinel. Los descensos no prueban
 reinicios. El hueco impide delimitar el episodio entero; no cambiar offset o
 filtros por conveniencia. Falta estudiar referencias nativas estáticas acotadas.
 
+J1-R posterior: usuario confirmó toque único y reposo. Timer9,8,2,11,5 en cinco
+coherentes(0,4), una state1/cuatro state2; 188 timer2 incluyen una state2. Cuatro
+-1 rechazados, campos parciales previos al recheck. No monotonicidad general,
+no reposo identificado por2.0. El cambio posterior(0,0)→(0,3), state1/timer2,
+fue aceptado~16,8 s, distinto de rechazos~6,4–6,7 s. Esto no respalda atribuir
+los rechazos a la animación tardía de reposo sugerida por el usuario; la causa
+de -1 sigue desconocida. No hace falta otra captura para comparar esos tiempos.
+
 En las fuentes Mary revisadas, motionTimer solo aparece en declaración y
 static_assert; el generador reproduce el campo. No encontramos un uso que
 explique cómo se incrementa, reinicia o trata -1. **Eso no significa que el
