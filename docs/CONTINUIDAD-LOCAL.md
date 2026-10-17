@@ -5,6 +5,54 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## R20 ejecutada y confirmada · E1 propuesta
+
+Desde main local/remoto limpio **0da01d353cc0b9a9f0eea19b59f1db44a4c7ee09**.
+Usuario confirmó Rebellion activa y «Listo para R20» tras conocer instrucciones.
+Se ejecutó captura de lectura: 25 s preparación + 200 muestras/10 Hz (~20 s),
+pitidos inicial/final. Después confirmó reposo completo y ambas señales.
+Dante por imagen previa/personaje candidato; Rebellion/Gunslinger, misión 7
+normal declarados, zona sin enemigos. Sala cruda 127, posición 2, evento MAIN.
+
+Nuevo PID **10688**, inicio **2026-10-17T02:38:13.424527Z** (UTC, no hora local),
+base real **0x7FF7C6920000**, build SHA conocido coincidente. Lector y juego sin
+elevación, integridad media 8192; handle 0x410, guardas de perfil y cabeceras
+correctas. PID/base son históricos de R20, no reutilizar como parámetros.
+**198 muestras coherentes y dos de calentamiento**, un bloque, sin errores de
+lectura/contexto/foco/actor ni ticks omitidos; 3405 lecturas / 40173 bytes.
+Ambos motions grupo 0/índice 3, state=1 y timer=2.0 en todas las coherentes.
+Cadencia: mediana 99,94 ms, rango 63,92–147,37 ms; no precisión por frame.
+2.0 aparece también durante reposo declarado: no identifica ataque ni valida
+tiempo transcurrido de animación. No convertir (0,3) en reposo universal.
+
+Captura privada: D:\logs\dmc3-observe-20261016-234822-3cbbbb1ec2ac49039ef1ab1dd9f985fd.
+report.json SHA-256 `9c88411b354360ce976c270ca8f81ddda66c7fd4bd025357be881110f175323b`;
+events.jsonl SHA-256 `63fde113ffebf3e4654263bc3c2abe426fc0701116e50a0d5c62e5da27103178`.
+manual-review.json y context-before-r20.png guardan relato e imagen **previa**,
+sin modificar report/events. Análisis JSON/CSV en
+D:\logs\dmc3-timeline-20261016-235300-a26781cdf9024d9580d05fca7d62a3a4;
+analysis.json SHA-256 `522d0d71d767c50c8b26306db96bc93072b7d72c1f644be72841e897a73bc666`.
+
+Siguiente ficha **E1, un solo espadazo**, no iniciada: mismo equipo/contexto,
+25 s preparación, 20 s muestreo, reposo inicial, señal corta a ~5 s para una
+pulsación de espada y reposo hasta fin. Requiere nuevo «Listo», no reutilizar R20.
+Se añadió únicamente --action-cue-seconds 5 opcional con --beep: tono 1200 Hz/
+60 ms, eventos begin/end con tiempos previstos/reales y acción desconocida.
+Sin la opción se conserva coordinación anterior; memoria/perfil/filtros intactos.
+La llamada síncrona puede ensanchar un intervalo: revisar cadencia real después.
+No hay cuenta regresiva/múltiples señales implementadas ni detector definitivo.
+
+Verificación previa al uso: siete tests de cues y 59 regresiones sintéticas
+(25 observador/perfil/logs + 34 temporales), todos correctos. Se excluyó
+WindowsSelfRead y PINE; no se cerraron juegos. Demo real de tres tonos sin
+lectura RAM; el usuario confirmó distinguirlos. Evidencia en
+D:\logs\dmc3-cue-check-20261016-235229-be0b7635cebc48b38748577f893c91a7.
+Los parámetros 5/5 usados en la demo eran de fixture, no tiempos de acciones;
+el reloj monotónico registra la demo acelerada con separaciones de dos segundos.
+Ficha completa en [validación controlada](dmc3-validacion-controlada.md).
+phase2_verified=false, sin ataques autenticados o envío a GOW2; no se repitió PINE.
+Las secciones siguientes conservan la preparación e informes históricos.
+
 ## Retoma de validación con el usuario · propuesta R20
 
 Nueva petición explícita: **ya autoriza coordinar pruebas controladas**, una

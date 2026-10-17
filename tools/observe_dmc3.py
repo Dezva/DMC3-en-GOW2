@@ -28,6 +28,30 @@ def write_new(path, data):
         json.dump(data, stream, ensure_ascii=False, indent=2)
 
 
+def maybe_action_cue(event, planned_seconds, elapsed_seconds, emitted=False, beep=None):
+    """One optional instruction cue; never an observed action or game input.
+
+    Bounded synchronous 60 ms tone. Its actual emission is logged, and the
+    existing sampler still discards late ticks rather than catching up.
+    """
+    if emitted or planned_seconds is None or elapsed_seconds < planned_seconds:
+        return emitted
+    detail = dict(planned_seconds=planned_seconds, actual_elapsed_seconds=elapsed_seconds,
+                  frequency_hz=1200, duration_ms=60, cue_only=True, actual_action_unknown=True)
+    event("sampling.action_cue.begin", detail)
+    if beep is None:
+        import winsound
+        beep = winsound.Beep
+    try:
+        beep(1200, 60)
+    except OSError:
+        event("sampling.action_cue.end", dict(cue_only=True, sound_call_succeeded=False))
+        raise
+    event("sampling.action_cue.end", dict(cue_only=True, sound_call_succeeded=True,
+                                         actual_action_unknown=True))
+    return True
+
+
 def annotate(args):
     run = Path(args.annotate)
     session = json.loads((run / "session.json").read_text(encoding="utf-8"))
@@ -62,6 +86,7 @@ def capture(args):
                   manual_label=args.label, manual_label_provenance="manual_capture_intent_unverified",
                   requires_game_foreground=True,
                   lead_in_seconds=args.lead_in_seconds, audible_cues=args.beep,
+                  action_cue_seconds=getattr(args, "action_cue_seconds", None),
                   scene_detection="observed roots/mission/room/event only; same-context ABA may be missed",
                   errors=[])
     memory = None
@@ -126,6 +151,7 @@ def capture(args):
                 winsound.Beep(880, 200)
             event("sampling.begin", dict(cue_only=True, actual_action_unknown=True))
             start_capture = time.perf_counter()
+            action_cue_emitted = False
             for index in range(args.samples):
                 deadline = start_capture + index / args.hz
                 if time.perf_counter() - deadline > 1 / args.hz:
@@ -134,6 +160,9 @@ def capture(args):
                 delay = deadline - time.perf_counter()
                 if delay > 0:
                     time.sleep(delay)
+                action_cue_emitted = maybe_action_cue(
+                    event, getattr(args, "action_cue_seconds", None),
+                    time.perf_counter() - start_capture, action_cue_emitted)
                 sample = sampler.sample()
                 report["candidate_samples" if sample["valid"] else "invalid_samples"] += 1
                 event("candidate.sample", sample)
@@ -195,11 +224,16 @@ def main(argv=None):
     parser.add_argument("--action")
     parser.add_argument("--lead-in-seconds", type=float, default=0)
     parser.add_argument("--beep", action="store_true", help="Windows audible start/end cues for manual captures")
+    parser.add_argument("--action-cue-seconds", type=float, metavar="SECONDS",
+                        help="One optional short instruction tone during sampling; requires --beep")
     args = parser.parse_args(argv)
     if not 1 <= args.samples <= 6000 or not 1 <= args.hz <= 20 or args.samples / args.hz > 300:
         parser.error("Use 1–20 Hz, 1–6000 samples and at most 300 seconds")
     if not 0 <= args.lead_in_seconds <= 30:
         parser.error("Preparation delay must be between 0 and 30 seconds")
+    if args.action_cue_seconds is not None and (not args.beep or args.access_only or args.annotate
+            or not 1 <= args.action_cue_seconds <= args.samples / args.hz - 1):
+        parser.error("Action cue requires sampling with --beep, at least 1 s after start and 1 s before end")
     return annotate(args) if args.annotate else capture(args)
 
 

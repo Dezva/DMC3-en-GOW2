@@ -1,15 +1,86 @@
 # Validación controlada DMC3 · fichas y resultados
 
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
-identificar evidencia faltante. **Ninguna captura nueva se ha iniciado todavía.**
+identificar evidencia faltante. **R20 está completada; E1 sigue sin iniciar.**
 Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
 equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
 controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
 
+## Resultado R20 y siguiente ficha E1
+
+R20 se ejecutó tras confirmación explícita de preparación. El usuario confirmó
+después reposo completo y haber oído ambas señales. Dante, Rebellion activa y
+Gunslinger, misión 7 normal; imagen previa sin enemigos visibles y declaración
+de zona sin enemigos. El lector registró misión 7/sala 127; estilo y dificultad
+son declaraciones, no campos leídos. Captura con código previo al nuevo pitido.
+
+**200 muestras: 198 coherentes y dos de calentamiento**, un bloque, sin errores
+de lectura/acceso, pérdida de foco/actor/contexto o ticks omitidos. Ambos motions
+fueron grupo 0/índice 3, state=1, timer=2.0 en todas las coherentes. La asociación
+manual permite decir que 2.0 también se registró durante este reposo: no es un
+identificador exclusivo de ataque ni valida progreso de animación. No clasificar
+todo (0,3) como reposo por una sola prueba ni reinterpretar automáticamente logs viejos.
+
+Intervalos reales entre muestras: mediana 99,94 ms, mínimo 63,92 y máximo 147,37.
+10 Hz es nominal, sin precisión por frame. Las dos muestras de calentamiento se
+conservaron; no fueron lecturas parciales o fallos del temporizador. Perfil/filtros
+intactos; phase2_verified=false y authentic_attacks_detected=false.
+
+Informe privado:
+`D:\logs\dmc3-observe-20261016-234822-3cbbbb1ec2ac49039ef1ab1dd9f985fd`.
+report.json SHA-256 `9c88411b354360ce976c270ca8f81ddda66c7fd4bd025357be881110f175323b`;
+events.jsonl SHA-256 `63fde113ffebf3e4654263bc3c2abe426fc0701116e50a0d5c62e5da27103178`.
+manual-review.json conserva relato posterior; context-before-r20.png es imagen
+previa, no vídeo de la ejecución. Análisis en
+`D:\logs\dmc3-timeline-20261016-235300-a26781cdf9024d9580d05fca7d62a3a4`,
+analysis.json SHA-256 `522d0d71d767c50c8b26306db96bc93072b7d72c1f644be72841e897a73bc666`.
+
+### E1 propuesta, aún no ejecutada
+
+Objetivo: contrastar R20 con **una sola pulsación de espada**, conservando Dante,
+Rebellion, Gunslinger y el mismo lugar, sin enemigos. Comprobar si cambian ambos
+motions/state, si vuelven al patrón previo y si el timer sigue fijo. La señal y
+la pulsación no certifican una animación/impacto; preguntar después qué ocurrió.
+
+Se añadió el ajuste mínimo opcional `--action-cue-seconds 5`, con --beep: un
+único tono corto de 1200 Hz/60 ms a partir de t=5 s, sin tocar punteros/filtros.
+Registra sampling.action_cue.begin/end, horario previsto, tiempo real de llamada,
+resultado del sonido y cue_only/actual_action_unknown. No afirma cuándo se oyó
+o actuó. La llamada síncrona puede ensanchar un intervalo de muestreo; revisar
+la cadencia real y ticks omitidos, sin ocultar ese coste o afirmar límites por frame.
+
+Verificado antes de usar: **7 tests sintéticos de coordinación + 59 regresiones
+sintéticas** (25 observador/perfil/logs y 34 temporales), todos correctos, sin
+WindowsSelfRead ni acceso a juegos. Demo acústica real sin memoria: tres tonos,
+con separación acelerada de dos segundos; el usuario confirmó distinguirlos.
+No fue una captura: los parámetros 5/5 del helper eran valores de fixture de
+la demostración, no sus tiempos de acción ni un muestreo de cinco segundos.
+Evidencia privada: D:\logs\dmc3-cue-check-20261016-235229-be0b7635cebc48b38748577f893c91a7.
+
+Ficha E1 que debe explicarse antes de pedir «Listo»:
+
+1. Preparación **25 s** para volver al juego/cerrar pausa; quieto, sin atacar.
+2. Pitido agudo largo: comienza la captura de **20 s**; seguir quieto.
+3. Aproximadamente **5 s después**, pitido corto más agudo: pulsar **una vez**
+   el botón de espada y soltar; no repetir ni continuar combo. Dejar concluir la
+   animación y permanecer sin entradas hasta el fin (unos 15 s restantes).
+4. Pitido grave: fin; ya se puede volver al chat y confirmar ejecución/errores.
+
+Prohibido disparar, saltar, mover stick/teclas voluntariamente, usar lock-on,
+cambiar arma/estilo, abrir menú, minimizar o cambiar de ventana. El movimiento
+propio del espadazo se conserva. Si se equivoca, no intentar corregir/repetir
+dentro de la captura; describirlo después. Una única pulsación es intención,
+no etiqueta de ataque observada. No iniciar E1 con la confirmación anterior R20
+ni con la confirmación de sonido: requiere **nueva preparación explícita**.
+
+Configuración: 200 muestras/10 Hz, --lead-in-seconds 25 --beep
+--action-cue-seconds 5. Toda identidad/build/base/página se revalida por ejecución.
+Solo después se decidirá si hace falta una repetición o control negativo distinto.
+
 ## Primera ficha activa: R20, control negativo de reposo
 
-Estado: **propuesta, pendiente de confirmar personaje/arma/estilo/contexto y
-preparación**. Se verificaron otra vez 34 archivos históricos y los hashes de
+Estado de esta propuesta histórica: **ejecutada y confirmada**, resultado arriba.
+Se verificaron otra vez 34 archivos históricos y los hashes de
 dos parejas PINE. Las primeras capturas permanecen exploratorias; la espada
 con pitidos tiene inicio incierto. El baseline 023130 no tiene etiqueta de
 reposo confirmado ni contexto de equipo declarado y no sustituye a este control.
@@ -46,7 +117,7 @@ cambios al código o perfil. Los pitidos existentes ya se usaron en capturas
 confirmadas por el usuario; no requieren descarga ni señales intermedias.
 Antes de leer gameplay se redescubren PID/ruta/inicio, SHA/PE, base real y guardas
 de lectura del observador; error de acceso/build impide continuar, sin elevarlo.
-Esto tampoco se ha ejecutado todavía para la nueva ficha.
+Estas comprobaciones se ejecutaron para R20; su identidad histórica está en continuidad.
 
 10 Hz da aproximadamente 100 ms entre muestras, suficiente para contrastar un
 tramo de reposo de 20 s, **sin cobertura por frame**. Revisar huecos/ticks omitidos
@@ -58,10 +129,11 @@ siguen false hasta evidencia suficiente. R20 no activa automáticamente la prueb
 
 ## Diseño posterior, no señales implementadas
 
-Las secciones siguientes conservan propuestas para otras fichas. Los diseños
-de cuenta regresiva y pitidos por acción **no están implementados**; no usarlos
+Las secciones siguientes conservan propuestas para otras fichas. La cuenta
+regresiva y secuencias de varias señales **no están implementadas**; no usarlas
 como si fuesen la ficha R20 o estuviesen sonando con el CLI actual. Antes de una
 prueba con esas señales, explicar el ajuste mínimo, implementarlo y verificarlo.
+La excepción es la única señal intermedia opcional recién verificada para E1.
 No pedir al usuario contar entradas de un combo sin completar su ficha exacta.
 
 ## Preparación común y señales propuestas
@@ -75,8 +147,9 @@ preferir suelo llano sin enemigos/interacción cercana, sin lock-on ni stick.
 Esto separa animación de impacto: **no se intentará medir daño ni aciertos**.
 
 La cuenta regresiva y señales por acción siguientes son un **diseño pendiente**;
-la herramienta actual solo tiene preparación y pitidos de inicio/fin. No indicar
-al usuario que ya oirá las señales intermedias con el CLI publicado. Cuando se
+la herramienta actual tiene preparación, inicio/fin y una señal intermedia
+opcional para E1. No indicar al usuario que ya oirá toda la secuencia de la tabla.
+Cuando se
 implemente esa coordinación, usará audio Windows sin descargar nada. Antes de
 la primera captura explicar y demostrar las señales fuera del registro, para
 que un pitido inesperado no encuentre al jugador atacando.

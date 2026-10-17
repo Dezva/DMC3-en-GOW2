@@ -1,5 +1,43 @@
 # Diario del proyecto
 
+## R20 real confirmada · señal única preparada para E1
+
+R20 autorizada explícitamente: 25 s preparación, ~20 s / 200 muestras / 10 Hz.
+Usuario confirmó después reposo completo y ambas señales, Rebellion/Gunslinger,
+misión 7 normal y zona sin enemigos. Lecturas: **198 coherentes, dos de
+calentamiento**, ambas parejas motion grupo 0/índice 3, state=1, timer=2.0 constante.
+Un bloque/contexto estable; cero errores o ticks omitidos. Cadencia real mediana
+99,94 ms, min 63,92/max 147,37. 2.0 no es exclusivo de ataque ni demuestra progreso.
+Asociación manual de esta condición, sin clasificador universal de reposo.
+
+Identidad actual redescubierta: PID 10688/inicio 02:38:13.424527Z UTC, base real
+0x7FF7C6920000, mismo SHA/PE; ambos tokens medios no elevados. Acceso 0x410 y
+guardas correctos; 3405 lecturas/40173 bytes. No PID/base históricos reutilizados,
+escrituras, PINE, DLL/hooks o configuración modificada.
+Captura dmc3-observe-20261016-234822-3cbbbb1ec2ac49039ef1ab1dd9f985fd;
+hash report `9c88411b354360ce976c270ca8f81ddda66c7fd4bd025357be881110f175323b`,
+events `63fde113ffebf3e4654263bc3c2abe426fc0701116e50a0d5c62e5da27103178`.
+Nota manual e imagen previa privadas conservadas sin alterar fuentes.
+Análisis en dmc3-timeline-20261016-235300-a26781cdf9024d9580d05fca7d62a3a4;
+hash analysis.json `522d0d71d767c50c8b26306db96bc93072b7d72c1f644be72841e897a73bc666`.
+
+Para E1 se añadió ajuste mínimo opcional --action-cue-seconds: una sola señal
+corta 1200 Hz/60 ms durante captura, con begin/end monotónicos y tiempos
+previstos/reales, sin inferir acción. Requiere --beep y margen, rechaza modo
+access-only/anotación/NaN/fuera de rango. Perfil/punteros/filtros intactos.
+Siete tests nuevos de coordinación y 59 regresiones sintéticas correctos, sin
+WindowsSelfRead o juegos. Demo acústica sin memoria confirmada audible por usuario;
+datos en dmc3-cue-check-20261016-235229-be0b7635cebc48b38748577f893c91a7.
+La demo usó tiempo simulado 5/5 del helper, no una captura; eventos monotónicos
+conservan su horario real y separación acelerada. No confundir con ejecución.
+
+E1 todavía no iniciada; requiere instrucciones completas y nueva preparación:
+25 s para volver, primer pitido reposo, a ~5 s tono corto para una pulsación de
+espada, soltar y reposo hasta pitido grave (~20 s totales). Revisar jitter/ticks
+por coste de la señal síncrona y límites entre muestras, no precisión por frame.
+Detalle en dmc3-validacion-controlada.md. Fase parcial, sin ataques autenticados,
+combo completo, impactos ni reacción GOW2. Informes completos fuera de Git.
+
 ## Retoma de pruebas controladas · ficha R20 propuesta
 
 Nueva petición autoriza coordinar capturas con el usuario después de revisar

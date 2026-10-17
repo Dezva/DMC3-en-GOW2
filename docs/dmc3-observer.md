@@ -9,8 +9,14 @@ acceso correcto o disponibilidad de candidatos, según el modo.
 La petición posterior incorporó [análisis temporal offline](dmc3-analisis-offline.md),
 sin modificar este lector/perfil. La [investigación fijada](dmc3-campos-investigacion.md)
 identifica motionData[0/1] como canales inferior/superior según DDMK; el timer
-sigue sin unidades/sentinel validados. Las [fichas futuras](dmc3-validacion-controlada.md)
-no se ejecutan ahora y esperan instrucciones del usuario.
+sigue sin unidades/sentinel validados. Las [fichas y resultados](dmc3-validacion-controlada.md)
+conservan la autorización y confirmación exigidas para cada nueva captura.
+
+Actualización de validación controlada: R20 ya se ejecutó con reposo confirmado
+por el usuario; ambos motions (grupo 0/índice 3), state=1 y timer=2.0 estables.
+Una lectura coherente más el relato permiten asociación contextual, no semántica
+universal. Resultado y siguiente ficha E1 en [validación controlada](dmc3-validacion-controlada.md).
+E1 sigue pendiente de nueva preparación. No repetir PINE.
 
 ## Ejecutar y conservar evidencia
 
@@ -172,6 +178,15 @@ El siguiente procedimiento es el plan histórico, **no una captura solicitada
 ahora**. Leer primero la [revisión de suficiencia](revision-capturas-dmc3.md):
 la espada con pitidos tiene inicio incierto según la última aclaración, y las
 primeras pruebas son exploratorias. Los pitidos usan Windows, sin descargar nada.
+
+Para una prueba autorizada de una sola acción, ahora existe **una señal adicional
+opcional**: --action-cue-seconds 5 junto a --beep. Requiere muestreo (no access-only
+ni annotate) y un segundo de margen al inicio/final. Tono 1200 Hz, 60 ms, una vez;
+eventos sampling.action_cue.begin/end con reloj monotónico y cue_only. El horario
+real puede diferir del previsto; una señal no demuestra ejecución. El bloqueo
+breve puede ensanchar un intervalo: revisar cadencia y descartes. Sin esta opción
+se mantienen las señales anteriores. Cuenta regresiva/múltiples señales aún no
+implementadas. Demo sin memoria y tests descritos en la ficha E1.
 
 Responder al chat, volver al juego y cerrar su pausa durante los 15 segundos
 iniciales. Al primer pitido comienza el intervalo de 20 s; permanecer quieto

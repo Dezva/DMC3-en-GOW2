@@ -87,6 +87,12 @@ capturas históricas reanalizadas, sin abrir juegos ni pedir otra captura. La
 la semántica de motionTimer; el [protocolo futuro](docs/dmc3-validacion-controlada.md)
 espera las instrucciones del usuario.
 
+En la validación posterior ya se completó **R20 de reposo**, confirmada por el
+usuario: 198 muestras coherentes, timer=2.0 también sin atacar. Esto no identifica
+un ataque ni valida un reloj de animación. La siguiente ficha E1 propone una sola
+pulsación de espada con señal intermedia opcional verificada; espera preparación
+explícita. Resultados y procedimiento en [validación controlada](docs/dmc3-validacion-controlada.md).
+
 ## Repetir PINE solo si hace falta investigar
 
 En PCSX2 activa Herramientas → Mostrar ajustes avanzados; después abre Ajustes
