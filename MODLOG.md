@@ -1,5 +1,40 @@
 # Diario del proyecto
 
+## 2026-10-17 · E1-R repetible y siguiente negativo J1
+
+Desde main local/remoto **449529a50c7c2b1b55487ec6a79406bedbbf683d**, limpio,
+se ejecutó E1-R tras preparación explícita. Usuario confirmó una pulsación y un
+espadazo, reposo y tres señales, sin incidentes. 198 muestras coherentes y dos
+de calentamiento; contexto/identidad redescubiertos coincidentes con R20/E1.
+Consulta/lectura 0x410, tokens medios sin elevar, 3405 lecturas/40173 bytes;
+sin errores, pérdida de actor/foco/contexto o ticks omitidos.
+
+Ambas parejas repiten (0,3) → (3,3) durante 16 muestras → (0,0) → (0,3).
+Matiz: 15 de esas 16 llevan state65537 y la última state1; en E1 las 16
+llevaban 65537. BUSY y motion no se tratan como límites idénticos. Transición
+nativa o lecturas que cruzan frames siguen como alternativas: no hay snapshot
+atómico. Timer=2.0 en las 198, igual a R20/E1 (594 coherentes entre tres).
+Asociación manual repetible en este contexto, no detector/ataque autenticado.
+
+Marcas de entrada 5,996–6,098 s y salida 7,600–7,694 s desde primera muestra;
+tramo registrado 1,502 s. Son límites del registro tras múltiples lecturas,
+no fronteras nativas exactas. Cadencia mediana 99,77 ms, rango 57,71–165,46;
+sin precisión por frame o impacto. Captura privada
+dmc3-observe-20261017-000230-64edd6f4fa7548cca80686e177cb973f,
+hash report `a782b973e728ddd534ddfc2d69247c8b2b0c9ab515f814cdb03814e397e32628`,
+events `c59cd372e6b8fe38bbcb3c67ae223c798cfa47ae8a32d07d0100efb196e2b199`.
+Nota posterior nueva; comparación R20/E1/E1-R en
+dmc3-timeline-20261017-000501-c0874666be3a46499af6253011f6a04b,
+hash analysis `11910bbcc51f0ba7913cb9b1bb41e2b9408462f15112960560bfe335a2622ace`.
+Rutas completas en continuidad, informes privados y originales intactos.
+
+No repetir E1 por rutina. Propuesto J1, un solo salto como negativo de espada
+y contraste de timer -1, sin mezclar combos/disparos/saltos múltiples. Misma
+ficha de coordinación, nuevo «Listo» imprescindible; todavía no ejecutado.
+Conservar filtros y rechazos, sin afirmar significado si no reaparece -1 o no
+hay muestras coherentes suficientes. Documentación/enlaces/hashes verificados;
+sin código nuevo, suites repetidas, PINE o escrituras. Fase parcial, flags false.
+
 ## E1 real confirmada · contraste con reposo y repetición pendiente
 
 Desde **476130021a7edd6ce47bbe22eb1c4b39f83be564**, main local/remoto limpio,

@@ -91,8 +91,9 @@ En la validación posterior ya se completó **R20 de reposo**, confirmada por el
 usuario: 198 muestras coherentes, timer=2.0 también sin atacar. Esto no identifica
 un ataque ni valida un reloj de animación. E1 también se completó y confirmó:
 un espadazo declarado, un episodio motion (3,3)/state65537 y timer aún fijo 2.0.
-Falta repetibilidad y negativos distintos; no hay ataque autenticado. E1-R propone
-una sola repetición con nueva preparación explícita. Resultados y procedimiento
+E1-R reprodujo el episodio de 16 muestras, con una muestra final sin BUSY y
+timer aún fijo. Falta contraste con otra acción; no hay ataque autenticado.
+J1 propone un solo salto con nueva preparación explícita. Resultados y procedimiento
 en [validación controlada](docs/dmc3-validacion-controlada.md).
 
 ## Repetir PINE solo si hace falta investigar

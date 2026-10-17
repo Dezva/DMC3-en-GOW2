@@ -18,7 +18,10 @@ Una lectura coherente más el relato permiten asociación contextual, no semánt
 universal. Resultado y siguiente ficha E1 en [validación controlada](dmc3-validacion-controlada.md).
 E1 ya se ejecutó y el usuario confirmó un espadazo: (3,3)/state65537 por 16
 muestras, timer 2.0 constante antes/durante/después. Asociación contextual sin
-exclusividad o autenticación independiente; E1-R espera nueva preparación.
+exclusividad o autenticación independiente. E1-R repitió las 16 muestras (3,3),
+con state1 en la última; BUSY y motion no tienen límites necesariamente iguales,
+y las lecturas múltiples pueden cruzar frames. J1, un solo salto, espera nueva
+preparación como contraste mínimo, manteniendo filtros.
 No repetir PINE.
 
 ## Ejecutar y conservar evidencia

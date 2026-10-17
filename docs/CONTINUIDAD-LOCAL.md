@@ -1,9 +1,50 @@
 # Continuidad para Codex local en Windows
 
-Estado de referencia: 16 de octubre de 2026. Esta guía permite continuar desde
+Estado de referencia: 17 de octubre de 2026. Esta guía permite continuar desde
 el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
+
+## E1-R confirmada · J1 propuesta · 2026-10-17
+
+Partida **449529a50c7c2b1b55487ec6a79406bedbbf683d**, main local/remoto limpio
+y coincidente. Tras «Listo para E1-R» se ejecutó la única repetición prevista:
+25 s preparación, ~20 s/200 muestras/10 Hz, señal a ~5 s. Usuario confirmó un
+solo espadazo/pulsación, reposo antes/después, tres tonos y ningún incidente.
+
+198 coherentes y dos de calentamiento, contexto e identidad redescubiertos
+coincidentes con R20/E1: misión 7/sala 127/posición 2/MAIN, PID 10688, mismo
+inicio/base/build; ambos tokens medios sin elevar. 3405 lecturas/40173 bytes,
+sin errores, pérdidas de actor/foco/contexto o ticks omitidos. No reutilizar
+PID/base históricos en la siguiente ejecución.
+
+Ambos motions repiten (0,3) → **(3,3), 16 muestras** → (0,0) → (0,3).
+En E1-R, 15 de las 16 tienen state65537 y la última state1; E1 tenía 65537
+en todas. No equiparar límites BUSY/motion ni resolver si es fase nativa o
+lectura entre frames. El evento se registra después de lecturas múltiples:
+las ventanas temporales son de marcas de registro, no fronteras nativas exactas.
+Timer=2.0 en las 198, como en R20/E1 (594 coherentes entre las tres).
+Repetibilidad contextual con asociación manual, sin exclusividad/auth detector.
+
+E1-R: entrada registrada 5,996–6,098 s, salida 7,600–7,694 s desde primera
+muestra; tramo 1,502 s. Cadencia mediana 99,77 ms (57,71–165,46); no por frame.
+Captura: D:\logs\dmc3-observe-20261017-000230-64edd6f4fa7548cca80686e177cb973f.
+report SHA-256 `a782b973e728ddd534ddfc2d69247c8b2b0c9ab515f814cdb03814e397e32628`;
+events `c59cd372e6b8fe38bbcb3c67ae223c798cfa47ae8a32d07d0100efb196e2b199`.
+Nota manual nueva, fuentes intactas. Comparación R20/E1/E1-R y e1r-review.json:
+D:\logs\dmc3-timeline-20261017-000501-c0874666be3a46499af6253011f6a04b;
+analysis SHA-256 `11910bbcc51f0ba7913cb9b1bb41e2b9408462f15112960560bfe335a2622ace`.
+
+Siguiente mínima **J1: un solo salto**, como negativo del espadazo y contraste
+del timer antes visto -1 en saltos. Misma Rebellion/Gunslinger/lugar: 25 s
+preparación, 20 s registro, quieto al pitido largo, una pulsación de salto al
+corto (~5 s), soltar, aterrizar y reposo hasta grave. Nada de espada, disparo,
+segundo salto, dirección, lock-on, equipo, menús o ventana. Ficha completa en
+dmc3-validacion-controlada.md; requiere nuevo «Listo», **no iniciada**.
+No repetir E1 por rutina ni mezclar pruebas de todas las acciones. No cambiar
+filtros para -1; preservar rechazos y campos parciales como tales. Si no se
+reproduce -1 no darlo por resuelto. Sin cambios de código/tests repetidos o PINE;
+phase2_verified=false y authentic_attacks_detected=false. No impactos/reacción GOW2.
 
 ## E1 ejecutada y confirmada · repetición propuesta
 

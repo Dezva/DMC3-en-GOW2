@@ -40,9 +40,9 @@ transición como borrado de partida ni modificar la política MAIN del lector.
 
 ## Qué podemos concluir sobre el temporizador
 
-Validación posterior R20/E1: reposo y un espadazo separados, ambos confirmados
+Validación posterior R20/E1/E1-R: reposo y dos espadazos aislados, confirmados
 por el usuario con Rebellion/Gunslinger, mantienen **2.0 en las 198 muestras
-coherentes de cada captura**, aun cambiando motion/state en E1. No muestra
+coherentes de cada captura**, aun cambiando motion/state. No muestra
 progreso de ese espadazo, sin decidir unidad/sentinel o incompatibilidad nativa.
 El episodio (3,3)/state65537 tiene asociación manual contextual; no es todavía
 un ataque identificado independientemente. Detalles y hashes en

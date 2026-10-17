@@ -70,8 +70,12 @@ y lower_motion_values; sus campos state/motion iniciales no describen todo el ru
 Una bajada de timer con motion constante se registra como observación; no
 certifica reinicio. Ninguna secuencia se enlaza a través de una invalidación.
 
-Los tiempos exactos son **tiempos de muestra**. Inicio/final de una transición
-solo se acotan entre observaciones contiguas; observed_span_seconds mide el
+Los tiempos exactos son **marcas del registro posteriores a la lectura múltiple**.
+Las ventanas entre observaciones contiguas no garantizan fronteras nativas:
+los campos se leen en instantes distintos y pueden cruzar frames aun pasando
+las guardas de contexto. No convertir time_bracket_ns en una hora precisa de
+inicio/final de acción ni en garantía matemática sobre sus frames.
+observed_span_seconds mide el
 tramo observado, no duración total de acción. left_censored/right_censored
 indican que el límite se desconoce (captura, pérdida, pausa, hueco o cierre).
 No inventar un tiempo cero de ataque al primer sample. El baseline inicial era

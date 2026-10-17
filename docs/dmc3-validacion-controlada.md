@@ -1,13 +1,78 @@
 # Validación controlada DMC3 · fichas y resultados
 
 La nueva petición autoriza preparar y realizar pruebas con el usuario tras
-identificar evidencia faltante. **R20 y E1 están completadas y confirmadas;
-una repetición de E1 sigue pendiente de nueva preparación.**
+identificar evidencia faltante. **R20, E1 y E1-R están completadas y confirmadas;
+J1, un solo salto, está propuesta y requiere nueva preparación.**
 Confirmar contexto y preparación antes de cada ejecución; una respuesta sobre
 equipo/personaje no equivale a «Listo». No se necesita repetir PINE. El usuario
 controla el juego; no instalar grabadores/hooks ni cambiar sus entradas/ventanas.
 
-## Resultado R20 y siguiente ficha E1
+## E1-R confirmada · 2026-10-17 · siguiente contraste J1
+
+E1-R se ejecutó desde **449529a50c7c2b1b55487ec6a79406bedbbf683d** tras nueva
+preparación explícita. El usuario confirmó una sola pulsación y un espadazo,
+reposo antes/después y las tres señales, sin incidentes. Misma configuración,
+contexto misión 7/sala 127/posición 2/MAIN e identidad redescubierta coincidente.
+198 muestras coherentes, dos de calentamiento; sin errores de acceso/lectura,
+foco/actor/contexto o ticks omitidos. Perfil/filtros sin cambios.
+
+Repite la secuencia de ambos motions **(0,3) → (3,3) → (0,0) → (0,3)**, con
+16 muestras (3,3), como E1. Diferencia relevante: E1-R conserva state=65537 en
+15 de ellas y state=1 en la última; E1 tenía 65537 en las 16. No equiparar BUSY
+y duración de motion. Puede reflejar transición nativa o lecturas entre frames:
+las guardas de contexto no vuelven atómicos los campos. No atribuir una causa.
+
+Timer=2.0 en las 198 coherentes de E1-R y en las de R20/E1 (594 en conjunto).
+No muestra avance del espadazo en estas condiciones. Hay repetibilidad **contextual
+asociada al relato**, no exclusividad frente a otras acciones ni ataque autenticado.
+No repetir de nuevo E1 por rutina.
+
+Marcas del registro E1-R desde primera muestra: entrada 5,996–6,098 s, salida
+7,600–7,694 s; tramo de motion registrado 1,502 s. Son ventanas entre marcas
+posteriores a lecturas múltiples, **no fronteras nativas exactas**. Cadencia
+mediana 99,77 ms, mínimo 57,71 y máximo 165,46; no cobertura por frame.
+
+Captura privada:
+`D:\logs\dmc3-observe-20261017-000230-64edd6f4fa7548cca80686e177cb973f`.
+report.json SHA-256 `a782b973e728ddd534ddfc2d69247c8b2b0c9ab515f814cdb03814e397e32628`;
+events.jsonl SHA-256 `c59cd372e6b8fe38bbcb3c67ae223c798cfa47ae8a32d07d0100efb196e2b199`.
+Relato en manual-review.json. Comparación R20/E1/E1-R y e1r-review.json en
+`D:\logs\dmc3-timeline-20261017-000501-c0874666be3a46499af6253011f6a04b`;
+analysis.json SHA-256 `11910bbcc51f0ba7913cb9b1bb41e2b9408462f15112960560bfe335a2622ace`.
+No se alteraron las fuentes originales ni se repitió PINE.
+
+### J1 propuesta: un solo salto, ningún ataque
+
+Hipótesis mínima: comprobar si el patrón (3,3)/BUSY del espadazo aparece en una
+acción distinta y contrastar el timer con el contexto donde antes apareció -1.
+Las capturas viejas de saltos conservan valor exploratorio; no son un negativo
+limpio con equipo/señal/una acción delimitada. No hace falta probar ahora combos
+o disparos además de este control. Un J1 limpio tampoco demuestra exclusividad
+global; si no reaparece -1, no se declara resuelto su significado.
+
+Mismo lugar/equipo: Dante, Rebellion, Gunslinger, misión 7 normal, sin enemigos,
+desde el suelo. **No cambiar arma/estilo ni de sala para preparar la prueba.**
+
+1. Tras un nuevo «Listo para J1», 25 s para volver a DMC3/cerrar pausa y quedar quieto.
+2. Pitido agudo largo: inicio de 20 s de registro, seguir quieto.
+3. Pitido corto a ~5 s: **una pulsación de salto y soltar**, sin dirección,
+   sin espada, disparo, segundo salto en aire o ataque de estilo.
+4. Dejar aterrizar y permanecer sin entradas hasta el pitido grave de fin.
+5. Después preguntar si hubo un solo salto visible, reposo y las tres señales;
+   anotar cualquier incidente sin improvisar repeticiones durante el registro.
+
+No lock-on, movimiento voluntario, equipo, menús, minimizar o cambiar de ventana.
+Configuración existente 200 muestras/10 Hz, --lead-in-seconds 25 --beep
+--action-cue-seconds 5. No ajuste nuevo de sonido, direcciones o filtros.
+**J1 no se ha iniciado**; la confirmación posterior E1-R no la autoriza.
+
+Conservar rechazos y su causa, incluidos -1: no ampliar rango para aceptarlos.
+Si el timer invalida una muestra, sus campos parciales no se presentan como
+contexto finalmente revalidado. Revisar cambios de generación/calentamiento,
+state y ambos motions sin unir a través de huecos. Los límites por frame y
+semántica de sentinel quedan desconocidos si la evidencia no alcanza.
+
+## Resultado R20 y ficha E1, historial de ejecución
 
 R20 se ejecutó tras confirmación explícita de preparación. El usuario confirmó
 después reposo completo y haber oído ambas señales. Dante, Rebellion activa y
@@ -83,6 +148,8 @@ analysis.json SHA-256 `d0b7d4dedacd37073b69a7ba19bed1dda555cf8aebeaec00121c5cbaa
 e1-review.json conserva límites y cadencia. Fuentes originales sin modificar.
 
 ### Siguiente: E1-R, una única repetición idéntica propuesta
+
+Propuesta histórica, **ya completada según el resultado anterior**.
 
 Objetivo: comprobar repetibilidad del episodio y del timer constante, no
 corregir un error de E1 (el usuario la confirmó limpia). Misma ficha de abajo,
