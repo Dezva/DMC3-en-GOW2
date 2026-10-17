@@ -5,6 +5,23 @@ el repositorio sin depender del historial del chat ni del filesystem de nube.
 Actualizar al obtener evidencia nueva; los resultados siguientes son históricos,
 no pruebas ejecutadas automáticamente al abrir este archivo.
 
+## Hipótesis temporal de combos propuesta por el usuario · 2026-10-17
+
+Después de publicar/verificar **84358f3c0450fef5694d2eda8cb6064c8faabaeb**,
+el usuario plantea si el timer puede relacionarse con «golpe, espera, golpe,
+golpe». Conservar como hipótesis, sin combo/arma/ruta exactos identificados ni
+captura nueva autorizada por esa pregunta. Campo leído continuamente; J1-R
+varía5,901–6,293 s y rechaza -1 en6,386–6,685 s desde primera marca de muestra,
+tras señal~5 s; espada E1/E1-R permanece2.0. No son horas nativas de input ni
+unidades conocidas del valor; variación durante salto no prueba ventana de combo.
+
+Nota privada D:\logs\dmc3-combo-timing-hypothesis-20261017-003232-06e3fd6653504c6b8545ad113f428a4e\hypothesis.json;
+SHA `41238296e481b23fc6c82c4935eda3d24cdac80a82bf8a3ed978d41c5f58536b`.
+Próximo sigue estudiar rutas nativas. Después, solo si distingue hipótesis,
+definir combo completo/alternativa con tiempos de ejecución observados y
+frecuencia suficiente; 10 Hz puede perder ventanas breves. No nueva RAM/PINE,
+código, filtros o suites. Fase parcial y flags false.
+
 ## Timer: dos referencias estáticas verificadas · 2026-10-17
 
 Desde main local/remoto limpio **d883400fd4de4cc191286735f43bc5ffcf638fd5**.

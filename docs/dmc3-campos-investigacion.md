@@ -163,6 +163,27 @@ o semántica/layout incompletamente comprendidos; ninguna explicación está val
 Las bajadas positivas del timer en un motion constante son observaciones de
 descenso, no prueba automática de reinicio de animación, repetición o combo.
 
+## Hipótesis del usuario: ventanas de combos con pausa
+
+El usuario propone relacionar +0x3E34 con una secuencia «golpe, esperar un poco,
+golpe, golpe». Es una hipótesis útil sobre duración de acción/encadenamiento,
+**no significado validado del campo** ni combo exacto identificado. El campo se
+lee durante toda la captura, no aparece únicamente al rechazar una muestra.
+En J1-R cambió a 9,8,2,11,5 entre 5,901–6,293 s desde primera marca de muestra;
+los -1 rechazados están en 6,386–6,685 s, recuperación coherente a 6,990 s.
+Son marcas tras lecturas, no hora visual del salto/input, y la unidad del valor
+no se conoce. Los dos espadazos aislados conservaron 2.0 antes/durante/después.
+
+La variación sin combo declarado y las referencias de duración de Stinger no
+identifican una ventana de combo general; tampoco excluyen usos distintos por
+acción. Antes de probarla, seguir lectores/escritores nativos, identificar arma,
+estilo y ruta completa exacta, y definir comparación temporal que distinga
+explicaciones. 10 Hz puede omitir ventanas breves: no medirlas como frames.
+No se inicia ni se programa otra captura por esta pregunta. Filtros intactos.
+
+Nota literal privada: `D:\logs\dmc3-combo-timing-hypothesis-20261017-003232-06e3fd6653504c6b8545ad113f428a4e\hypothesis.json`,
+SHA `41238296e481b23fc6c82c4935eda3d24cdac80a82bf8a3ed978d41c5f58536b`.
+
 ## Campos complementarios para una validación posterior
 
 | Campo de fuente | Lugar/tipo | Comprobación necesaria; no realizado ahora |

@@ -1,5 +1,18 @@
 # Diario del proyecto
 
+## 2026-10-17 · Hipótesis del usuario sobre pausas de combos
+
+Desde publicado/verificado **84358f3c0450fef5694d2eda8cb6064c8faabaeb** se
+conservó la pregunta sobre «golpe, espera, golpe, golpe» como hipótesis de
+duración/encadenamiento, no significado probado de motionTimer. J1-R varía
+5,901–6,293 s y rechaza -1 en6,386–6,685 s; E1/E1-R mantienen2.0. Campo leído
+continuamente, tiempos del registro y unidades del valor diferenciados.
+Nota privada dmc3-combo-timing-hypothesis-20261017-003232-06e3fd6653504c6b8545ad113f428a4e,
+hypothesis SHA `41238296e481b23fc6c82c4935eda3d24cdac80a82bf8a3ed978d41c5f58536b`.
+Siguiente: rutas nativas antes de elegir combo exacto/control; 10 Hz no garantiza
+ventanas breves. Sin nuevas capturas/RAM/PINE, código, filtros o suites.
+Checks documentales/nota, fase parcial/flags false; no detector o reacción GOW2.
+
 ## 2026-10-17 · Referencias estáticas del timer: dos escrituras coincidentes
 
 Partida main local/remoto limpio **d883400fd4de4cc191286735f43bc5ffcf638fd5**.
